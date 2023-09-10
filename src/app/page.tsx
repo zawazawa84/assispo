@@ -1,5 +1,5 @@
-import { CostumeList } from '@/features/costume/pages/CostumeList';
+import SignIn from './signin/page';
 
 export default function Home() {
-  return <CostumeList />;
+  return <SignIn />;
 }
