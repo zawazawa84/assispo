@@ -14,7 +14,7 @@ export const CostumeItem = ({
         alt=""
         width={220}
         height={220}
-        className="rounded-sm object-cover aspect-square"
+        className="rounded-sm object-contain aspect-square bg-secondary"
       />
       <span className="absolute top-2 left-2 bg-white px-2 py-1 rounded text-sm shadow-md">
         {span}
