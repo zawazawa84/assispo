@@ -1,3 +1,6 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -8,10 +11,13 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { pagesPath } from '@/gen/$path';
 import Link from 'next/link';
 import { FcGoogle } from 'react-icons/fc';
 
 export const SignInPage = () => {
+  const router = useRouter();
+
   return (
     <div className="flex items-center justify-center h-screen">
       <Card className="w-100">
@@ -46,7 +52,12 @@ export const SignInPage = () => {
           </div>
         </CardContent>
         <CardFooter className="grid gap-2 space-y-1">
-          <Button className="bg-[#4988aa]">ログイン</Button>
+          <Button
+            className="bg-[#4988aa]"
+            onClick={() => router.push(pagesPath.costume.$url().pathname)}
+          >
+            ログイン
+          </Button>
           <Button variant="outline">
             <p className="text-[#4988aa]">新規会員登録</p>
           </Button>
