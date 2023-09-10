@@ -8,6 +8,11 @@ const buildSuffix = (url?: {query?: Record<string, string>, hash?: string}) => {
 
 export const pagesPath = {
   "costume": {
+    "detail": {
+      _costumeId: (costumeId: string | number) => ({
+        $url: (url?: { hash?: string }) => ({ pathname: '/costume/detail/[costumeId]' as const, query: { costumeId }, hash: url?.hash, path: `/costume/detail/${costumeId}${buildSuffix(url)}` })
+      })
+    },
     $url: (url?: { hash?: string }) => ({ pathname: '/costume' as const, hash: url?.hash, path: `/costume${buildSuffix(url)}` })
   },
   "signin": {
