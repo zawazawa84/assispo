@@ -37,7 +37,7 @@ export const CostumeDetail = () => {
             </h1>
           </div>
           <Button
-            className="w-full bg-[#4988aa]"
+            className="w-full bg-themeblue"
             onClick={() =>
               router.push(
                 pagesPath.costume.detail._costumeId('1').order.$url().path,

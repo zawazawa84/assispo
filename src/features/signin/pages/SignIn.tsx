@@ -47,19 +47,22 @@ export const SignInPage = () => {
             <Label htmlFor="password">パスワード</Label>
             <Input id="password" type="password" />
             <Link href={''}>
-              <p className="text-sm text-[#4988aa]">パスワードをお忘れの方</p>
+              <p className="text-sm text-themeblue">パスワードをお忘れの方</p>
             </Link>
           </div>
         </CardContent>
         <CardFooter className="grid gap-2 space-y-1">
           <Button
-            className="bg-[#4988aa]"
+            className="bg-themeblue"
             onClick={() => router.push(pagesPath.costume.$url().path)}
           >
             ログイン
           </Button>
-          <Button variant="outline">
-            <p className="text-[#4988aa]">新規会員登録</p>
+          <Button
+            variant="outline"
+            onClick={() => router.push(pagesPath.signup.$url().path)}
+          >
+            <p className="text-themeblue">新規会員登録</p>
           </Button>
         </CardFooter>
       </Card>

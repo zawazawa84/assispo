@@ -10,8 +10,8 @@ export const OrderTable = () => {
           <TableCell className="">レンタル期間</TableCell>
           <TableCell>期間を選択してください</TableCell>
           <TableCell>
-            <Button variant="outline" className="h-8 border border-[#4988aa]">
-              <p className="text-[#4988aa]">選択</p>
+            <Button variant="outline" className="h-8 border border-themeblue">
+              <p className="text-themeblue">選択</p>
             </Button>
           </TableCell>
         </TableRow>
@@ -30,8 +30,8 @@ export const OrderTable = () => {
           <TableCell>お支払い方法</TableCell>
           <TableCell>お支払い方法を選択してください</TableCell>
           <TableCell>
-            <Button variant="outline" className="h-8 border border-[#4988aa]">
-              <p className="text-[#4988aa]">選択</p>
+            <Button variant="outline" className="h-8 border border-themeblue">
+              <p className="text-themeblue">選択</p>
             </Button>
           </TableCell>
         </TableRow>
@@ -46,9 +46,9 @@ export const OrderTable = () => {
                   <TableCell>
                     <Button
                       variant="outline"
-                      className="h-8 border border-[#4988aa]"
+                      className="h-8 border border-themeblue"
                     >
-                      <p className="text-[#4988aa]">変更</p>
+                      <p className="text-themeblue">変更</p>
                     </Button>
                   </TableCell>
                 </TableRow>

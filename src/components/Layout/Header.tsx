@@ -17,7 +17,7 @@ export const Header = () => {
         <Button variant="ghost" className="min-w-fit h-auto ml-28">
           ログイン
         </Button>
-        <Button className="bg-[#4988aa] min-w-fit h-auto">出品</Button>
+        <Button className="bg-themeblue min-w-fit h-auto">出品</Button>
       </div>
     </div>
   );

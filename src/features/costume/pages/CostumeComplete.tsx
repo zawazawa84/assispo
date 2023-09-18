@@ -31,14 +31,14 @@ export const CostumeComplete = () => {
             <p>
               ご注文内容及び発送状況は、配信された確認メール、もしくは
               <Link href={''}>
-                <span className="text-[#4988aa]">注文履歴</span>
+                <span className="text-themeblue">注文履歴</span>
               </Link>
               よりご確認ください。
             </p>
           </CardContent>
           <CardFooter className="grid gap-2 space-y-1">
             <Button
-              className="bg-[#4988aa]"
+              className="bg-themeblue"
               onClick={() => router.push(pagesPath.costume.$url().path)}
             >
               衣装一覧へ戻る

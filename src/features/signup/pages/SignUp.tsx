@@ -43,7 +43,7 @@ export const SignUpPage = () => {
           </div>
         </CardContent>
         <CardFooter className="grid gap-2 space-y-1">
-          <Button className="bg-[#4988aa]">会員登録</Button>
+          <Button className="bg-themeblue">会員登録</Button>
         </CardFooter>
       </Card>
     </div>

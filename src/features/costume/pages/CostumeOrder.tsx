@@ -23,7 +23,7 @@ export const CostumeOrder = () => {
         <OrderTable />
         <div className="flex flex-col w-100 h-80 p-4 ml-4 space-y-8 border rounded-md bg-[#f6f6f6]">
           <Button
-            className="h-16 bg-[#4988aa]"
+            className="h-16 bg-themeblue"
             onClick={() =>
               router.push(
                 pagesPath.costume.detail
@@ -52,7 +52,7 @@ export const CostumeOrder = () => {
               <p className="text-sm">支払い手数料</p>
               <p className="text-sm">¥330</p>
             </div>
-            <div className="flex justify-between pt-1 border-t border-[#4988aa]">
+            <div className="flex justify-between pt-1 border-t border-themeblue">
               <p>合計</p>
               <p>¥5,430</p>
             </div>
