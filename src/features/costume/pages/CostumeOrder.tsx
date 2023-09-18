@@ -1,9 +1,14 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
 import { OrderTable } from '../components/OrderTable';
-import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { pagesPath } from '@/gen/$path';
 
 export const CostumeOrder = () => {
+  const router = useRouter();
+
   return (
     <div className="h-screen space-y-8 mt-10 ml-56 mr-56">
       <Image
@@ -17,7 +22,17 @@ export const CostumeOrder = () => {
       <div className="flex space-x-8">
         <OrderTable />
         <div className="flex flex-col w-100 h-80 p-4 ml-4 space-y-8 border rounded-md bg-[#f6f6f6]">
-          <Button className="h-16 bg-[#4988aa]">
+          <Button
+            className="h-16 bg-[#4988aa]"
+            onClick={() =>
+              router.push(
+                pagesPath.costume.detail
+                  ._costumeId('1')
+                  .order._orderId('1')
+                  .complete.$url().path,
+              )
+            }
+          >
             <p className="text-lg">注文を確定する</p>
           </Button>
           <div className="space-y-1">

@@ -11,6 +11,11 @@ export const pagesPath = {
     "detail": {
       _costumeId: (costumeId: string | number) => ({
         "order": {
+          _orderId: (orderId: string | number) => ({
+            "complete": {
+              $url: (url?: { hash?: string }) => ({ pathname: '/costume/detail/[costumeId]/order/[orderId]/complete' as const, query: { costumeId, orderId }, hash: url?.hash, path: `/costume/detail/${costumeId}/order/${orderId}/complete${buildSuffix(url)}` })
+            }
+          }),
           $url: (url?: { hash?: string }) => ({ pathname: '/costume/detail/[costumeId]/order' as const, query: { costumeId }, hash: url?.hash, path: `/costume/detail/${costumeId}/order${buildSuffix(url)}` })
         },
         $url: (url?: { hash?: string }) => ({ pathname: '/costume/detail/[costumeId]' as const, query: { costumeId }, hash: url?.hash, path: `/costume/detail/${costumeId}${buildSuffix(url)}` })
