@@ -1,9 +1,15 @@
+'use client';
+
 import { Header } from '@/components/Layout/Header';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import { pagesPath } from '@/gen/$path';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export const CostumeDetail = () => {
+  const router = useRouter();
+
   return (
     <>
       <header className="sticky top-0 z-10 bg-white">
@@ -29,7 +35,16 @@ export const CostumeDetail = () => {
               <span className="text-base"> + レンタル期間に応じた金額</span>
             </h1>
           </div>
-          <Button className="w-full bg-[#4988aa]">購入手続きへ</Button>
+          <Button
+            className="w-full bg-[#4988aa]"
+            onClick={() =>
+              router.push(
+                pagesPath.costume.detail._costumeId('1').order.$url().path,
+              )
+            }
+          >
+            購入手続きへ
+          </Button>
           <div>
             <h1 className="font-semibold text-xl text-slate-800">商品情報</h1>
             <Separator className="my-2" />

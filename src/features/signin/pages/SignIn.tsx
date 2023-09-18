@@ -54,7 +54,7 @@ export const SignInPage = () => {
         <CardFooter className="grid gap-2 space-y-1">
           <Button
             className="bg-[#4988aa]"
-            onClick={() => router.push(pagesPath.costume.$url().pathname)}
+            onClick={() => router.push(pagesPath.costume.$url().path)}
           >
             ログイン
           </Button>

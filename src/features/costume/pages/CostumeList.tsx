@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Image from 'next/image';
-import { CostumeItem } from '../components/CostumeItem ';
+import { CostumeItem } from '../components/CostumeItem';
 import { Input } from '@/components/ui/input';
 import { Header } from '@/components/Layout/Header';
 import { Separator } from '@/components/ui/separator';
