@@ -6,6 +6,7 @@ import { Separator } from '@/components/ui/separator';
 import { pagesPath } from '@/gen/$path';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { InfoTable } from '../components/InfoTable';
 
 export const CostumeDetail = () => {
   const router = useRouter();
@@ -48,10 +49,12 @@ export const CostumeDetail = () => {
           <div>
             <h1 className="font-semibold text-xl text-slate-800">商品情報</h1>
             <Separator className="my-2" />
+            <InfoTable />
           </div>
           <div>
             <h1 className="font-semibold text-xl text-slate-800">商品説明</h1>
             <Separator className="my-2" />
+            <p>テスト</p>
           </div>
         </div>
       </div>
