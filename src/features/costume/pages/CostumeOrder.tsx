@@ -21,7 +21,7 @@ export const CostumeOrder = () => {
       <h1 className="text-2xl font-semibold">注文内容の確認</h1>
       <div className="flex space-x-8">
         <OrderTable />
-        <div className="flex flex-col w-100 h-80 p-4 ml-4 space-y-8 border rounded-md bg-[#f6f6f6]">
+        <div className="flex flex-col w-100 h-80 p-4 ml-4 space-y-8 border border-[#dcdcdc] rounded-md bg-[#f6f6f6]">
           <Button
             className="h-16 bg-themeblue"
             onClick={() =>

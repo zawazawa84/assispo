@@ -5,7 +5,7 @@ import Image from 'next/image';
 export const OrderTable = () => {
   return (
     <Table>
-      <TableBody className="border-y">
+      <TableBody className="border-y border-[#dcdcdc]">
         <TableRow>
           <TableCell className="">レンタル期間</TableCell>
           <TableCell>期間を選択してください</TableCell>
