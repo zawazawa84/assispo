@@ -29,6 +29,14 @@ export const pagesPath = {
   "signup": {
     $url: (url?: { hash?: string }) => ({ pathname: '/signup' as const, hash: url?.hash, path: `/signup${buildSuffix(url)}` })
   },
+  "user": {
+    _userId: (userId: string | number) => ({
+      "orderhistory": {
+        $url: (url?: { hash?: string }) => ({ pathname: '/user/[userId]/orderhistory' as const, query: { userId }, hash: url?.hash, path: `/user/${userId}/orderhistory${buildSuffix(url)}` })
+      },
+      $url: (url?: { hash?: string }) => ({ pathname: '/user/[userId]' as const, query: { userId }, hash: url?.hash, path: `/user/${userId}${buildSuffix(url)}` })
+    })
+  },
   $url: (url?: { hash?: string }) => ({ pathname: '/' as const, hash: url?.hash, path: `/${buildSuffix(url)}` })
 };
 
