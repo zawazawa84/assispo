@@ -23,6 +23,12 @@ export const pagesPath = {
   },
   "mypage": {
     "orderhistory": {
+      _orderId: (orderId: string | number) => ({
+        "complete": {
+          $url: (url?: { hash?: string }) => ({ pathname: '/mypage/orderhistory/[orderId]/complete' as const, query: { orderId }, hash: url?.hash, path: `/mypage/orderhistory/${orderId}/complete${buildSuffix(url)}` })
+        },
+        $url: (url?: { hash?: string }) => ({ pathname: '/mypage/orderhistory/[orderId]' as const, query: { orderId }, hash: url?.hash, path: `/mypage/orderhistory/${orderId}${buildSuffix(url)}` })
+      }),
       $url: (url?: { hash?: string }) => ({ pathname: '/mypage/orderhistory' as const, hash: url?.hash, path: `/mypage/orderhistory${buildSuffix(url)}` })
     },
     $url: (url?: { hash?: string }) => ({ pathname: '/mypage' as const, hash: url?.hash, path: `/mypage${buildSuffix(url)}` })
