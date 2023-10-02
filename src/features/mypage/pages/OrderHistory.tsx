@@ -239,7 +239,7 @@ export const OrderHistory = () => {
                         onClick={() =>
                           router.push(
                             pagesPath.mypage.orderhistory._orderId('1').$url()
-                              .pathname,
+                              .path,
                           )
                         }
                       >

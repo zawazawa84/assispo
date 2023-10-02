@@ -1,3 +1,5 @@
+'use client';
+
 import { Header } from '@/components/Layout/Header';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -9,9 +11,12 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { pagesPath } from '@/gen/$path';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export const ReturnCostume = () => {
+  const router = useRouter();
   return (
     <>
       <header className="sticky top-0 z-10 bg-white">
@@ -90,7 +95,15 @@ export const ReturnCostume = () => {
             </TableBody>
           </Table>
           <div className="flex justify-end">
-            <Button className="mt-4 bg-themeblue inline-block place-items-end">
+            <Button
+              className="mt-4 bg-themeblue inline-block place-items-end"
+              onClick={() =>
+                router.push(
+                  pagesPath.mypage.orderhistory._orderId('1').complete.$url()
+                    .path,
+                )
+              }
+            >
               発送を完了
             </Button>
           </div>
