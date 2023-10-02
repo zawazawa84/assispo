@@ -41,7 +41,7 @@ export const OrderHistory = () => {
                   <Image
                     src={`/item3.png`}
                     alt=""
-                    width={230}
+                    width={150}
                     height={220}
                     className="rounded-sm object-contain aspect-square bg-secondary"
                   />
@@ -49,9 +49,19 @@ export const OrderHistory = () => {
                     <p>
                       テスト衣装ああああああああああああああああああああああああああああああああああああああああああああああああ
                     </p>
-                    <p className="text-sm text-[#989898]">シニア</p>
-                    <p className="text-sm text-[#989898]">7日間</p>
-                    <p>¥3,960</p>
+                    <p className="text-sm">
+                      <span className="text-[#989898]">サイズ :</span> シニア
+                    </p>
+                    <p className="text-sm">
+                      <span className="text-[#989898]">洗濯 :</span> 可
+                    </p>
+                    <p className="text-sm">
+                      <span className="text-[#989898]">レンタル期間 :</span>{' '}
+                      7日間
+                    </p>
+                    <p className="text-sm">
+                      <span className="text-[#989898]">基本料金 :</span> ¥3,960
+                    </p>
                   </div>
                   <div className="space-y-4">
                     <div>
@@ -82,7 +92,10 @@ export const OrderHistory = () => {
               <CardFooter>
                 <div className="flex w-full pt-6 space-x-5 border-t border-[#dcdcdc]">
                   <p>
-                    <span className="text-[#989898]">合計金額 :</span> ¥5,430
+                    <span className="text-[#989898]">合計金額 :</span> ¥5,430{' '}
+                    <span className="text-[#989898]">
+                      (基本料金 + レンタル期間料 + 配達手数料)
+                    </span>
                   </p>
                   <p>
                     <span className="text-[#989898]">支払い方法 :</span> 現金
@@ -101,7 +114,7 @@ export const OrderHistory = () => {
                   <Image
                     src={`/item3.png`}
                     alt=""
-                    width={230}
+                    width={150}
                     height={220}
                     className="rounded-sm object-contain aspect-square bg-secondary"
                   />
@@ -109,9 +122,19 @@ export const OrderHistory = () => {
                     <p>
                       テスト衣装ああああああああああああああああああああああああああああああああああああああああああああああああ
                     </p>
-                    <p className="text-sm text-[#989898]">シニア</p>
-                    <p className="text-sm text-[#989898]">7日間</p>
-                    <p>¥3,960</p>
+                    <p className="text-sm">
+                      <span className="text-[#989898]">サイズ :</span> シニア
+                    </p>
+                    <p className="text-sm">
+                      <span className="text-[#989898]">洗濯 :</span> 可
+                    </p>
+                    <p className="text-sm">
+                      <span className="text-[#989898]">レンタル期間 :</span>{' '}
+                      7日間
+                    </p>
+                    <p className="text-sm">
+                      <span className="text-[#989898]">基本料金 :</span> ¥3,960
+                    </p>
                   </div>
                   <div className="space-y-4">
                     <div>
@@ -141,7 +164,10 @@ export const OrderHistory = () => {
               <CardFooter>
                 <div className="flex w-full pt-6 space-x-5 border-t border-[#dcdcdc]">
                   <p>
-                    <span className="text-[#989898]">合計金額 :</span> ¥5,430
+                    <span className="text-[#989898]">合計金額 :</span> ¥5,430{' '}
+                    <span className="text-[#989898]">
+                      (基本料金 + レンタル期間料 + 配達手数料)
+                    </span>
                   </p>
                   <p>
                     <span className="text-[#989898]">支払い方法 :</span> 現金
@@ -164,7 +190,7 @@ export const OrderHistory = () => {
                   <Image
                     src={`/item3.png`}
                     alt=""
-                    width={230}
+                    width={150}
                     height={220}
                     className="rounded-sm object-contain aspect-square bg-secondary"
                   />
@@ -172,9 +198,19 @@ export const OrderHistory = () => {
                     <p>
                       テスト衣装ああああああああああああああああああああああああああああああああああああああああああああああああ
                     </p>
-                    <p className="text-sm text-[#989898]">シニア</p>
-                    <p className="text-sm text-[#989898]">7日間</p>
-                    <p>¥3,960</p>
+                    <p className="text-sm">
+                      <span className="text-[#989898]">サイズ :</span> シニア
+                    </p>
+                    <p className="text-sm">
+                      <span className="text-[#989898]">洗濯 :</span> 可
+                    </p>
+                    <p className="text-sm">
+                      <span className="text-[#989898]">レンタル期間 :</span>{' '}
+                      7日間
+                    </p>
+                    <p className="text-sm">
+                      <span className="text-[#989898]">基本料金 :</span> ¥3,960
+                    </p>
                   </div>
                   <div className="space-y-4">
                     <div>
@@ -204,7 +240,10 @@ export const OrderHistory = () => {
               <CardFooter>
                 <div className="flex w-full pt-6 space-x-5 border-t border-[#dcdcdc]">
                   <p>
-                    <span className="text-[#989898]">合計金額 :</span> ¥5,430
+                    <span className="text-[#989898]">合計金額 :</span> ¥5,430{' '}
+                    <span className="text-[#989898]">
+                      (基本料金 + レンタル期間料 + 配達手数料)
+                    </span>
                   </p>
                   <p>
                     <span className="text-[#989898]">支払い方法 :</span> 現金
@@ -223,7 +262,7 @@ export const OrderHistory = () => {
                   <Image
                     src={`/item3.png`}
                     alt=""
-                    width={230}
+                    width={150}
                     height={220}
                     className="rounded-sm object-contain aspect-square bg-secondary"
                   />
@@ -231,9 +270,19 @@ export const OrderHistory = () => {
                     <p>
                       テスト衣装ああああああああああああああああああああああああああああああああああああああああああああああああ
                     </p>
-                    <p className="text-sm text-[#989898]">シニア</p>
-                    <p className="text-sm text-[#989898]">7日間</p>
-                    <p>¥3,960</p>
+                    <p className="text-sm">
+                      <span className="text-[#989898]">サイズ :</span> シニア
+                    </p>
+                    <p className="text-sm">
+                      <span className="text-[#989898]">洗濯 :</span> 可
+                    </p>
+                    <p className="text-sm">
+                      <span className="text-[#989898]">レンタル期間 :</span>{' '}
+                      7日間
+                    </p>
+                    <p className="text-sm">
+                      <span className="text-[#989898]">基本料金 :</span> ¥3,960
+                    </p>
                   </div>
                   <div className="space-y-4">
                     <div>
@@ -263,7 +312,10 @@ export const OrderHistory = () => {
               <CardFooter>
                 <div className="flex w-full pt-6 space-x-5 border-t border-[#dcdcdc]">
                   <p>
-                    <span className="text-[#989898]">合計金額 :</span> ¥5,430
+                    <span className="text-[#989898]">合計金額 :</span> ¥5,430{' '}
+                    <span className="text-[#989898]">
+                      (基本料金 + レンタル期間料 + 配達手数料)
+                    </span>
                   </p>
                   <p>
                     <span className="text-[#989898]">支払い方法 :</span> 現金
@@ -282,7 +334,7 @@ export const OrderHistory = () => {
                   <Image
                     src={`/item3.png`}
                     alt=""
-                    width={230}
+                    width={150}
                     height={220}
                     className="rounded-sm object-contain aspect-square bg-secondary"
                   />
@@ -290,9 +342,19 @@ export const OrderHistory = () => {
                     <p>
                       テスト衣装ああああああああああああああああああああああああああああああああああああああああああああああああ
                     </p>
-                    <p className="text-sm text-[#989898]">シニア</p>
-                    <p className="text-sm text-[#989898]">7日間</p>
-                    <p>¥3,960</p>
+                    <p className="text-sm">
+                      <span className="text-[#989898]">サイズ :</span> シニア
+                    </p>
+                    <p className="text-sm">
+                      <span className="text-[#989898]">洗濯 :</span> 可
+                    </p>
+                    <p className="text-sm">
+                      <span className="text-[#989898]">レンタル期間 :</span>{' '}
+                      7日間
+                    </p>
+                    <p className="text-sm">
+                      <span className="text-[#989898]">基本料金 :</span> ¥3,960
+                    </p>
                   </div>
                   <div className="space-y-4">
                     <div>
@@ -323,7 +385,10 @@ export const OrderHistory = () => {
               <CardFooter>
                 <div className="flex w-full pt-6 space-x-5 border-t border-[#dcdcdc]">
                   <p>
-                    <span className="text-[#989898]">合計金額 :</span> ¥5,430
+                    <span className="text-[#989898]">合計金額 :</span> ¥5,430{' '}
+                    <span className="text-[#989898]">
+                      (基本料金 + レンタル期間料 + 配達手数料)
+                    </span>
                   </p>
                   <p>
                     <span className="text-[#989898]">支払い方法 :</span> 現金
@@ -342,7 +407,7 @@ export const OrderHistory = () => {
                   <Image
                     src={`/item3.png`}
                     alt=""
-                    width={230}
+                    width={150}
                     height={220}
                     className="rounded-sm object-contain aspect-square bg-secondary"
                   />
@@ -350,9 +415,19 @@ export const OrderHistory = () => {
                     <p>
                       テスト衣装ああああああああああああああああああああああああああああああああああああああああああああああああ
                     </p>
-                    <p className="text-sm text-[#989898]">シニア</p>
-                    <p className="text-sm text-[#989898]">7日間</p>
-                    <p>¥3,960</p>
+                    <p className="text-sm">
+                      <span className="text-[#989898]">サイズ :</span> シニア
+                    </p>
+                    <p className="text-sm">
+                      <span className="text-[#989898]">洗濯 :</span> 可
+                    </p>
+                    <p className="text-sm">
+                      <span className="text-[#989898]">レンタル期間 :</span>{' '}
+                      7日間
+                    </p>
+                    <p className="text-sm">
+                      <span className="text-[#989898]">基本料金 :</span> ¥3,960
+                    </p>
                   </div>
                   <div className="space-y-4">
                     <div>
@@ -383,7 +458,10 @@ export const OrderHistory = () => {
               <CardFooter>
                 <div className="flex w-full pt-6 space-x-5 border-t border-[#dcdcdc]">
                   <p>
-                    <span className="text-[#989898]">合計金額 :</span> ¥5,430
+                    <span className="text-[#989898]">合計金額 :</span> ¥5,430{' '}
+                    <span className="text-[#989898]">
+                      (基本料金 + レンタル期間料 + 配達手数料)
+                    </span>
                   </p>
                   <p>
                     <span className="text-[#989898]">支払い方法 :</span> 現金

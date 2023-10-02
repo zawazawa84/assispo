@@ -13,6 +13,10 @@ export const InfoTable = () => {
           <TableCell>シニア</TableCell>
         </TableRow>
         <TableRow className="border-0">
+          <TableCell className="font-semibold">洗濯</TableCell>
+          <TableCell>可</TableCell>
+        </TableRow>
+        <TableRow className="border-0">
           <TableCell className="font-semibold">状態</TableCell>
           <TableCell>目立った傷や汚れなし</TableCell>
         </TableRow>
