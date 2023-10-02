@@ -1,4 +1,8 @@
+'use client';
+
+import { pagesPath } from '@/gen/$path';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export const CostumeItem = ({
   imgUrl,
@@ -7,8 +11,14 @@ export const CostumeItem = ({
   imgUrl: string;
   span: string;
 }) => {
+  const router = useRouter();
   return (
-    <div className="pt-4 relative">
+    <div
+      className="pt-4 relative"
+      onClick={() =>
+        router.push(pagesPath.costume._costumeId('1').$url().pathname)
+      }
+    >
       <Image
         src={`/${imgUrl}.png`}
         alt=""

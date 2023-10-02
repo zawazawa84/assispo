@@ -30,7 +30,7 @@ export const CostumeComplete = () => {
           <CardContent className="space-y-4">
             <p>
               ご注文内容及び発送状況は、配信された確認メール、もしくは
-              <Link href={''}>
+              <Link href={pagesPath.mypage.orderhistory.$url().pathname}>
                 <span className="text-themeblue">注文履歴</span>
               </Link>
               よりご確認ください。
