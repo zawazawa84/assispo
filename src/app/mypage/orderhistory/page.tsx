@@ -1,4 +1,4 @@
-import { OrderHistory } from '@/features/user/pages/OrderHistory';
+import { OrderHistory } from '@/features/mypage/pages/OrderHistory';
 
 export default function UserOrderHistoryPage() {
   return <OrderHistory />;

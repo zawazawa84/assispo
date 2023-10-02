@@ -1,3 +1,5 @@
+'use client';
+
 import { Header } from '@/components/Layout/Header';
 import { Button } from '@/components/ui/button';
 import {
@@ -8,15 +10,19 @@ import {
 } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { pagesPath } from '@/gen/$path';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export const OrderHistory = () => {
+  const router = useRouter();
   return (
     <>
       <header className="sticky top-0 z-10 bg-white">
         <Header />
         <Separator className="my-2" />
       </header>
+      <h1 className="text-2xl font-semibold mt-8 ml-56">注文履歴</h1>
       <Tabs defaultValue="before">
         <div className="flex mt-8 space-x-8">
           <TabsList className="ml-56">
@@ -24,7 +30,7 @@ export const OrderHistory = () => {
               到着前商品
             </TabsTrigger>
             <TabsTrigger value="after" className="w-52">
-              到着済み商品
+              到着済商品
             </TabsTrigger>
           </TabsList>
         </div>
@@ -230,6 +236,12 @@ export const OrderHistory = () => {
                       <Button
                         variant="outline"
                         className="w-full border-themeblue"
+                        onClick={() =>
+                          router.push(
+                            pagesPath.mypage.orderhistory._orderId('1').$url()
+                              .pathname,
+                          )
+                        }
                       >
                         <p className="text-themeblue">商品返却手続き</p>
                       </Button>
