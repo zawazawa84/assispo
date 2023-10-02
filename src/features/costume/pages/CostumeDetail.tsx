@@ -39,9 +39,7 @@ export const CostumeDetail = () => {
           <Button
             className="w-full bg-themeblue"
             onClick={() =>
-              router.push(
-                pagesPath.costume.detail._costumeId('1').order.$url().path,
-              )
+              router.push(pagesPath.costume._costumeId('1').order.$url().path)
             }
           >
             購入手続きへ

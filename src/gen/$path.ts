@@ -8,34 +8,30 @@ const buildSuffix = (url?: {query?: Record<string, string>, hash?: string}) => {
 
 export const pagesPath = {
   "costume": {
-    "detail": {
-      _costumeId: (costumeId: string | number) => ({
-        "order": {
-          _orderId: (orderId: string | number) => ({
-            "complete": {
-              $url: (url?: { hash?: string }) => ({ pathname: '/costume/detail/[costumeId]/order/[orderId]/complete' as const, query: { costumeId, orderId }, hash: url?.hash, path: `/costume/detail/${costumeId}/order/${orderId}/complete${buildSuffix(url)}` })
-            }
-          }),
-          $url: (url?: { hash?: string }) => ({ pathname: '/costume/detail/[costumeId]/order' as const, query: { costumeId }, hash: url?.hash, path: `/costume/detail/${costumeId}/order${buildSuffix(url)}` })
-        },
-        $url: (url?: { hash?: string }) => ({ pathname: '/costume/detail/[costumeId]' as const, query: { costumeId }, hash: url?.hash, path: `/costume/detail/${costumeId}${buildSuffix(url)}` })
-      })
-    },
+    _costumeId: (costumeId: string | number) => ({
+      "order": {
+        _orderId: (orderId: string | number) => ({
+          "complete": {
+            $url: (url?: { hash?: string }) => ({ pathname: '/costume/[costumeId]/order/[orderId]/complete' as const, query: { costumeId, orderId }, hash: url?.hash, path: `/costume/${costumeId}/order/${orderId}/complete${buildSuffix(url)}` })
+          }
+        }),
+        $url: (url?: { hash?: string }) => ({ pathname: '/costume/[costumeId]/order' as const, query: { costumeId }, hash: url?.hash, path: `/costume/${costumeId}/order${buildSuffix(url)}` })
+      },
+      $url: (url?: { hash?: string }) => ({ pathname: '/costume/[costumeId]' as const, query: { costumeId }, hash: url?.hash, path: `/costume/${costumeId}${buildSuffix(url)}` })
+    }),
     $url: (url?: { hash?: string }) => ({ pathname: '/costume' as const, hash: url?.hash, path: `/costume${buildSuffix(url)}` })
+  },
+  "mypage": {
+    "orderhistory": {
+      $url: (url?: { hash?: string }) => ({ pathname: '/mypage/orderhistory' as const, hash: url?.hash, path: `/mypage/orderhistory${buildSuffix(url)}` })
+    },
+    $url: (url?: { hash?: string }) => ({ pathname: '/mypage' as const, hash: url?.hash, path: `/mypage${buildSuffix(url)}` })
   },
   "signin": {
     $url: (url?: { hash?: string }) => ({ pathname: '/signin' as const, hash: url?.hash, path: `/signin${buildSuffix(url)}` })
   },
   "signup": {
     $url: (url?: { hash?: string }) => ({ pathname: '/signup' as const, hash: url?.hash, path: `/signup${buildSuffix(url)}` })
-  },
-  "user": {
-    _userId: (userId: string | number) => ({
-      "orderhistory": {
-        $url: (url?: { hash?: string }) => ({ pathname: '/user/[userId]/orderhistory' as const, query: { userId }, hash: url?.hash, path: `/user/${userId}/orderhistory${buildSuffix(url)}` })
-      },
-      $url: (url?: { hash?: string }) => ({ pathname: '/user/[userId]' as const, query: { userId }, hash: url?.hash, path: `/user/${userId}${buildSuffix(url)}` })
-    })
   },
   $url: (url?: { hash?: string }) => ({ pathname: '/' as const, hash: url?.hash, path: `/${buildSuffix(url)}` })
 };

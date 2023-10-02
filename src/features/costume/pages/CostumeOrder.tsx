@@ -26,7 +26,7 @@ export const CostumeOrder = () => {
             className="h-16 bg-themeblue"
             onClick={() =>
               router.push(
-                pagesPath.costume.detail
+                pagesPath.costume
                   ._costumeId('1')
                   .order._orderId('1')
                   .complete.$url().path,
