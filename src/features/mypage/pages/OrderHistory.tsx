@@ -17,10 +17,9 @@ import { useRouter } from 'next/navigation';
 export const OrderHistory = () => {
   const router = useRouter();
   return (
-    <>
+    <div className="mx-auto max-w-screen-2xl">
       <header className="sticky top-0 z-10 bg-white">
         <Header />
-        <Separator className="my-2" />
       </header>
       <h1 className="text-2xl font-semibold mt-8 ml-56">注文履歴</h1>
       <Tabs defaultValue="before">
@@ -484,6 +483,6 @@ export const OrderHistory = () => {
           </div>
         </TabsContent>
       </Tabs>
-    </>
+    </div>
   );
 };

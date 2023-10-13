@@ -9,7 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
 import { pagesPath } from '@/gen/$path';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -17,12 +16,11 @@ import { useRouter } from 'next/navigation';
 export const ReturnComplete = () => {
   const router = useRouter();
   return (
-    <>
+    <div className="mx-auto max-w-screen-2xl">
       <header className="bg-white">
         <Header />
-        <Separator className="my-2" />
       </header>
-      <div className="flex items-center justify-center h-screen pb-40">
+      <div className="flex items-center justify-center mt-44">
         <Card className="w-100">
           <CardHeader>
             <CardTitle>ご返却ありがとうございます。</CardTitle>
@@ -46,6 +44,6 @@ export const ReturnComplete = () => {
           </CardFooter>
         </Card>
       </div>
-    </>
+    </div>
   );
 };

@@ -2,7 +2,6 @@
 
 import { Header } from '@/components/Layout/Header';
 import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
 import {
   Table,
   TableBody,
@@ -18,10 +17,9 @@ import { useRouter } from 'next/navigation';
 export const ReturnCostume = () => {
   const router = useRouter();
   return (
-    <>
+    <div className="mx-auto max-w-screen-2xl">
       <header className="sticky top-0 z-10 bg-white">
         <Header />
-        <Separator className="my-2" />
       </header>
       <div className="h-screen space-y-8 mt-10 ml-56 mr-56">
         <h1 className="text-2xl font-semibold">商品返却手続き</h1>
@@ -112,6 +110,6 @@ export const ReturnCostume = () => {
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 };

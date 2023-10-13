@@ -1,11 +1,6 @@
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import Image from 'next/image';
 import { CostumeItem } from '../components/CostumeItem';
-import { Input } from '@/components/ui/input';
 import { Header } from '@/components/Layout/Header';
-import { Separator } from '@/components/ui/separator';
 import {
   Select,
   SelectContent,
@@ -18,10 +13,9 @@ import {
 
 export const CostumeList = () => {
   return (
-    <>
+    <div className="mx-auto max-w-screen-2xl">
       <header className="sticky top-0 z-10 bg-white">
         <Header />
-        <Separator className="my-2" />
       </header>
       <Tabs defaultValue="item">
         <div className="flex mt-8 space-x-8">
@@ -68,6 +62,6 @@ export const CostumeList = () => {
           <h1 className="text-xl font-bold text-slate-500">お気に入り一覧</h1>
         </TabsContent>
       </Tabs>
-    </>
+    </div>
   );
 };

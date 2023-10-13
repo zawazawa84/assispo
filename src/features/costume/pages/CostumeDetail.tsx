@@ -12,10 +12,9 @@ export const CostumeDetail = () => {
   const router = useRouter();
 
   return (
-    <>
+    <div className="mx-auto max-w-screen-2xl">
       <header className="sticky top-0 z-10 bg-white">
         <Header />
-        <Separator className="my-2" />
       </header>
       <div className="flex h-screen mt-16 ml-56 mr-56 space-x-12">
         <div className="flex-shrink-0">
@@ -56,6 +55,6 @@ export const CostumeDetail = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
