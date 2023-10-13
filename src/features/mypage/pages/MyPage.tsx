@@ -1,5 +1,17 @@
+'use client';
+
 import { Header } from '@/components/Layout/Header';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import {
   Table,
   TableBody,
@@ -8,8 +20,11 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { useState } from 'react';
 
 export const MyPage = () => {
+  const [editable, setEditable] = useState(false);
+
   return (
     <div className="mx-auto max-w-screen-2xl">
       <header className="bg-white">
@@ -21,7 +36,24 @@ export const MyPage = () => {
           <Table className="">
             <TableHeader>
               <TableRow>
-                <TableHead>個人情報編集</TableHead>
+                <TableHead>個人情報</TableHead>
+                <TableHead>
+                  <div className="flex justify-end">
+                    <Button
+                      variant="outline"
+                      className={`h-8 border ${
+                        !editable ? 'border-themeblue' : 'border-destructive'
+                      } `}
+                      onClick={() => setEditable((prev) => !prev)}
+                    >
+                      {!editable ? (
+                        <p className="text-themeblue">編集</p>
+                      ) : (
+                        <p className="text-destructive">取消</p>
+                      )}
+                    </Button>
+                  </div>
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -30,21 +62,22 @@ export const MyPage = () => {
                   <p>基本情報</p>
                 </TableCell>
                 <TableCell className="max-w-sm">
-                  {' '}
-                  <p>テスト 様</p>
-                  <p>
-                    住所: 〒8190378 テスト県テスト市テスト区テスト1-11
-                    テストマンション111号室
-                  </p>
-                  <p>電話: 090-1234-5678</p>
-                </TableCell>
-                <TableCell>
-                  <Button
-                    variant="outline"
-                    className="h-8 border border-themeblue"
-                  >
-                    <p className="text-themeblue">変更</p>
-                  </Button>
+                  {!editable ? (
+                    <>
+                      <p>テスト 様</p>
+                      <p>
+                        住所: 〒8190378 テスト県テスト市テスト区テスト1-11
+                        テストマンション111号室
+                      </p>
+                      <p>電話: 090-1234-5678</p>
+                    </>
+                  ) : (
+                    <div className="space-y-2">
+                      <Input placeholder="氏名" />
+                      <Input placeholder="住所" />
+                      <Input placeholder="電話番号" />
+                    </div>
+                  )}
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -52,15 +85,13 @@ export const MyPage = () => {
                   <p>生年月日</p>
                 </TableCell>
                 <TableCell>
-                  <p>2003年 8月4日</p>
-                </TableCell>
-                <TableCell>
-                  <Button
-                    variant="outline"
-                    className="h-8 border border-themeblue"
-                  >
-                    <p className="text-themeblue">変更</p>
-                  </Button>
+                  {!editable ? (
+                    <p>2003年 8月4日</p>
+                  ) : (
+                    <div>
+                      <Input type="date" placeholder="生年月日" />
+                    </div>
+                  )}
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -68,15 +99,13 @@ export const MyPage = () => {
                   <p>所属クラブ</p>
                 </TableCell>
                 <TableCell>
-                  <p>ザワチンクラブ</p>
-                </TableCell>
-                <TableCell>
-                  <Button
-                    variant="outline"
-                    className="h-8 border border-themeblue"
-                  >
-                    <p className="text-themeblue">変更</p>
-                  </Button>
+                  {!editable ? (
+                    <p>ザワチンクラブ</p>
+                  ) : (
+                    <div>
+                      <Input placeholder="クラブ名" />
+                    </div>
+                  )}
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -84,15 +113,29 @@ export const MyPage = () => {
                   <p>サイズ</p>
                 </TableCell>
                 <TableCell>
-                  <p>シニア</p>
-                </TableCell>
-                <TableCell>
-                  <Button
-                    variant="outline"
-                    className="h-8 border border-themeblue"
-                  >
-                    <p className="text-themeblue">変更</p>
-                  </Button>
+                  {!editable ? (
+                    <p>シニア</p>
+                  ) : (
+                    <Select>
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="サイズ" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Sizes</SelectLabel>
+                          <SelectItem value="apple">
+                            Child(~小学6年生)
+                          </SelectItem>
+                          <SelectItem value="banana">
+                            Junior(中学1~3年生)
+                          </SelectItem>
+                          <SelectItem value="blueberry">
+                            Senior(高校1年生~)
+                          </SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  )}
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -100,15 +143,13 @@ export const MyPage = () => {
                   <p>メールアドレス</p>
                 </TableCell>
                 <TableCell>
-                  <p>aizawa.job84@gmial.com</p>
-                </TableCell>
-                <TableCell>
-                  <Button
-                    variant="outline"
-                    className="h-8 border border-themeblue"
-                  >
-                    <p className="text-themeblue">変更</p>
-                  </Button>
+                  {!editable ? (
+                    <p>aizawa.job84@gmial.com</p>
+                  ) : (
+                    <div>
+                      <Input type="email" placeholder="メールアドレス" />
+                    </div>
+                  )}
                 </TableCell>
               </TableRow>
             </TableBody>
