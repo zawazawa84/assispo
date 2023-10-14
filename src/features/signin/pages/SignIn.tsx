@@ -1,6 +1,7 @@
 'use client';
 
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { useForm } from 'react-hook-form';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import {
@@ -15,9 +16,34 @@ import { Label } from '@/components/ui/label';
 import { pagesPath } from '@/gen/$path';
 import Link from 'next/link';
 import { FcGoogle } from 'react-icons/fc';
+import { auth } from '@/lib/firebase/sdk';
+
+interface SignIn {
+  email: string;
+  password: string;
+}
 
 export const SignInPage = () => {
   const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<SignIn>();
+
+  const onSubmit = handleSubmit(async (data: SignIn) => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password,
+      );
+      console.log(userCredential);
+      router.push(pagesPath.costume.$url().path);
+    } catch (error) {
+      console.log(error);
+    }
+  });
 
   return (
     <div className="flex items-center justify-center h-screen">
@@ -40,32 +66,38 @@ export const SignInPage = () => {
               </span>
             </div>
           </div>
+          <form className="space-y-4">
+            <div className="grid gap-2">
+              <Label htmlFor="email">メールアドレス</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="email@example.com"
+                {...register('email')}
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="password">パスワード</Label>
+              <Input id="password" type="password" {...register('password')} />
+              <Link href={''}>
+                <p className="text-sm text-themeblue">パスワードをお忘れの方</p>
+              </Link>
+            </div>
+            <div className="grid gap-2">
+              <Button className="bg-themeblue" onClick={onSubmit}>
+                ログイン
+              </Button>
+            </div>
+          </form>
           <div className="grid gap-2">
-            <Label htmlFor="email">メールアドレス</Label>
-            <Input id="email" type="email" placeholder="email@example.com" />
-          </div>
-          <div className="grid gap-2">
-            <Label htmlFor="password">パスワード</Label>
-            <Input id="password" type="password" />
-            <Link href={''}>
-              <p className="text-sm text-themeblue">パスワードをお忘れの方</p>
-            </Link>
+            <Button
+              variant="outline"
+              onClick={() => router.push(pagesPath.signup.$url().path)}
+            >
+              <p className="text-themeblue">新規会員登録</p>
+            </Button>
           </div>
         </CardContent>
-        <CardFooter className="grid gap-2 space-y-1">
-          <Button
-            className="bg-themeblue"
-            onClick={() => router.push(pagesPath.costume.$url().path)}
-          >
-            ログイン
-          </Button>
-          <Button
-            variant="outline"
-            onClick={() => router.push(pagesPath.signup.$url().path)}
-          >
-            <p className="text-themeblue">新規会員登録</p>
-          </Button>
-        </CardFooter>
       </Card>
     </div>
   );
