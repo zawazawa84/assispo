@@ -1,3 +1,6 @@
+'use client';
+
+import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -8,10 +11,40 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { auth } from '@/lib/firebase/sdk';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import Link from 'next/link';
 import { FcGoogle } from 'react-icons/fc';
+import { useRouter } from 'next/navigation';
+import { pagesPath } from '@/gen/$path';
+
+interface SignUp {
+  email: string;
+  password: string;
+}
 
 export const SignUpPage = () => {
+  const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<SignUp>();
+
+  const onSubmit = handleSubmit(async (data: SignUp) => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password,
+      );
+      console.log(userCredential);
+      router.push(pagesPath.costume.$url().path);
+    } catch (error) {
+      console.log(error);
+    }
+  });
+
   return (
     <div className="flex items-center justify-center h-screen">
       <Card className="w-100">
@@ -33,18 +66,23 @@ export const SignUpPage = () => {
               </span>
             </div>
           </div>
-          <div className="grid gap-2">
-            <Label htmlFor="email">メールアドレス</Label>
-            <Input id="email" type="email" placeholder="email@example.com" />
-          </div>
-          <div className="grid gap-2">
-            <Label htmlFor="password">パスワード</Label>
-            <Input id="password" type="password" />
-          </div>
+          <form className="space-y-4" onSubmit={onSubmit}>
+            <div className="grid gap-2">
+              <Label htmlFor="email">メールアドレス</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="email@example.com"
+                {...register('email')}
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="password">パスワード</Label>
+              <Input id="password" type="password" {...register('password')} />
+            </div>
+            <Button className="bg-themeblue w-full">会員登録</Button>
+          </form>
         </CardContent>
-        <CardFooter className="grid gap-2 space-y-1">
-          <Button className="bg-themeblue">会員登録</Button>
-        </CardFooter>
       </Card>
     </div>
   );
