@@ -1,6 +1,17 @@
+'use client';
+
 import Image from 'next/image';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from '../ui/navigation-menu';
+import Link from 'next/link';
 
 export const Header = () => {
   return (
@@ -13,9 +24,26 @@ export const Header = () => {
         className="object-cover ml-10"
       />
       <div className="flex space-x-4 mr-10">
-        <Button variant="ghost" className="h-auto">
-          ログイン
-        </Button>
+        <NavigationMenu className="h-auto">
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>相澤 様</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="w-40 p-5 space-y-1">
+                  <li>
+                    <Link href={'/mypage'}>マイページ</Link>
+                  </li>
+                  <li>
+                    <Link href={'/mypage/orderhistory'}>注文履歴</Link>
+                  </li>
+                  <li>
+                    <p className="text-destructive">ログアウト</p>
+                  </li>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
         <Button className="bg-themeblue h-auto">出品</Button>
       </div>
     </div>
