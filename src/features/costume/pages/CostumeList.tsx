@@ -19,11 +19,11 @@ export const CostumeList = () => {
       </header>
       <Tabs defaultValue="item">
         <div className="flex mt-8 space-x-8">
-          <TabsList className="ml-56">
-            <TabsTrigger value="item" className="w-52">
+          <TabsList className="lg:ml-56">
+            <TabsTrigger value="item" className="lg:w-52">
               衣装
             </TabsTrigger>
-            <TabsTrigger value="favorite" className="w-52">
+            <TabsTrigger value="favorite" className="lg:w-52">
               お気に入り
             </TabsTrigger>
           </TabsList>
@@ -41,9 +41,9 @@ export const CostumeList = () => {
             </SelectContent>
           </Select>
         </div>
-        <TabsContent value="item" className="mt-4 ml-56 mr-56">
+        <TabsContent value="item" className="mt-4 lg:ml-56 lg:mr-56">
           <h1 className="text-xl font-bold text-slate-500">衣装一覧</h1>
-          <div className="grid grid-cols-5 gap-2">
+          <div className="grid grid-cols-3 lg:grid-cols-5 gap-2">
             <CostumeItem imgUrl="item1" span="11月~12月" />
             <CostumeItem imgUrl="item2" span="10月~1月" />
             <CostumeItem imgUrl="item3" span="年中" />

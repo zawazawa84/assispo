@@ -26,9 +26,6 @@ export const CostumeItem = ({
         height={220}
         className="rounded-sm object-contain aspect-square bg-secondary"
       />
-      <span className="absolute top-2 left-2 bg-white px-2 py-1 rounded text-sm shadow-md">
-        {span}
-      </span>
       <h3 className="truncate text-sm max-w-[220px] mt-2">
         テストdjvbailbfibdwijbcijabwkfjcnl
       </h3>
