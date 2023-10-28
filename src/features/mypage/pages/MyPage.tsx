@@ -100,7 +100,7 @@ export const MyPage = () => {
                 </TableCell>
                 <TableCell>
                   {!editable ? (
-                    <p>ザワチンクラブ</p>
+                    <p>新体操クラブ</p>
                   ) : (
                     <div>
                       <Input placeholder="クラブ名" />

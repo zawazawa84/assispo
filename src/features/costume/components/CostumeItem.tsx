@@ -26,9 +26,7 @@ export const CostumeItem = ({
         height={220}
         className="rounded-sm object-contain aspect-square bg-secondary"
       />
-      <h3 className="truncate text-sm max-w-[220px] mt-2">
-        テストdjvbailbfibdwijbcijabwkfjcnl
-      </h3>
+      <h3 className="truncate text-sm max-w-[220px] mt-2">テスト衣装</h3>
     </div>
   );
 };

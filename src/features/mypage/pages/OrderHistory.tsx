@@ -51,9 +51,7 @@ export const OrderHistory = () => {
                     className="rounded-sm object-contain aspect-square bg-secondary"
                   />
                   <div className="w-2/5 space-y-3 pl-5">
-                    <p>
-                      テスト衣装ああああああああああああああああああああああああああああああああああああああああああああああああ
-                    </p>
+                    <p>テスト衣装</p>
                     <p className="text-sm">
                       <span className="text-[#989898]">サイズ :</span> シニア
                     </p>
@@ -124,9 +122,7 @@ export const OrderHistory = () => {
                     className="rounded-sm object-contain aspect-square bg-secondary"
                   />
                   <div className="w-2/5 space-y-3 pl-5">
-                    <p>
-                      テスト衣装ああああああああああああああああああああああああああああああああああああああああああああああああ
-                    </p>
+                    <p>テスト衣装</p>
                     <p className="text-sm">
                       <span className="text-[#989898]">サイズ :</span> シニア
                     </p>
@@ -200,9 +196,7 @@ export const OrderHistory = () => {
                     className="rounded-sm object-contain aspect-square bg-secondary"
                   />
                   <div className="w-2/5 space-y-3 pl-5">
-                    <p>
-                      テスト衣装ああああああああああああああああああああああああああああああああああああああああああああああああ
-                    </p>
+                    <p>テスト衣装</p>
                     <p className="text-sm">
                       <span className="text-[#989898]">サイズ :</span> シニア
                     </p>
@@ -274,13 +268,11 @@ export const OrderHistory = () => {
                     src={`/item3.png`}
                     alt=""
                     width={150}
-                    height={220}
+                    height={250}
                     className="rounded-sm object-contain aspect-square bg-secondary"
                   />
                   <div className="w-2/5 space-y-3 pl-5">
-                    <p>
-                      テスト衣装ああああああああああああああああああああああああああああああああああああああああああああああああ
-                    </p>
+                    <p>テスト衣装</p>
                     <p className="text-sm">
                       <span className="text-[#989898]">サイズ :</span> シニア
                     </p>
@@ -350,9 +342,7 @@ export const OrderHistory = () => {
                     className="rounded-sm object-contain aspect-square bg-secondary"
                   />
                   <div className="w-2/5 space-y-3 pl-5">
-                    <p>
-                      テスト衣装ああああああああああああああああああああああああああああああああああああああああああああああああ
-                    </p>
+                    <p>テスト衣装</p>
                     <p className="text-sm">
                       <span className="text-[#989898]">サイズ :</span> シニア
                     </p>
@@ -423,9 +413,7 @@ export const OrderHistory = () => {
                     className="rounded-sm object-contain aspect-square bg-secondary"
                   />
                   <div className="w-2/5 space-y-3 pl-5">
-                    <p>
-                      テスト衣装ああああああああああああああああああああああああああああああああああああああああああああああああ
-                    </p>
+                    <p>テスト衣装</p>
                     <p className="text-sm">
                       <span className="text-[#989898]">サイズ :</span> シニア
                     </p>

@@ -69,9 +69,7 @@ export const ReturnCostume = () => {
                       className="rounded-sm object-contain aspect-square bg-secondary"
                     />
                     <div className="space-y-3">
-                      <p>
-                        テスト衣装ああああああああああああああああああああああああああああああああああああああああああああああああ
-                      </p>
+                      <p>テスト衣装</p>
                       <p className="text-sm">
                         <span className="text-[#989898]">サイズ :</span> シニア
                       </p>
