@@ -49,7 +49,6 @@ export const Header = () => {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
-        <Button className="bg-themeblue h-auto">出品</Button>
       </div>
     </div>
   );
