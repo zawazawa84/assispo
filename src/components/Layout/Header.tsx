@@ -12,17 +12,22 @@ import {
   NavigationMenuTrigger,
 } from '../ui/navigation-menu';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { pagesPath } from '@/gen/$path';
 
 export const Header = () => {
+  const router = useRouter();
   return (
     <div className="flex justify-between w-full h-20 border-b place-items-center">
-      <Image
-        alt=""
-        src="/assispo_logo.png"
-        width={130}
-        height={10}
-        className="object-cover ml-10"
-      />
+      <div onClick={() => router.push(pagesPath.costume.$url().path)}>
+        <Image
+          alt=""
+          src="/assispo_logo.png"
+          width={130}
+          height={10}
+          className="object-cover ml-10"
+        />
+      </div>
       <div className="flex space-x-4 mr-10">
         <NavigationMenu className="h-auto">
           <NavigationMenuList>
