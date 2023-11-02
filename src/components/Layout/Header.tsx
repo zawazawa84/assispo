@@ -29,10 +29,12 @@ export const Header = () => {
         />
       </div>
       <div className="flex space-x-4 mr-10">
-        <NavigationMenu className="h-auto">
+        <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>相澤 様</NavigationMenuTrigger>
+              <NavigationMenuTrigger className="mr-12">
+                相澤 様
+              </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="w-40 p-5 space-y-1">
                   <li>
