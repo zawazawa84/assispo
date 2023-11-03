@@ -1,8 +1,7 @@
 'use client';
 
+import { signOut } from 'firebase/auth';
 import Image from 'next/image';
-import { Input } from '../ui/input';
-import { Button } from '../ui/button';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -15,10 +14,17 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { pagesPath } from '@/gen/$path';
 import { useAuthContext } from '@/AuthContext';
+import { auth } from '@/lib/firebase/sdk';
 
 export const Header = () => {
   const userData = useAuthContext()?.userData;
   const router = useRouter();
+
+  const logOut = () => {
+    signOut(auth).catch((error) => {
+      console.log(error);
+    });
+  };
 
   return (
     <div className="flex justify-between w-full h-20 border-b place-items-center">
@@ -41,13 +47,21 @@ export const Header = () => {
               <NavigationMenuContent>
                 <ul className="w-40 p-5 space-y-1">
                   <li>
-                    <Link href={'/mypage'}>マイページ</Link>
+                    <Link href={pagesPath.mypage.$url().path}>マイページ</Link>
                   </li>
                   <li>
-                    <Link href={'/mypage/orderhistory'}>注文履歴</Link>
+                    <Link href={pagesPath.mypage.orderhistory.$url().path}>
+                      注文履歴
+                    </Link>
                   </li>
                   <li>
-                    <p className="text-destructive">ログアウト</p>
+                    <Link
+                      className="text-destructive"
+                      href={pagesPath.signin.$url().path}
+                      onClick={logOut}
+                    >
+                      ログアウト
+                    </Link>
                   </li>
                 </ul>
               </NavigationMenuContent>
