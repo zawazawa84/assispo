@@ -14,9 +14,12 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { pagesPath } from '@/gen/$path';
+import { useAuthContext } from '@/AuthContext';
 
 export const Header = () => {
+  const userData = useAuthContext()?.userData;
   const router = useRouter();
+
   return (
     <div className="flex justify-between w-full h-20 border-b place-items-center">
       <div onClick={() => router.push(pagesPath.costume.$url().path)}>
@@ -33,7 +36,7 @@ export const Header = () => {
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuTrigger className="mr-12">
-                相澤 様
+                {userData?.name ? userData?.name : 'ゲスト'} 様
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="w-40 p-5 space-y-1">

@@ -24,18 +24,10 @@ import {
 } from '@/components/ui/table';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-
-interface profileEditProps {
-  name: string;
-  address: string;
-  phoneNumber: number;
-  birthday: Date;
-  club: string | number;
-  size: string;
-  email: string;
-}
+import { UserData, useAuthContext } from '@/AuthContext';
 
 export const MyPage = () => {
+  const { user, userData } = useAuthContext()!;
   const [editable, setEditable] = useState(false);
 
   const {
@@ -43,10 +35,10 @@ export const MyPage = () => {
     control,
     handleSubmit,
     register,
-  } = useForm<profileEditProps>();
+  } = useForm<UserData>();
 
   const onSubmit = handleSubmit(async (data) => {
-    await setDoc(doc(db, 'users', '1'), {
+    await setDoc(doc(db, 'users', `${user?.uid}`), {
       name: data.name,
       address: data.address,
       phoneNumber: data.phoneNumber,
@@ -55,6 +47,7 @@ export const MyPage = () => {
       size: data.size,
       email: data.email,
     });
+    window.location.reload();
   });
 
   return (
@@ -88,7 +81,7 @@ export const MyPage = () => {
                           <Button
                             className={'h-8 bg-themeblue'}
                             onClick={() => {
-                              setEditable((prev) => !prev);
+                              onSubmit();
                             }}
                           >
                             <p>保存</p>
@@ -117,12 +110,9 @@ export const MyPage = () => {
                   <TableCell className="max-w-sm">
                     {!editable ? (
                       <>
-                        <p>テスト 様</p>
-                        <p>
-                          住所: 〒8190378 テスト県テスト市テスト区テスト1-11
-                          テストマンション111号室
-                        </p>
-                        <p>電話: 090-1234-5678</p>
+                        <p>{userData?.name} 様</p>
+                        <p>住所: {userData?.address}</p>
+                        <p>電話: {userData?.phoneNumber}</p>
                       </>
                     ) : (
                       <div className="space-y-2">
@@ -142,7 +132,7 @@ export const MyPage = () => {
                   </TableCell>
                   <TableCell>
                     {!editable ? (
-                      <p>2003年 8月4日</p>
+                      <p>{userData?.birthday}</p>
                     ) : (
                       <div>
                         <Input
@@ -160,7 +150,7 @@ export const MyPage = () => {
                   </TableCell>
                   <TableCell>
                     {!editable ? (
-                      <p>新体操クラブ</p>
+                      <p>{userData?.club}</p>
                     ) : (
                       <div>
                         <Input placeholder="クラブ名" {...register('club')} />
@@ -174,7 +164,7 @@ export const MyPage = () => {
                   </TableCell>
                   <TableCell>
                     {!editable ? (
-                      <p>シニア</p>
+                      <p>{userData?.size}</p>
                     ) : (
                       <Controller
                         control={control}
@@ -210,7 +200,7 @@ export const MyPage = () => {
                   </TableCell>
                   <TableCell>
                     {!editable ? (
-                      <p>aizawa.job84@gmial.com</p>
+                      <p>{user?.email}</p>
                     ) : (
                       <div>
                         <Input
