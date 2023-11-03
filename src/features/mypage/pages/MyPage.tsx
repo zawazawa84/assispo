@@ -72,22 +72,39 @@ export const MyPage = () => {
                   <TableHead>個人情報</TableHead>
                   <TableHead>
                     <div className="flex justify-end">
-                      <Button
-                        variant="outline"
-                        className={`h-8 border ${
-                          !editable ? 'border-themeblue' : 'border-destructive'
-                        } `}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setEditable((prev) => !prev);
-                        }}
-                      >
-                        {!editable ? (
+                      {!editable ? (
+                        <Button
+                          variant="outline"
+                          className={'h-8 border-themeblue'}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setEditable((prev) => !prev);
+                          }}
+                        >
                           <p className="text-themeblue">編集</p>
-                        ) : (
-                          <p className="text-destructive">取消</p>
-                        )}
-                      </Button>
+                        </Button>
+                      ) : (
+                        <div className="space-x-2">
+                          <Button
+                            className={'h-8 bg-themeblue'}
+                            onClick={() => {
+                              setEditable((prev) => !prev);
+                            }}
+                          >
+                            <p>保存</p>
+                          </Button>
+                          <Button
+                            variant="outline"
+                            className={'h-8 border-destructive'}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setEditable((prev) => !prev);
+                            }}
+                          >
+                            <p className="text-destructive">取消</p>
+                          </Button>
+                        </div>
+                      )}
                     </div>
                   </TableHead>
                 </TableRow>
@@ -203,9 +220,6 @@ export const MyPage = () => {
                         />
                       </div>
                     )}
-                  </TableCell>
-                  <TableCell>
-                    <Button>保存</Button>
                   </TableCell>
                 </TableRow>
               </TableBody>
