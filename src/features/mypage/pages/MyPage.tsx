@@ -116,10 +116,19 @@ export const MyPage = () => {
                       </>
                     ) : (
                       <div className="space-y-2">
-                        <Input placeholder="氏名" {...register('name')} />
-                        <Input placeholder="住所" {...register('address')} />
+                        <Input
+                          placeholder="氏名"
+                          defaultValue={userData?.name}
+                          {...register('name')}
+                        />
+                        <Input
+                          placeholder="住所"
+                          defaultValue={userData?.address}
+                          {...register('address')}
+                        />
                         <Input
                           placeholder="電話番号"
+                          defaultValue={userData?.phoneNumber}
                           {...register('phoneNumber')}
                         />
                       </div>
@@ -138,6 +147,7 @@ export const MyPage = () => {
                         <Input
                           type="date"
                           placeholder="生年月日"
+                          defaultValue={userData?.birthday}
                           {...register('birthday')}
                         />
                       </div>
@@ -153,7 +163,11 @@ export const MyPage = () => {
                       <p>{userData?.club}</p>
                     ) : (
                       <div>
-                        <Input placeholder="クラブ名" {...register('club')} />
+                        <Input
+                          placeholder="クラブ名"
+                          defaultValue={userData?.club}
+                          {...register('club')}
+                        />
                       </div>
                     )}
                   </TableCell>
@@ -169,6 +183,7 @@ export const MyPage = () => {
                       <Controller
                         control={control}
                         name="size"
+                        defaultValue={userData?.size}
                         render={({ field: { onChange, value } }) => (
                           <Select onValueChange={onChange} defaultValue={value}>
                             <SelectTrigger className="w-[180px]">
@@ -206,6 +221,7 @@ export const MyPage = () => {
                         <Input
                           type="email"
                           placeholder="メールアドレス"
+                          defaultValue={userData?.email}
                           {...register('email')}
                         />
                       </div>
