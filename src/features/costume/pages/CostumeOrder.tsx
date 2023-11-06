@@ -11,7 +11,7 @@ export const CostumeOrder = () => {
 
   return (
     <div className="mx-auto max-w-screen-2xl">
-      <div className="h-screen space-y-8 mt-10 ml-56 mr-56">
+      <div className="h-screen space-y-8 mt-10 lg:ml-56 lg:mr-56">
         <Image
           alt=""
           src="/assispo_logo.png"
@@ -20,9 +20,9 @@ export const CostumeOrder = () => {
           className="object-cover "
         />
         <h1 className="text-2xl font-semibold">注文内容の確認</h1>
-        <div className="flex space-x-8">
+        <div className="lg:flex lg:space-x-8">
           <OrderTable />
-          <div className="flex flex-col w-100 h-80 p-4 ml-4 space-y-8 border border-[#dcdcdc] rounded-md bg-[#f6f6f6]">
+          <div className="flex flex-col w-100 h-80 p-4 lg:ml-4 space-y-8 border border-[#dcdcdc] rounded-md bg-[#f6f6f6]">
             <Button
               className="h-16 bg-themeblue"
               onClick={() =>

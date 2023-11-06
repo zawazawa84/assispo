@@ -47,7 +47,7 @@ export const SignUpPage = () => {
 
   return (
     <div className="flex items-center justify-center h-screen">
-      <Card className="w-100">
+      <Card className="w-100 lg:border border-0 shadow-none">
         <CardHeader>
           <CardTitle>新規会員登録</CardTitle>
         </CardHeader>

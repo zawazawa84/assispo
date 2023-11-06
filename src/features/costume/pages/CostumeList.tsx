@@ -1,3 +1,4 @@
+'use client';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { CostumeItem } from '../components/CostumeItem';
 import { Header } from '@/components/Layout/Header';
@@ -10,15 +11,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '@/lib/firebase/sdk';
+import { Button } from '@/components/ui/button';
 
-export const CostumeList = () => {
+export const CostumeList = async () => {
+  const querySnapshot = await getDocs(collection(db, 'products'));
+
   return (
     <div className="mx-auto max-w-screen-2xl">
       <header className="sticky top-0 z-10 bg-white">
         <Header />
       </header>
       <Tabs defaultValue="item">
-        <div className="flex mt-8 space-x-8">
+        <div className="lg:flex mt-8 lg:space-x-8">
           <TabsList className="lg:ml-56">
             <TabsTrigger value="item" className="lg:w-52">
               衣装
@@ -44,21 +50,12 @@ export const CostumeList = () => {
         <TabsContent value="item" className="mt-4 lg:ml-56 lg:mr-56">
           <h1 className="text-xl font-bold text-slate-500">衣装一覧</h1>
           <div className="grid grid-cols-3 lg:grid-cols-5 gap-2">
-            <CostumeItem imgUrl="item1" span="11月~12月" />
-            <CostumeItem imgUrl="item2" span="10月~1月" />
-            <CostumeItem imgUrl="item3" span="年中" />
-            <CostumeItem imgUrl="item1" span="11月~1月" />
-            <CostumeItem imgUrl="item2" span="1月~4月" />
-            <CostumeItem imgUrl="item3" span="4月~7月" />
-            <CostumeItem imgUrl="item1" span="8月~10月" />
-            <CostumeItem imgUrl="item2" span="9月~3月" />
-            <CostumeItem imgUrl="item3" span="3月~5月" />
-            <CostumeItem imgUrl="item1" span="6月~1月" />
-            <CostumeItem imgUrl="item2" span="2月~11月" />
-            <CostumeItem imgUrl="item3" span="10月~3月" />
+            {querySnapshot.docs.map((doc) => {
+              return <CostumeItem doc={doc} />;
+            })}
           </div>
         </TabsContent>
-        <TabsContent value="favorite" className="mt-4 ml-56 mr-56">
+        <TabsContent value="favorite" className="mt-4 lg:ml-56 lg:mr-56">
           <h1 className="text-xl font-bold text-slate-500">お気に入り一覧</h1>
         </TabsContent>
       </Tabs>

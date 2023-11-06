@@ -47,7 +47,7 @@ export const SignInPage = () => {
 
   return (
     <div className="flex items-center justify-center h-screen">
-      <Card className="w-100">
+      <Card className="w-100 lg:border border-0 shadow-none">
         <CardHeader>
           <CardTitle>ログイン</CardTitle>
         </CardHeader>

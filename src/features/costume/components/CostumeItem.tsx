@@ -1,16 +1,11 @@
 'use client';
 
 import { pagesPath } from '@/gen/$path';
+import { DocumentData } from 'firebase/firestore';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-export const CostumeItem = ({
-  imgUrl,
-  span,
-}: {
-  imgUrl: string;
-  span: string;
-}) => {
+export const CostumeItem = ({ doc }: { doc: DocumentData }) => {
   const router = useRouter();
   return (
     <div
@@ -20,7 +15,7 @@ export const CostumeItem = ({
       }
     >
       <Image
-        src={`/${imgUrl}.png`}
+        src={`/item3.png`}
         alt=""
         width={220}
         height={220}

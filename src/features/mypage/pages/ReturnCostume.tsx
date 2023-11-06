@@ -21,7 +21,7 @@ export const ReturnCostume = () => {
       <header className="sticky top-0 z-10 bg-white">
         <Header />
       </header>
-      <div className="h-screen space-y-8 mt-10 ml-56 mr-56">
+      <div className="h-screen space-y-8 mt-10 lg:ml-56 lg:mr-56">
         <h1 className="text-2xl font-semibold">商品返却手続き</h1>
         <div className="p-8 border border-[#dcdcdc] rounded-md bg-[#f6f6f6]">
           <Table className="">

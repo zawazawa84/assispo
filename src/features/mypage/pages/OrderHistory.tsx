@@ -21,10 +21,10 @@ export const OrderHistory = () => {
       <header className="sticky top-0 z-10 bg-white">
         <Header />
       </header>
-      <h1 className="text-2xl font-semibold mt-8 ml-56">注文履歴</h1>
+      <h1 className="text-2xl font-semibold mt-8 lg:ml-56">注文履歴</h1>
       <Tabs defaultValue="before">
         <div className="flex mt-8 space-x-8">
-          <TabsList className="ml-56">
+          <TabsList className="lg:ml-56">
             <TabsTrigger value="before" className="w-52">
               到着前商品
             </TabsTrigger>
@@ -33,7 +33,7 @@ export const OrderHistory = () => {
             </TabsTrigger>
           </TabsList>
         </div>
-        <TabsContent value="before" className="h-screen mt-8 ml-56 mr-56">
+        <TabsContent value="before" className="h-screen mt-8 lg:ml-56 lg:mr-56">
           <div className="p-12 space-y-5 border border-[#dcdcdc] rounded-md bg-[#f6f6f6]">
             <Card className="px-4 pt-4 border-0 rounded-md">
               <CardHeader>
@@ -178,7 +178,7 @@ export const OrderHistory = () => {
             </Card>
           </div>
         </TabsContent>
-        <TabsContent value="after" className="h-screen mt-8 ml-56 mr-56">
+        <TabsContent value="after" className="h-screen mt-8 lg:ml-56 lg:mr-56">
           <div className="p-12 space-y-5 border border-[#dcdcdc] rounded-md bg-[#f6f6f6]">
             <Card className="px-4 pt-4 border-0 rounded-md">
               <CardHeader>

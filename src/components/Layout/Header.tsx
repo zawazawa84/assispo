@@ -34,14 +34,14 @@ export const Header = () => {
           src="/assispo_logo.png"
           width={130}
           height={10}
-          className="object-cover ml-10"
+          className="object-cover lg:ml-10"
         />
       </div>
-      <div className="flex space-x-4 mr-10">
+      <div className="flex space-x-4 lg:mr-10">
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="mr-12">
+              <NavigationMenuTrigger className="lg:mr-12">
                 {userData?.name ? userData?.name : 'ゲスト'} 様
               </NavigationMenuTrigger>
               <NavigationMenuContent>

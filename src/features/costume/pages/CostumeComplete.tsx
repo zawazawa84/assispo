@@ -21,12 +21,14 @@ export const CostumeComplete = () => {
         <Header />
       </header>
       <div className="flex items-center justify-center mt-44">
-        <Card className="w-100">
+        <Card className="w-100 lg:border border-0 shadow-none">
           <CardHeader>
-            <CardTitle>ご注文ありがとうございます。</CardTitle>
+            <CardTitle className="text-center">
+              ご注文ありがとうございます。
+            </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p>
+            <p className="text-center">
               ご注文内容及び発送状況は、配信された確認メール、もしくは
               <Link href={pagesPath.mypage.orderhistory.$url().pathname}>
                 <span className="text-themeblue">注文履歴</span>
