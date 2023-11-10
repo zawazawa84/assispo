@@ -83,7 +83,8 @@ export const CostumeList = () => {
           <h1 className="text-xl font-bold text-slate-500">衣装一覧</h1>
           <div className="grid grid-cols-3 lg:grid-cols-5 gap-2">
             {costumes?.map((costume, index) => {
-              return <CostumeItem costume={costume} key={index} />;
+              const costumeData = { id: costume.id, content: costume.data() };
+              return <CostumeItem costumeData={costumeData} key={index} />;
             })}
           </div>
         </TabsContent>
