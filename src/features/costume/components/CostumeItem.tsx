@@ -23,7 +23,7 @@ export const CostumeItem = ({ doc }: { doc: DocumentData }) => {
       />
       <h3 className="truncate text-sm max-w-[220px] mt-2">テスト衣装</h3>
       <h3 className="truncate text-xs max-w-[220px] text-slate-500">
-        サイズ： Senior
+        サイズ： {doc.size}
       </h3>
     </div>
   );

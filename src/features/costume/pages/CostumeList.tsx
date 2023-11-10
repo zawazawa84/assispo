@@ -11,12 +11,44 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { collection, getDocs } from 'firebase/firestore';
+import {
+  DocumentData,
+  Query,
+  QueryDocumentSnapshot,
+  collection,
+  getDocs,
+  query,
+  where,
+} from 'firebase/firestore';
 import { db } from '@/lib/firebase/sdk';
 import { Button } from '@/components/ui/button';
+import { useEffect, useState } from 'react';
 
-export const CostumeList = async () => {
-  const querySnapshot = await getDocs(collection(db, 'products'));
+export const CostumeList = () => {
+  const [size, setSize] = useState('');
+  const [costumes, setCostumes] =
+    useState<QueryDocumentSnapshot<DocumentData>[]>();
+
+  const fetchCostumes = async (selectedSize: any) => {
+    let q: Query<DocumentData>;
+
+    if (selectedSize) {
+      q = query(collection(db, 'products'), where('size', '==', selectedSize));
+    } else {
+      q = query(collection(db, 'products'));
+    }
+
+    const querySnapshot = await getDocs(q);
+    setCostumes(querySnapshot?.docs);
+  };
+
+  useEffect(() => {
+    fetchCostumes(size);
+  }, [size]);
+
+  const handleSizeChange = (event: any) => {
+    setSize(event);
+  };
 
   return (
     <div className="mx-auto max-w-screen-2xl">
@@ -33,16 +65,16 @@ export const CostumeList = async () => {
               お気に入り
             </TabsTrigger>
           </TabsList>
-          <Select>
+          <Select onValueChange={handleSizeChange}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="サイズを選ぶ" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>Sizes</SelectLabel>
-                <SelectItem value="apple">Child(~小学6年生)</SelectItem>
-                <SelectItem value="banana">Junior(中学1~3年生)</SelectItem>
-                <SelectItem value="blueberry">Senior(高校1年生~)</SelectItem>
+                <SelectItem value="1">Child(~小学6年生)</SelectItem>
+                <SelectItem value="2">Junior(中学1~3年生)</SelectItem>
+                <SelectItem value="3">Senior(高校1年生~)</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
@@ -50,8 +82,8 @@ export const CostumeList = async () => {
         <TabsContent value="item" className="mt-4 lg:ml-56 lg:mr-56">
           <h1 className="text-xl font-bold text-slate-500">衣装一覧</h1>
           <div className="grid grid-cols-3 lg:grid-cols-5 gap-2">
-            {querySnapshot.docs.map((doc) => {
-              return <CostumeItem doc={doc} />;
+            {costumes?.map((doc, index) => {
+              return <CostumeItem doc={doc} key={index} />;
             })}
           </div>
         </TabsContent>
