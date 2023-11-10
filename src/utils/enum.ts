@@ -1,4 +1,4 @@
-interface costumeProps {
+export interface costumeProps {
   category: string;
   deliveryCharge: string;
   name: string;
@@ -6,6 +6,7 @@ interface costumeProps {
   price: string;
   size: string;
   state: string;
+  washable: string;
 }
 
 const SizeProps = {

@@ -5,11 +5,35 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { pagesPath } from '@/gen/$path';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { InfoTable } from '../components/InfoTable';
+import { useEffect, useState } from 'react';
+import { DocumentData, doc, getDoc } from 'firebase/firestore';
+import { db } from '@/lib/firebase/sdk';
+import { costumeProps } from '@/utils/enum';
 
 export const CostumeDetail = () => {
+  const [costume, setCostume] = useState<costumeProps>();
   const router = useRouter();
+  const params = useParams();
+
+  const costumeId = params.costumeId;
+
+  useEffect(() => {
+    const fetchCostume = async () => {
+      if (costumeId) {
+        const docRef = doc(db, 'products', `${costumeId}`);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          setCostume(docSnap.data() as costumeProps);
+        } else {
+          console.log('エラー');
+        }
+      }
+    };
+    fetchCostume();
+  }, [costumeId]);
 
   return (
     <div className="mx-auto max-w-screen-2xl">
@@ -27,11 +51,14 @@ export const CostumeDetail = () => {
           />
         </div>
         <div className="lg:w-108 lg:pl-4 space-y-8">
-          <h1 className="font-semibold text-xl text-slate-800">テスト衣装</h1>
+          <h1 className="font-semibold text-xl text-slate-800">
+            {costume?.name}
+          </h1>
           <div>
             <p className="text-sm text-slate-500">基本料金</p>
             <h1 className="text-3xl text-slate-800">
-              <span className="text-base">¥</span>3,900
+              <span className="text-base">¥</span>
+              {costume?.price}
               <span className="text-base"> + レンタル期間に応じた金額</span>
             </h1>
           </div>
@@ -46,7 +73,7 @@ export const CostumeDetail = () => {
           <div>
             <h1 className="font-semibold text-xl text-slate-800">商品情報</h1>
             <Separator className="my-2" />
-            <InfoTable />
+            <InfoTable costume={costume} />
           </div>
           <div>
             <h1 className="font-semibold text-xl text-slate-800">商品説明</h1>
