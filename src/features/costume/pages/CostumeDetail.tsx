@@ -17,7 +17,7 @@ export const CostumeDetail = () => {
   const router = useRouter();
   const params = useParams();
 
-  const costumeId = params.costumeId;
+  const costumeId = params.costumeId as string;
 
   useEffect(() => {
     const fetchCostume = async () => {
@@ -65,7 +65,9 @@ export const CostumeDetail = () => {
           <Button
             className="w-full bg-themeblue"
             onClick={() =>
-              router.push(pagesPath.costume._costumeId('1').order.$url().path)
+              router.push(
+                pagesPath.costume._costumeId(costumeId).order.$url().path,
+              )
             }
           >
             購入手続きへ
