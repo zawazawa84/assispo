@@ -16,7 +16,7 @@ const SizeProps = {
 } as const;
 type SizeProps = (typeof SizeProps)[keyof typeof SizeProps];
 
-export const numberToSize = (number: string) => {
+export const numberToSize = (number: string | undefined) => {
   switch (number) {
     case SizeProps.Child:
       return 'Child';

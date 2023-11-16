@@ -1,5 +1,5 @@
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
-import { costumeProps } from '@/utils/enum';
+import { costumeProps, numberToSize } from '@/utils/enum';
 
 export const InfoTable = ({
   costume,
@@ -15,7 +15,7 @@ export const InfoTable = ({
         </TableRow>
         <TableRow className="border-0">
           <TableCell className="font-semibold">サイズ</TableCell>
-          <TableCell>{costume?.size}</TableCell>
+          <TableCell>{numberToSize(costume?.size)}</TableCell>
         </TableRow>
         <TableRow className="border-0">
           <TableCell className="font-semibold">洗濯</TableCell>
