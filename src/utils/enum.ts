@@ -9,6 +9,17 @@ export interface costumeProps {
   washable: string;
 }
 
+export interface orderProps {
+  userId: string;
+  term: number;
+  fromAddress: string;
+  toAddress: string;
+  deliveryMethod: number;
+  paymentMethod: number;
+  orderStatus: number;
+  returnStatus: number;
+}
+
 const SizeProps = {
   Child: '1',
   Junior: '2',
