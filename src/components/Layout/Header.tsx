@@ -28,7 +28,10 @@ export const Header = () => {
 
   return (
     <div className="flex justify-between w-full h-20 border-b place-items-center">
-      <div onClick={() => router.push(pagesPath.costume.$url().path)}>
+      <div
+        onClick={() => router.push(pagesPath.costume.$url().path)}
+        className="cursor-pointer"
+      >
         <Image
           alt=""
           src="/assispo_logo.png"

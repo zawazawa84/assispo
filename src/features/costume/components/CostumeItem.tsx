@@ -21,7 +21,7 @@ export const CostumeItem = ({ costumeData }: { costumeData: DocumentData }) => {
         alt=""
         width={220}
         height={220}
-        className="rounded-sm object-contain aspect-square bg-secondary"
+        className="rounded-sm object-contain aspect-square bg-secondary hover:opacity-70 cursor-pointer"
       />
       <h3 className="truncate text-sm max-w-[220px] mt-2">
         {costumeData.content.name}
