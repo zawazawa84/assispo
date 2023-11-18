@@ -58,7 +58,8 @@ export const OrderHistoryCard = ({
           <div className="space-y-4">
             <div>
               <p>
-                <span className="text-[#989898]">注文日&emsp; :</span> 2023.9.28
+                <span className="text-[#989898]">注文日&emsp; :</span>{' '}
+                {String(orderData.date)}
               </p>
               <p>
                 <span className="text-[#989898]">注文番号 :</span> 0000000000

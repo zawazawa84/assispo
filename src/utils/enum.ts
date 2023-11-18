@@ -11,6 +11,7 @@ export interface costumeProps {
 
 export interface orderProps {
   userId: string;
+  date: Date;
   term: string;
   productcode: string;
   fromAddress: string;

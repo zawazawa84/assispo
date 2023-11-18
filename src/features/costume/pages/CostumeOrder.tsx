@@ -10,6 +10,7 @@ import { addDoc, collection } from 'firebase/firestore';
 import { db } from '@/lib/firebase/sdk';
 import { useAuthContext } from '@/AuthContext';
 import { orderProps } from '@/utils/enum';
+import { format } from 'date-fns';
 
 export const CostumeOrder = () => {
   const { user, userData } = useAuthContext()!;
@@ -26,11 +27,13 @@ export const CostumeOrder = () => {
   } = useForm<orderProps>();
 
   const onSubmit = handleSubmit(async (data) => {
+    const currentDate = new Date();
     const ordersCollectionRef = collection(db, 'orders');
     await addDoc(ordersCollectionRef, {
       userId: user?.uid,
-      productcode: costumeId,
+      date: format(currentDate, 'yyyy.MM.dd'),
       term: data.term,
+      productcode: costumeId,
       fromAddress: data.fromAddress ?? 'アシスポ住所',
       toAddress: userData?.address,
       paymentMethod: data.paymentMethod,
@@ -38,6 +41,10 @@ export const CostumeOrder = () => {
       orderStatus: 1,
       returnStatus: 1,
     });
+    router.push(
+      pagesPath.costume._costumeId('1').order._orderId('1').complete.$url()
+        .path,
+    );
   });
 
   return (
@@ -53,26 +60,14 @@ export const CostumeOrder = () => {
         />
         <h1 className="text-2xl font-semibold">注文内容の確認</h1>
         <div>
-          <form className="lg:flex lg:space-x-8">
+          <form className="lg:flex lg:space-x-8" onSubmit={onSubmit}>
             <OrderTable
               register={register}
               userData={userData}
               control={control}
             />
             <div className="flex flex-col w-100 h-80 p-4 lg:ml-4 space-y-8 border border-[#dcdcdc] rounded-md bg-[#f6f6f6]">
-              <Button
-                className="h-16 bg-themeblue"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onSubmit();
-                  router.push(
-                    pagesPath.costume
-                      ._costumeId('1')
-                      .order._orderId('1')
-                      .complete.$url().path,
-                  );
-                }}
-              >
+              <Button className="h-16 bg-themeblue" type="submit">
                 <p className="text-lg">注文を確定する</p>
               </Button>
               <div className="space-y-1">
