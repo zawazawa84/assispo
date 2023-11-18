@@ -23,25 +23,25 @@ export const OrderTable = ({ register, userData, control }: any) => {
                   <div className="flex space-x-1">
                     <RadioGroupItem id="1day" value="1day" />
                     <label htmlFor="1day" className="text-sm leading-none">
-                      1日間
+                      1day
                     </label>
                   </div>
                   <div className="flex space-x-1">
                     <RadioGroupItem id="3days" value="3days" />
                     <label htmlFor="3days" className="text-sm leading-none">
-                      3日間
+                      3days
                     </label>
                   </div>
                   <div className="flex space-x-1">
                     <RadioGroupItem id="1week" value="1week" />
                     <label htmlFor="1week" className="text-sm leading-none">
-                      1週間
+                      1week
                     </label>
                   </div>
                   <div className="flex space-x-1">
                     <RadioGroupItem id="1month" value="1month" />
                     <label htmlFor="1month" className="text-sm leading-none">
-                      1ヶ月
+                      1month
                     </label>
                   </div>
                 </RadioGroup>

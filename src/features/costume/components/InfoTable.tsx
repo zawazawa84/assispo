@@ -1,3 +1,5 @@
+'use client';
+
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import { costumeProps, numberToSize } from '@/utils/enum';
 
@@ -19,7 +21,7 @@ export const InfoTable = ({
         </TableRow>
         <TableRow className="border-0">
           <TableCell className="font-semibold">洗濯</TableCell>
-          <TableCell>{costume?.washable}</TableCell>
+          <TableCell>{costume?.washable ? '可' : '不可'}</TableCell>
         </TableRow>
         <TableRow className="border-0">
           <TableCell className="font-semibold">状態</TableCell>
