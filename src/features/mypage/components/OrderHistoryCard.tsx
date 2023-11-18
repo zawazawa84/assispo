@@ -13,6 +13,7 @@ import {
   termToPrice,
 } from '@/utils/enum';
 import Image from 'next/image';
+import { updateStatus } from '../hooks/useUpdateStatus';
 
 export const OrderHistoryCard = ({
   orderData,
@@ -70,7 +71,10 @@ export const OrderHistoryCard = ({
               <Button
                 variant="outline"
                 className="w-full border-themeblue"
-                disabled={true}
+                disabled={orderData.orderStatus != 2}
+                onClick={() =>
+                  updateStatus({ orderId: '2PeQSbgPJRxEI2iS8rKw', status: 3 })
+                }
               >
                 <p className="text-themeblue">商品到着を確認</p>
               </Button>
