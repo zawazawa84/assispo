@@ -1,6 +1,7 @@
 export interface costumeProps {
   category: string;
   deliveryCharge: string;
+  isRented: boolean;
   name: string;
   others: string;
   price: string;

@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
 import { pagesPath } from '@/gen/$path';
 import { useForm } from 'react-hook-form';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, doc, updateDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase/sdk';
 import { useAuthContext } from '@/AuthContext';
 import { orderProps } from '@/utils/enum';
@@ -40,6 +40,9 @@ export const CostumeOrder = () => {
       deliveryMethod: data.deliveryMethod ?? '1週間後',
       orderStatus: 1,
       returnStatus: 1,
+    });
+    await updateDoc(doc(db, 'products', costumeId), {
+      isRented: true,
     });
     router.push(
       pagesPath.costume._costumeId('1').order._orderId('1').complete.$url()

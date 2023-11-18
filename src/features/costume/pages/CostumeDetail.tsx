@@ -61,9 +61,13 @@ export const CostumeDetail = () => {
               {costume?.price}
               <span className="text-base"> + レンタル期間に応じた金額</span>
             </h1>
+            {costume?.isRented && (
+              <h1 className="text-destructive pt-4">レンタル中</h1>
+            )}
           </div>
           <Button
             className="w-full bg-themeblue"
+            disabled={costume?.isRented}
             onClick={() =>
               router.push(
                 pagesPath.costume._costumeId(costumeId).order.$url().path,
