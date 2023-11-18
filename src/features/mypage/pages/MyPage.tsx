@@ -25,6 +25,7 @@ import {
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { UserData, useAuthContext } from '@/AuthContext';
+import { numberToSize } from '@/utils/enum';
 
 export const MyPage = () => {
   const { user, userData } = useAuthContext()!;
@@ -57,7 +58,7 @@ export const MyPage = () => {
       </header>
       <div className="h-screen space-y-8 mt-10 lg:ml-56 lg:mr-56">
         <h1 className="text-2xl font-semibold">マイページ</h1>
-        <div className="p-8 border border-[#dcdcdc] rounded-md bg-[#f6f6f6]">
+        <div className="p-8 border rounded-md">
           <form onSubmit={onSubmit}>
             <Table>
               <TableHeader>
@@ -78,12 +79,7 @@ export const MyPage = () => {
                         </Button>
                       ) : (
                         <div className="space-x-2">
-                          <Button
-                            className={'h-8 bg-themeblue'}
-                            onClick={() => {
-                              onSubmit();
-                            }}
-                          >
+                          <Button className={'h-8 bg-themeblue'} type="submit">
                             <p>保存</p>
                           </Button>
                           <Button
@@ -178,7 +174,7 @@ export const MyPage = () => {
                   </TableCell>
                   <TableCell>
                     {!editable ? (
-                      <p>{userData?.size}</p>
+                      <p>{numberToSize(userData?.size)}</p>
                     ) : (
                       <Controller
                         control={control}
