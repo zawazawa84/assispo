@@ -40,12 +40,14 @@ export const OrderHistory = () => {
     q = query(collection(db, 'orders'), where('userId', '==', user?.uid));
 
     const orderQuerySnapshot = await getDocs(q);
+
     orderQuerySnapshot?.docs.map(async (order) => {
       const docRef = doc(db, 'products', `${order.data().productcode}`);
       const costumeDocSnap = await getDoc(docRef);
       setOrderData((prev) => [
         ...prev,
         {
+          orderId: order.id,
           ...(costumeDocSnap.data() as costumeProps),
           ...(order.data() as orderProps),
         },

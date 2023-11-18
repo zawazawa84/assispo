@@ -22,7 +22,9 @@ export interface orderProps {
   returnStatus: number;
 }
 
-export interface orderHistoryProps extends costumeProps, orderProps {}
+export interface orderHistoryProps extends costumeProps, orderProps {
+  orderId: string;
+}
 
 const SizeProps = {
   Child: '1',

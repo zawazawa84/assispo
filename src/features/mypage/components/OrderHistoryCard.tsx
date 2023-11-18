@@ -62,7 +62,8 @@ export const OrderHistoryCard = ({
                 {String(orderData.date)}
               </p>
               <p>
-                <span className="text-[#989898]">注文番号 :</span> 0000000000
+                <span className="text-[#989898]">注文番号 :</span>{' '}
+                {orderData.orderId}
               </p>
             </div>
             <div className="space-y-2">
