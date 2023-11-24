@@ -23,27 +23,19 @@ import {
 import { db } from '@/lib/firebase/sdk';
 import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { costumesQueries } from '../queries/costumes';
 
 export const CostumeList = () => {
   const [size, setSize] = useState('');
-  const [costumes, setCostumes] =
-    useState<QueryDocumentSnapshot<DocumentData>[]>();
 
-  const fetchCostumes = async (selectedSize: any) => {
-    let q: Query<DocumentData>;
-
-    if (selectedSize) {
-      q = query(collection(db, 'products'), where('size', '==', selectedSize));
-    } else {
-      q = query(collection(db, 'products'));
-    }
-
-    const querySnapshot = await getDocs(q);
-    setCostumes(querySnapshot?.docs);
-  };
+  const { data, refetch } = useQuery({
+    ...costumesQueries.getCostumes(size),
+  });
+  const costumes = data?.results;
 
   useEffect(() => {
-    fetchCostumes(size);
+    refetch();
   }, [size]);
 
   const handleSizeChange = (event: any) => {
