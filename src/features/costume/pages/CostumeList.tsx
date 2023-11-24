@@ -25,21 +25,24 @@ import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { costumesQueries } from '../queries/costumes';
+import InfiniteScroll from 'react-infinite-scroller';
 
 export const CostumeList = () => {
+  const [page, setPage] = useState(1);
   const [size, setSize] = useState('');
 
   const { data, refetch } = useQuery({
-    ...costumesQueries.getCostumes(size),
+    ...costumesQueries.getCostumes({ size: size, page: page }),
   });
   const costumes = data?.results;
-
-  useEffect(() => {
-    refetch();
-  }, [size]);
+  const hasMore = data?.hasMore;
 
   const handleSizeChange = (event: any) => {
     setSize(event);
+  };
+
+  const loadMore = () => {
+    setPage(page + 1);
   };
 
   return (

@@ -9,9 +9,11 @@ import {
   where,
 } from 'firebase/firestore';
 
+const LIMIT = 20;
+
 export const costumesQueries = createQueryKeys('costumes', {
-  getCostumes: (selectedSize) => ({
-    queryKey: ['costumes'],
+  getCostumes: ({ size, page }) => ({
+    queryKey: ['costumes', size],
     queryFn: async () => {
       const fetchCostumes = async (selectedSize: any) => {
         let q: Query<DocumentData>;
@@ -30,9 +32,10 @@ export const costumesQueries = createQueryKeys('costumes', {
         return querySnapshot;
       };
 
-      const res = fetchCostumes(selectedSize);
+      const res = fetchCostumes(size);
       return {
         results: (await res).docs,
+        hasMore: (await res).docs.length > page * LIMIT,
       };
     },
   }),
