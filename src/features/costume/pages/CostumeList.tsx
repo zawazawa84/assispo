@@ -11,38 +11,38 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import {
-  DocumentData,
-  Query,
-  QueryDocumentSnapshot,
-  collection,
-  getDocs,
-  query,
-  where,
-} from 'firebase/firestore';
-import { db } from '@/lib/firebase/sdk';
-import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { costumesQueries } from '../queries/costumes';
 import InfiniteScroll from 'react-infinite-scroller';
+import { DocumentData, QueryDocumentSnapshot } from 'firebase/firestore';
 
 export const CostumeList = () => {
-  const [page, setPage] = useState(1);
+  const [costumeList, setCostumeList] = useState<
+    QueryDocumentSnapshot<DocumentData, DocumentData>[]
+  >([]);
   const [size, setSize] = useState('');
+  const [lastDoc, setLastDoc] =
+    useState<QueryDocumentSnapshot<DocumentData, DocumentData>>();
 
-  const { data, refetch } = useQuery({
-    ...costumesQueries.getCostumes({ size: size, page: page }),
+  const { data } = useQuery({
+    ...costumesQueries.getCostumes({
+      size: size,
+      lastDoc: lastDoc,
+    }),
   });
   const costumes = data?.results;
   const hasMore = data?.hasMore;
 
   const handleSizeChange = (event: any) => {
+    setCostumeList([]);
+    setLastDoc(undefined);
     setSize(event);
   };
 
   const loadMore = () => {
-    setPage(page + 1);
+    setCostumeList((prev) => [...prev, ...costumes!]);
+    setLastDoc(data?.lastDoc);
   };
 
   return (
@@ -76,12 +76,19 @@ export const CostumeList = () => {
         </div>
         <TabsContent value="item" className="mt-4 lg:ml-56 lg:mr-56">
           <h1 className="text-xl font-bold text-slate-500">衣装一覧</h1>
-          <div className="grid grid-cols-3 lg:grid-cols-5 gap-2">
-            {costumes?.map((costume, index) => {
-              const costumeData = { id: costume.id, content: costume.data() };
-              return <CostumeItem costumeData={costumeData} key={index} />;
-            })}
-          </div>
+          <InfiniteScroll
+            hasMore={hasMore}
+            loadMore={() => {
+              loadMore();
+            }}
+          >
+            <div className="grid grid-cols-3 lg:grid-cols-5 gap-2">
+              {costumeList?.map((costume, index) => {
+                const costumeData = { id: costume.id, content: costume.data() };
+                return <CostumeItem costumeData={costumeData} key={index} />;
+              })}
+            </div>
+          </InfiniteScroll>
         </TabsContent>
         <TabsContent value="favorite" className="mt-4 lg:ml-56 lg:mr-56">
           <h1 className="text-xl font-bold text-slate-500">お気に入り一覧</h1>

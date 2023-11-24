@@ -5,37 +5,36 @@ import {
   Query,
   collection,
   getDocs,
+  limit,
   query,
+  startAfter,
   where,
 } from 'firebase/firestore';
 
 const LIMIT = 20;
 
 export const costumesQueries = createQueryKeys('costumes', {
-  getCostumes: ({ size, page }) => ({
-    queryKey: ['costumes', size],
+  getCostumes: ({ size, lastDoc }) => ({
+    queryKey: ['costumes', size, lastDoc],
     queryFn: async () => {
-      const fetchCostumes = async (selectedSize: any) => {
-        let q: Query<DocumentData>;
+      let q;
+      if (size) {
+        q = query(collection(db, 'products'), where('size', '==', size));
+      } else {
+        q = query(collection(db, 'products'));
+      }
 
-        if (selectedSize) {
-          q = query(
-            collection(db, 'products'),
-            where('size', '==', selectedSize),
-          );
-        } else {
-          q = query(collection(db, 'products'));
-        }
+      q = query(q, limit(LIMIT));
+      if (lastDoc) {
+        q = query(q, startAfter(lastDoc));
+      }
 
-        const querySnapshot = await getDocs(q);
-
-        return querySnapshot;
-      };
-
-      const res = fetchCostumes(size);
+      const querySnapshot = await getDocs(q);
+      const lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
       return {
-        results: (await res).docs,
-        hasMore: (await res).docs.length > page * LIMIT,
+        results: querySnapshot.docs,
+        hasMore: querySnapshot.docs.length != 0,
+        lastDoc: lastVisible,
       };
     },
   }),
