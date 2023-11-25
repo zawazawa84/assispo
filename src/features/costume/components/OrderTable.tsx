@@ -110,7 +110,7 @@ export const OrderTable = ({ register, userData, control }: any) => {
                   <TableCell>商品</TableCell>
                   <TableCell>
                     <Image
-                      src={'/item3.png'}
+                      src={'/item3.jpg'}
                       alt=""
                       width={70}
                       height={10}

@@ -97,7 +97,7 @@ export const OrderHistory = () => {
               <CardContent>
                 <div className="flex justify-around">
                   <Image
-                    src={`/item3.png`}
+                    src={`/item3.jpg`}
                     alt=""
                     width={150}
                     height={220}
@@ -173,7 +173,7 @@ export const OrderHistory = () => {
               <CardContent>
                 <div className="flex justify-around">
                   <Image
-                    src={`/item3.png`}
+                    src={`/item3.jpg`}
                     alt=""
                     width={150}
                     height={250}
@@ -243,7 +243,7 @@ export const OrderHistory = () => {
               <CardContent>
                 <div className="flex justify-around">
                   <Image
-                    src={`/item3.png`}
+                    src={`/item3.jpg`}
                     alt=""
                     width={150}
                     height={220}
@@ -314,7 +314,7 @@ export const OrderHistory = () => {
               <CardContent>
                 <div className="flex justify-around">
                   <Image
-                    src={`/item3.png`}
+                    src={`/item3.jpg`}
                     alt=""
                     width={150}
                     height={220}

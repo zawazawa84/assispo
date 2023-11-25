@@ -43,7 +43,7 @@ export const CostumeDetail = () => {
       <div className="lg:flex h-screen mt-16 lg:ml-56 lg:mr-56 lg:space-x-12">
         <div className="flex-shrink-0">
           <Image
-            src={'/item3.png'}
+            src={'/item3.jpg'}
             alt=""
             width={500}
             height={500}

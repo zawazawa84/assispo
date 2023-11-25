@@ -30,7 +30,7 @@ export const OrderHistoryCard = ({
       <CardContent>
         <div className="flex justify-around">
           <Image
-            src={`/item3.png`}
+            src={`/item3.jpg`}
             alt=""
             width={150}
             height={220}

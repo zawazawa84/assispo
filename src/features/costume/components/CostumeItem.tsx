@@ -18,7 +18,7 @@ export const CostumeItem = ({ costumeData }: { costumeData: DocumentData }) => {
     >
       <div className="relative">
         <Image
-          src={`/item3.png`}
+          src={`/item3.jpg`}
           alt=""
           width={220}
           height={220}

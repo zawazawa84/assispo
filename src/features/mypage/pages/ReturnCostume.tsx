@@ -62,7 +62,7 @@ export const ReturnCostume = () => {
                 <TableCell className="w-2/3">
                   <div className="flex">
                     <Image
-                      src={`/item3.png`}
+                      src={`/item3.jpg`}
                       alt=""
                       width={150}
                       height={220}
