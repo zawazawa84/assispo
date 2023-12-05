@@ -95,18 +95,6 @@ export const OrderTable = ({ register, userData, control }: any) => {
             <Table>
               <TableBody>
                 <TableRow>
-                  <TableCell>お届け日</TableCell>
-                  <TableCell>9月18日(月)</TableCell>
-                  <TableCell>
-                    <Button
-                      variant="outline"
-                      className="h-8 border border-themeblue"
-                    >
-                      <p className="text-themeblue whitespace-nowrap">変更</p>
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
                   <TableCell>商品</TableCell>
                   <TableCell>
                     <Image
