@@ -11,6 +11,8 @@ import { useEffect, useState } from 'react';
 import { DocumentData, doc, getDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase/sdk';
 import { costumeProps } from '@/utils/enum';
+import { costumesQueries } from '../queries/costumes';
+import { useQuery } from '@tanstack/react-query';
 
 export const CostumeDetail = () => {
   const [costume, setCostume] = useState<costumeProps>();
@@ -19,21 +21,12 @@ export const CostumeDetail = () => {
 
   const costumeId = params.costumeId as string;
 
-  useEffect(() => {
-    const fetchCostume = async () => {
-      if (costumeId) {
-        const docRef = doc(db, 'products', `${costumeId}`);
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-          setCostume(docSnap.data() as costumeProps);
-        } else {
-          console.log('エラー');
-        }
-      }
-    };
-    fetchCostume();
-  }, [costumeId]);
+  const { data } = useQuery({
+    ...costumesQueries.getCostumeDetail({
+      costumeId: costumeId,
+    }),
+  });
+  const costumeData = data?.results as costumeProps;
 
   return (
     <div className="mx-auto max-w-screen-2xl">
@@ -52,22 +45,22 @@ export const CostumeDetail = () => {
         </div>
         <div className="lg:w-108 lg:pl-4 space-y-8">
           <h1 className="font-semibold text-xl text-slate-800">
-            {costume?.name}
+            {costumeData?.name}
           </h1>
           <div>
             <p className="text-sm text-slate-500">基本料金</p>
             <h1 className="text-3xl text-slate-800">
               <span className="text-base">¥</span>
-              {costume?.price}
+              {costumeData?.price}
               <span className="text-base"> + レンタル期間に応じた金額</span>
             </h1>
-            {costume?.isRented && (
+            {costumeData?.isRented && (
               <h1 className="text-destructive pt-4">レンタル中</h1>
             )}
           </div>
           <Button
             className="w-full bg-themeblue"
-            disabled={costume?.isRented}
+            disabled={costumeData?.isRented}
             onClick={() =>
               router.push(
                 pagesPath.costume._costumeId(costumeId).order.$url().path,
@@ -79,7 +72,7 @@ export const CostumeDetail = () => {
           <div>
             <h1 className="font-semibold text-xl text-slate-800">商品情報</h1>
             <Separator className="my-2" />
-            <InfoTable costume={costume} />
+            <InfoTable costume={costumeData} />
           </div>
           <div>
             <h1 className="font-semibold text-xl text-slate-800">商品説明</h1>

@@ -4,6 +4,8 @@ import {
   DocumentData,
   Query,
   collection,
+  doc,
+  getDoc,
   getDocs,
   limit,
   query,
@@ -35,6 +37,16 @@ export const costumesQueries = createQueryKeys('costumes', {
         results: querySnapshot.docs,
         hasMore: querySnapshot.docs.length != 0,
         lastDoc: lastVisible,
+      };
+    },
+  }),
+  getCostumeDetail: ({ costumeId }) => ({
+    queryKey: ['costumes'],
+    queryFn: async () => {
+      const docRef = doc(db, 'products', `${costumeId}`);
+      const docSnap = await getDoc(docRef);
+      return {
+        results: docSnap.data(),
       };
     },
   }),
