@@ -23,7 +23,7 @@ export const ReturnCostume = () => {
       </header>
       <div className="h-screen space-y-8 mt-10 lg:ml-56 lg:mr-56">
         <h1 className="text-2xl font-semibold">商品返却手続き</h1>
-        <div className="p-8 border border-[#dcdcdc] rounded-md bg-[#f6f6f6]">
+        <div className="lg:p-8 lg:border rounded-md">
           <Table className="">
             <TableHeader>
               <TableRow>
@@ -60,7 +60,7 @@ export const ReturnCostume = () => {
               <TableRow>
                 <TableCell>商品情報</TableCell>
                 <TableCell className="w-2/3">
-                  <div className="flex">
+                  <div className="flex space-x-4">
                     <Image
                       src={`/item3.jpg`}
                       alt=""
@@ -90,9 +90,12 @@ export const ReturnCostume = () => {
               </TableRow>
             </TableBody>
           </Table>
-          <div className="flex justify-end">
+          <div className="flex justify-between">
+            <p className="mt-4 text-xs">
+              ※お客様自身で郵送をしていただく必要があります
+            </p>
             <Button
-              className="mt-4 bg-themeblue inline-block place-items-end"
+              className="bg-themeblue"
               onClick={() =>
                 router.push(
                   pagesPath.mypage.orderhistory._orderId('1').complete.$url()
@@ -103,9 +106,6 @@ export const ReturnCostume = () => {
               発送を完了
             </Button>
           </div>
-          <p className="text-xs">
-            ※お客様自身で郵送をしていただく必要があります
-          </p>
         </div>
       </div>
     </div>
