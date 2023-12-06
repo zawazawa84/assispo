@@ -13,6 +13,7 @@ import { db } from '@/lib/firebase/sdk';
 import { costumeProps } from '@/utils/enum';
 import { costumesQueries } from '../queries/costumes';
 import { useQuery } from '@tanstack/react-query';
+import { FaHeart, FaRegHeart } from 'react-icons/fa6';
 
 export const CostumeDetail = () => {
   const [costume, setCostume] = useState<costumeProps>();
@@ -43,20 +44,25 @@ export const CostumeDetail = () => {
             className="sticky top-36 object-contain aspect-[5/6] bg-secondary"
           />
         </div>
-        <div className="lg:w-108 lg:pl-4 space-y-8">
-          <h1 className="font-semibold text-xl text-slate-800">
-            {costumeData?.name}
-          </h1>
-          <div>
-            <p className="text-sm text-slate-500">基本料金</p>
-            <h1 className="text-3xl text-slate-800">
-              <span className="text-base">¥</span>
-              {costumeData?.price}
-              <span className="text-base"> + レンタル期間に応じた金額</span>
+        <div className="lg:w-108 lg:pl-4 space-y-6">
+          <div className="space-y-6">
+            <h1 className="font-semibold text-xl text-slate-800">
+              {costumeData?.name}
             </h1>
-            {costumeData?.isRented && (
-              <h1 className="text-destructive pt-4">レンタル中</h1>
-            )}
+            <div>
+              <p className="text-sm text-slate-500">基本料金</p>
+              <h1 className="text-3xl text-slate-800">
+                <span className="text-base">¥</span>
+                {costumeData?.price}
+                <span className="text-base"> + レンタル期間に応じた金額</span>
+              </h1>
+            </div>
+            <button>
+              <div className="flex flex-col items-center space-y-2">
+                <FaRegHeart style={{ fontSize: 32 }} />
+                <h1 className="text-xs">お気に入り</h1>
+              </div>
+            </button>
           </div>
           <Button
             className="w-full bg-themeblue"
@@ -67,7 +73,7 @@ export const CostumeDetail = () => {
               )
             }
           >
-            購入手続きへ
+            {costumeData?.isRented ? 'レンタル中' : '購入手続きへ'}
           </Button>
           <div>
             <h1 className="font-semibold text-xl text-slate-800">商品情報</h1>
