@@ -34,7 +34,7 @@ export const CostumeDetail = () => {
       <header className="sticky top-0 z-10 bg-white">
         <Header />
       </header>
-      <div className="lg:flex h-screen mt-16 lg:ml-56 lg:mr-56 lg:space-x-12">
+      <div className="lg:flex h-screen mt-16 lg:ml-56 lg:mr-56 lg:space-x-12 ">
         <div className="flex-shrink-0">
           <Image
             src={'/item3.jpg'}
@@ -44,14 +44,14 @@ export const CostumeDetail = () => {
             className="sticky top-36 object-contain aspect-[5/6] bg-secondary"
           />
         </div>
-        <div className="lg:w-108 lg:pl-4 space-y-6">
+        <div className="lg:w-108 px-4 space-y-6">
           <div className="space-y-6">
-            <h1 className="font-semibold text-xl text-slate-800">
+            <h1 className="font-semibold text-xl text-slate-800 pt-4">
               {costumeData?.name}
             </h1>
             <div>
               <p className="text-sm text-slate-500">基本料金</p>
-              <h1 className="text-3xl text-slate-800">
+              <h1 className="text-3xl text-slate-800 whitespace-nowrap">
                 <span className="text-base">¥</span>
                 {costumeData?.price}
                 <span className="text-base"> + レンタル期間に応じた金額</span>

@@ -10,7 +10,7 @@ export const InfoTable = ({
 }) => {
   return (
     <Table>
-      <TableBody>
+      <TableBody className="whitespace-nowrap">
         <TableRow className="border-0">
           <TableCell className="w-40 font-semibold">カテゴリー</TableCell>
           <TableCell>{costume?.category}</TableCell>
