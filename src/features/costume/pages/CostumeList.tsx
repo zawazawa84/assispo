@@ -52,30 +52,32 @@ export const CostumeList = () => {
       </header>
       <Tabs defaultValue="item">
         <div className="lg:flex mt-8 lg:space-x-8">
-          <TabsList className="lg:ml-56">
-            <TabsTrigger value="item" className="lg:w-52">
+          <TabsList className="flex justify-center lg:ml-56 mx-2 ">
+            <TabsTrigger value="item" className="lg:w-52 w-44">
               衣装
             </TabsTrigger>
-            <TabsTrigger value="favorite" className="lg:w-52">
+            <TabsTrigger value="favorite" className="lg:w-52 w-44">
               お気に入り
             </TabsTrigger>
           </TabsList>
-          <Select onValueChange={handleSizeChange}>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="サイズを選ぶ" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Sizes</SelectLabel>
-                <SelectItem value="1">Child(~小学6年生)</SelectItem>
-                <SelectItem value="2">Junior(中学1~3年生)</SelectItem>
-                <SelectItem value="3">Senior(高校1年生~)</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+          <div className="flex justify-end">
+            <Select onValueChange={handleSizeChange}>
+              <SelectTrigger className="w-48 mx-2 mt-4 lg:mt-0">
+                <SelectValue placeholder="サイズを選ぶ" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Sizes</SelectLabel>
+                  <SelectItem value="1">Child(~小学6年生)</SelectItem>
+                  <SelectItem value="2">Junior(中学1~3年生)</SelectItem>
+                  <SelectItem value="3">Senior(高校1年生~)</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
-        <TabsContent value="item" className="mt-4 lg:ml-56 lg:mr-56">
-          <h1 className="text-xl font-bold text-slate-500">衣装一覧</h1>
+        <TabsContent value="item" className="mt-4 lg:ml-56 lg:mr-56 px-2">
+          <h1 className="text-xl font-bold text-slate-500 px-2">衣装一覧</h1>
           <InfiniteScroll
             hasMore={hasMore}
             loadMore={() => {
@@ -90,8 +92,10 @@ export const CostumeList = () => {
             </div>
           </InfiniteScroll>
         </TabsContent>
-        <TabsContent value="favorite" className="mt-4 lg:ml-56 lg:mr-56">
-          <h1 className="text-xl font-bold text-slate-500">お気に入り一覧</h1>
+        <TabsContent value="favorite" className="mt-4 lg:ml-56 lg:mr-56 px-2">
+          <h1 className="text-xl font-bold text-slate-500 px-2">
+            お気に入り一覧
+          </h1>
         </TabsContent>
       </Tabs>
     </div>
