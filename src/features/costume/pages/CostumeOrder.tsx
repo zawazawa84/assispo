@@ -61,7 +61,7 @@ export const CostumeOrder = () => {
           className="object-cover cursor-pointer"
           onClick={() => router.push(pagesPath.costume.$url().path)}
         />
-        <h1 className="text-2xl font-semibold">注文内容の確認</h1>
+        <h1 className="text-2xl font-semibold px-2">注文内容の確認</h1>
         <div>
           <form className="lg:flex lg:space-x-8" onSubmit={onSubmit}>
             <OrderTable
@@ -69,7 +69,7 @@ export const CostumeOrder = () => {
               userData={userData}
               control={control}
             />
-            <div className="flex flex-col w-100 h-80 p-4 lg:ml-4 space-y-8 border border-[#dcdcdc] rounded-md bg-[#f6f6f6]">
+            <div className="flex flex-col lg:w-100 h-80 p-4 lg:ml-4 space-y-8 lg:border border-[#dcdcdc] rounded-md lg:bg-[#f6f6f6]">
               <Button className="h-16 bg-themeblue" type="submit">
                 <p className="text-lg">注文を確定する</p>
               </Button>

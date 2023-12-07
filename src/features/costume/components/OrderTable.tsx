@@ -16,7 +16,7 @@ export const OrderTable = ({ register, userData, control }: any) => {
               name="term"
               render={({ field: { onChange, value } }) => (
                 <RadioGroup
-                  className="flex space-x-10"
+                  className="lg:flex lg:space-x-10"
                   value={value}
                   onValueChange={onChange}
                 >
@@ -65,7 +65,7 @@ export const OrderTable = ({ register, userData, control }: any) => {
               name="paymentMethod"
               render={({ field: { onChange, value } }) => (
                 <RadioGroup
-                  className="flex space-x-10"
+                  className="lg:flex lg:space-x-10"
                   value={value}
                   onValueChange={onChange}
                 >
