@@ -21,14 +21,14 @@ export const OrderHistoryCard = ({
   orderData: orderHistoryProps;
 }) => {
   return (
-    <Card className="px-4 pt-4 border rounded-md">
+    <Card className="lg:px-4">
       <CardHeader>
         <h1 className="text-xl pb-4 border-b border-[#dcdcdc]">
           {numberToOrderStatus(orderData.orderStatus)}
         </h1>
       </CardHeader>
       <CardContent>
-        <div className="flex justify-around">
+        <div className="lg:flex justify-around">
           <Image
             src={`/item3.jpg`}
             alt=""
@@ -85,9 +85,9 @@ export const OrderHistoryCard = ({
         </div>
       </CardContent>
       <CardFooter>
-        <div className="flex w-full pt-6 space-x-5 border-t border-[#dcdcdc]">
+        <div className="lg:flex w-full pt-6 lg:space-x-5 border-t border-[#dcdcdc]">
           <p>
-            <span className="text-[#989898]">合計金額 :</span> ¥
+            <span className="text-[#989898]">合計金額 : </span> ¥
             {Number(orderData.price) + termToPrice(orderData.term)!}{' '}
             <span className="text-[#989898]">
               (基本料金 + レンタル期間料 + 配達手数料)
