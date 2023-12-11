@@ -9,6 +9,7 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'アシスポ',
   description: '新体操衣装レンタルサービス',
+  icons: { icon: '/assispo_favicon.png' },
 };
 
 export default function RootLayout({
