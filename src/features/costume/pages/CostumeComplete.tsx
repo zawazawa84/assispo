@@ -12,6 +12,7 @@ import {
 import { pagesPath } from '@/gen/$path';
 import Link from 'next/link';
 import { Header } from '@/components/Layout/Header';
+import { BankInfo } from '../components/BankInfo';
 
 export const CostumeComplete = () => {
   const router = useRouter();
@@ -20,14 +21,18 @@ export const CostumeComplete = () => {
       <header className="bg-white">
         <Header />
       </header>
-      <div className="flex items-center justify-center mt-44">
-        <Card className="w-100 lg:border border-0 shadow-none">
+      <div className="flex items-center justify-center mt-16">
+        <Card className="w-100 border-0 shadow-none">
           <CardHeader>
             <CardTitle className="text-center">
               ご注文ありがとうございます。
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
+            <p className="text-center">
+              下記の口座への振り込みをお願いいたします。
+            </p>
+            <BankInfo />
             <p className="text-center">
               ご注文内容及び発送状況は、配信された確認メール、もしくは
               <Link href={pagesPath.mypage.orderhistory.$url().pathname}>
