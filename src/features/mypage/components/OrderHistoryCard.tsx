@@ -14,18 +14,32 @@ import {
 } from '@/utils/enum';
 import Image from 'next/image';
 import { updateStatus } from '../hooks/useUpdateStatus';
+import { useRouter } from 'next/navigation';
+import { pagesPath } from '@/gen/$path';
 
 export const OrderHistoryCard = ({
   orderData,
 }: {
   orderData: orderHistoryProps;
 }) => {
+  const router = useRouter();
+
   return (
     <Card className="lg:px-4">
       <CardHeader>
-        <h1 className="text-xl pb-4 border-b border-[#dcdcdc]">
-          {numberToOrderStatus(orderData.orderStatus)}
-        </h1>
+        <div className="flex pb-4 border-b border-[#dcdcdc] justify-between items-center">
+          <h1 className="text-xl">
+            {numberToOrderStatus(orderData.orderStatus)}
+          </h1>
+          <Button
+            variant="outline"
+            size="sm"
+            className="border-themeblue lg:mt-0"
+            onClick={() => router.push(pagesPath.bank.$url().path)}
+          >
+            <p className="text-themeblue">お支払い情報はこちら</p>
+          </Button>
+        </div>
       </CardHeader>
       <CardContent>
         <div className="lg:flex justify-around">

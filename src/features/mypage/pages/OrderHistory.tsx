@@ -47,8 +47,8 @@ export const OrderHistory = () => {
       </header>
       <h1 className="text-2xl font-semibold mt-8 lg:ml-56">注文履歴</h1>
       <Tabs defaultValue="before">
-        <div className="flex mt-8 space-x-8">
-          <TabsList className="lg:ml-56">
+        <div className="lg:flex mt-8 space-x-8">
+          <TabsList className="flex justify-center lg:ml-56 mx-2 ">
             <TabsTrigger value="before" className="w-52">
               到着前商品
             </TabsTrigger>
@@ -57,7 +57,7 @@ export const OrderHistory = () => {
             </TabsTrigger>
           </TabsList>
         </div>
-        <TabsContent value="before" className="h-screen mt-8 lg:ml-56 lg:mr-56">
+        <TabsContent value="before" className="h-screen mt-4 lg:ml-56 lg:mr-56">
           <div className="space-y-5 rounded-md">
             {orderData?.map((order, index) => {
               return <OrderHistoryCard orderData={order} key={index} />;

@@ -7,6 +7,9 @@ const buildSuffix = (url?: {query?: Record<string, string>, hash?: string}) => {
 };
 
 export const pagesPath = {
+  "bank": {
+    $url: (url?: { hash?: string }) => ({ pathname: '/bank' as const, hash: url?.hash, path: `/bank${buildSuffix(url)}` })
+  },
   "costume": {
     _costumeId: (costumeId: string | number) => ({
       "order": {
@@ -45,10 +48,11 @@ export const pagesPath = {
 export type PagesPath = typeof pagesPath;
 
 export const staticPath = {
+  assispo_favicon_png: '/assispo_favicon.png',
   assispo_logo_png: '/assispo_logo.png',
   item1_png: '/item1.png',
   item2_png: '/item2.png',
-  item3_png: '/item3.png',
+  item3_jpg: '/item3.jpg',
   next_svg: '/next.svg',
   vercel_svg: '/vercel.svg'
 } as const;
