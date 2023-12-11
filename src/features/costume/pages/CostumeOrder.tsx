@@ -71,7 +71,11 @@ export const CostumeOrder = () => {
               control={control}
             />
             <div className="flex flex-col lg:w-100 h-80 p-4 lg:ml-4 space-y-8 lg:border border-[#dcdcdc] rounded-md lg:bg-[#f6f6f6]">
-              <Button className="h-16 bg-themeblue" type="submit">
+              <Button
+                className="h-16 bg-themeblue"
+                type="submit"
+                disabled={isSubmitting}
+              >
                 <p className="text-lg">注文を確定する</p>
               </Button>
               <div className="space-y-1">
