@@ -28,39 +28,17 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { OrderHistoryCard } from '../components/OrderHistoryCard';
 import { costumeProps, orderHistoryProps, orderProps } from '@/utils/enum';
+import { useQuery } from '@tanstack/react-query';
+import { ordersQueries } from '../queries/orders';
 
 export const OrderHistory = () => {
-  const [orderData, setOrderData] = useState<orderHistoryProps[]>([]);
   const { user } = useAuthContext()!;
   const router = useRouter();
 
-  const fetchOrders = async () => {
-    let q: Query<DocumentData>;
-
-    q = query(collection(db, 'orders'), where('userId', '==', user?.uid));
-
-    const orderQuerySnapshot = await getDocs(q);
-
-    orderQuerySnapshot?.docs.map(async (order) => {
-      const docRef = doc(db, 'products', `${order.data().productcode}`);
-      const costumeDocSnap = await getDoc(docRef);
-      setOrderData((prev) => [
-        ...prev,
-        {
-          orderId: order.id,
-          ...(costumeDocSnap.data() as costumeProps),
-          ...(order.data() as orderProps),
-        },
-      ]);
-      console.log(orderData);
-    });
-  };
-
-  useEffect(() => {
-    if (user) {
-      fetchOrders();
-    }
-  }, [user]);
+  const { data } = useQuery({
+    ...ordersQueries.getOrders({ user: user }),
+  });
+  const orderData = data?.results;
 
   return (
     <div className="mx-auto max-w-screen-2xl">
