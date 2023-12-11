@@ -13,16 +13,21 @@ import {
   termToPrice,
 } from '@/utils/enum';
 import Image from 'next/image';
-import { updateStatus } from '../hooks/useUpdateStatus';
 import { useRouter } from 'next/navigation';
 import { pagesPath } from '@/gen/$path';
+import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
+import { db } from '@/lib/firebase/sdk';
+import { useQueryClient } from '@tanstack/react-query';
 
 export const OrderHistoryCard = ({
   orderData,
+  refetch,
 }: {
   orderData: orderHistoryProps;
+  refetch: any;
 }) => {
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   return (
     <Card className="lg:px-4">
@@ -87,10 +92,13 @@ export const OrderHistoryCard = ({
               <Button
                 variant="outline"
                 className="w-full border-destructive"
-                disabled={orderData.orderStatus != 2}
-                onClick={() =>
-                  updateStatus({ orderId: '2PeQSbgPJRxEI2iS8rKw', status: 3 })
-                }
+                onClick={async () => {
+                  await deleteDoc(doc(db, 'orders', orderData.orderId));
+                  const docRef = doc(db, 'products', orderData.productcode);
+                  await updateDoc(docRef, { isRented: false });
+                  queryClient.invalidateQueries(['costumes']);
+                  refetch();
+                }}
               >
                 <p className="text-destructive">ご注文の取り消し</p>
               </Button>

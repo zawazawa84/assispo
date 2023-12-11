@@ -11,23 +11,9 @@ import {
 } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { pagesPath } from '@/gen/$path';
-import { db } from '@/lib/firebase/sdk';
-import {
-  DocumentData,
-  Query,
-  QueryDocumentSnapshot,
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  query,
-  where,
-} from 'firebase/firestore';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
 import { OrderHistoryCard } from '../components/OrderHistoryCard';
-import { costumeProps, orderHistoryProps, orderProps } from '@/utils/enum';
 import { useQuery } from '@tanstack/react-query';
 import { ordersQueries } from '../queries/orders';
 
@@ -35,7 +21,7 @@ export const OrderHistory = () => {
   const { user } = useAuthContext()!;
   const router = useRouter();
 
-  const { data } = useQuery({
+  const { data, refetch } = useQuery({
     ...ordersQueries.getOrders({ user: user }),
   });
   const orderData = data?.results;
@@ -60,7 +46,13 @@ export const OrderHistory = () => {
         <TabsContent value="before" className="h-screen mt-4 lg:ml-56 lg:mr-56">
           <div className="space-y-5 rounded-md">
             {orderData?.map((order, index) => {
-              return <OrderHistoryCard orderData={order} key={index} />;
+              return (
+                <OrderHistoryCard
+                  orderData={order}
+                  refetch={refetch}
+                  key={index}
+                />
+              );
             })}
           </div>
         </TabsContent>
