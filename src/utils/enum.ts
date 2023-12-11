@@ -19,6 +19,7 @@ export interface orderProps {
   toAddress: string;
   deliveryMethod: number;
   paymentMethod: string;
+  comment: string;
   orderStatus: number;
   returnStatus: number;
 }

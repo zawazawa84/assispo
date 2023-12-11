@@ -105,6 +105,17 @@ export const OrderHistoryCard = ({
             </div>
           </div>
         </div>
+        {orderData.comment && (
+          <div className="p-2 mt-4 bg-secondary rounded-lg text-gray-700">
+            <p className="text-sm ">
+              <span className="font-semibold ">
+                アシスポからのコメント
+                <br />
+              </span>{' '}
+              {orderData.comment}
+            </p>
+          </div>
+        )}
       </CardContent>
       <CardFooter>
         <div className="lg:flex w-full pt-6 lg:space-x-5 border-t border-[#dcdcdc]">
