@@ -21,21 +21,21 @@ export const OrderTable = ({ register, userData, control }: any) => {
                   onValueChange={onChange}
                 >
                   <div className="flex space-x-1">
-                    <RadioGroupItem id="1day" value="1day" />
-                    <label htmlFor="1day" className="text-sm leading-none">
-                      1day
-                    </label>
-                  </div>
-                  <div className="flex space-x-1">
-                    <RadioGroupItem id="3days" value="3days" />
-                    <label htmlFor="3days" className="text-sm leading-none">
-                      3days
-                    </label>
-                  </div>
-                  <div className="flex space-x-1">
                     <RadioGroupItem id="1week" value="1week" />
                     <label htmlFor="1week" className="text-sm leading-none">
                       1week
+                    </label>
+                  </div>
+                  <div className="flex space-x-1">
+                    <RadioGroupItem id="2week" value="2week" />
+                    <label htmlFor="2week" className="text-sm leading-none">
+                      2week
+                    </label>
+                  </div>
+                  <div className="flex space-x-1">
+                    <RadioGroupItem id="3week" value="3week" />
+                    <label htmlFor="3week" className="text-sm leading-none">
+                      3week
                     </label>
                   </div>
                   <div className="flex space-x-1">

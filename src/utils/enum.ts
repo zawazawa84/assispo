@@ -46,21 +46,21 @@ export const numberToSize = (number: string | undefined) => {
 };
 
 const termProps = {
-  oneDay: '1day',
-  threeDays: '3days',
   oneWeek: '1week',
+  twoWeek: '2week',
+  threeWeek: '3week',
   oneMonth: '1month',
 } as const;
 type termProps = (typeof termProps)[keyof typeof termProps];
 
 export const termToPrice = (term: string | undefined) => {
   switch (term) {
-    case termProps.oneDay:
-      return 200;
-    case termProps.threeDays:
-      return 500;
     case termProps.oneWeek:
       return 1200;
+    case termProps.twoWeek:
+      return 1600;
+    case termProps.threeWeek:
+      return 2000;
     case termProps.oneMonth:
       return 2400;
   }
