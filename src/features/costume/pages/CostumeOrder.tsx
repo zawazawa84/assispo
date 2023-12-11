@@ -94,6 +94,9 @@ export const CostumeOrder = () => {
                   <p>合計</p>
                   <p>¥5,430</p>
                 </div>
+                <p className="text-xs pt-2">
+                  ※銀行振込完了後に衣装発送となります
+                </p>
               </div>
             </div>
           </form>
