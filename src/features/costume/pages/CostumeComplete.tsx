@@ -31,6 +31,8 @@ export const CostumeComplete = () => {
           <CardContent className="space-y-4">
             <p className="text-center">
               下記の口座への振り込みをお願いいたします。
+              <br />
+              (注文履歴からも口座情報の確認が可能です)
             </p>
             <BankInfo />
             <p className="text-center">

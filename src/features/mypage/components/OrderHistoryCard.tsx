@@ -68,17 +68,17 @@ export const OrderHistoryCard = ({
             </div>
             <div className="space-y-2">
               <Button className="w-full bg-themeblue">
-                <p>注文詳細</p>
+                <p>衣装詳細</p>
               </Button>
               <Button
                 variant="outline"
-                className="w-full border-themeblue"
+                className="w-full border-destructive"
                 disabled={orderData.orderStatus != 2}
                 onClick={() =>
                   updateStatus({ orderId: '2PeQSbgPJRxEI2iS8rKw', status: 3 })
                 }
               >
-                <p className="text-themeblue">商品到着を確認</p>
+                <p className="text-destructive">ご注文の取り消し</p>
               </Button>
             </div>
           </div>
