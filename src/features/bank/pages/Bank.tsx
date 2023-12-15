@@ -1,5 +1,5 @@
 import { Header } from '@/components/Layout/Header';
-import { BankInfo } from '../../components/BankInfo';
+import { BankInfo } from '../../costume/components/BankInfo';
 
 export const Bank = () => {
   return (
