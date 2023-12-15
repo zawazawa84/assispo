@@ -19,6 +19,8 @@ import { pagesPath } from '@/gen/$path';
 import Link from 'next/link';
 import { FcGoogle } from 'react-icons/fc';
 import { auth } from '@/lib/firebase/sdk';
+import { FirebaseError } from 'firebase/app';
+import { toast } from '@/components/ui/use-toast';
 
 interface SignIn {
   email: string;
@@ -50,7 +52,15 @@ export const SignInPage = () => {
       console.log(userCredential);
       router.push(pagesPath.costume.$url().path);
     } catch (error) {
-      console.log(error);
+      if (
+        error instanceof FirebaseError &&
+        error.code === 'auth/invalid-login-credentials'
+      ) {
+        toast({
+          variant: 'destructive',
+          description: 'メールアドレスまたはパスワードが異なります',
+        });
+      }
     }
   });
 
