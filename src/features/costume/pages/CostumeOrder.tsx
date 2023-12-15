@@ -29,7 +29,7 @@ export const CostumeOrder = () => {
   const onSubmit = handleSubmit(async (data) => {
     const currentDate = new Date();
     const ordersCollectionRef = collection(db, 'orders');
-    await addDoc(ordersCollectionRef, {
+    const orderRef = await addDoc(ordersCollectionRef, {
       userId: user?.uid,
       date: format(currentDate, 'yyyy.MM.dd'),
       term: data.term,
@@ -46,8 +46,10 @@ export const CostumeOrder = () => {
       isRented: true,
     });
     router.push(
-      pagesPath.costume._costumeId('1').order._orderId('1').complete.$url()
-        .path,
+      pagesPath.costume
+        ._costumeId(costumeId)
+        .order._orderId(orderRef.id)
+        .complete.$url().path,
     );
   });
 
