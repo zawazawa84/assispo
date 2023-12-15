@@ -1,6 +1,8 @@
 'use client';
 
+import { z } from 'zod';
 import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
@@ -23,13 +25,20 @@ interface SignIn {
   password: string;
 }
 
+const siginInSchemma = z.object({
+  email: z.string().email({ message: '無効なメールアドレスです' }),
+  password: z
+    .string()
+    .min(6, { message: 'パスワードは6文字以上である必要があります' }),
+});
+
 export const SignInPage = () => {
   const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<SignIn>();
+  } = useForm<SignIn>({ resolver: zodResolver(siginInSchemma) });
 
   const onSubmit = handleSubmit(async (data: SignIn) => {
     try {
@@ -66,7 +75,7 @@ export const SignInPage = () => {
               </span>
             </div>
           </div>
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={onSubmit}>
             <div className="grid gap-2">
               <Label htmlFor="email">メールアドレス</Label>
               <Input
@@ -75,18 +84,26 @@ export const SignInPage = () => {
                 placeholder="email@example.com"
                 {...register('email')}
               />
+              {errors.email && (
+                <p className="text-sm text-destructive">
+                  {errors.email.message}
+                </p>
+              )}
             </div>
             <div className="grid gap-2">
               <Label htmlFor="password">パスワード</Label>
               <Input id="password" type="password" {...register('password')} />
+              {errors.password && (
+                <p className="text-sm text-destructive">
+                  {errors.password.message}
+                </p>
+              )}
               <Link href={''}>
                 <p className="text-sm text-themeblue">パスワードをお忘れの方</p>
               </Link>
             </div>
             <div className="grid gap-2">
-              <Button className="bg-themeblue" onClick={onSubmit}>
-                ログイン
-              </Button>
+              <Button className="bg-themeblue">ログイン</Button>
             </div>
           </form>
           <div className="grid gap-2">

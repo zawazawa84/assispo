@@ -17,11 +17,20 @@ import Link from 'next/link';
 import { FcGoogle } from 'react-icons/fc';
 import { useRouter } from 'next/navigation';
 import { pagesPath } from '@/gen/$path';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 interface SignUp {
   email: string;
   password: string;
 }
+
+const siginUpSchemma = z.object({
+  email: z.string().email({ message: '無効なメールアドレスです' }),
+  password: z
+    .string()
+    .min(6, { message: 'パスワードは6文字以上である必要があります' }),
+});
 
 export const SignUpPage = () => {
   const router = useRouter();
@@ -29,7 +38,7 @@ export const SignUpPage = () => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<SignUp>();
+  } = useForm<SignUp>({ resolver: zodResolver(siginUpSchemma) });
 
   const onSubmit = handleSubmit(async (data: SignUp) => {
     try {
@@ -66,19 +75,33 @@ export const SignUpPage = () => {
               </span>
             </div>
           </div>
-          <form className="space-y-4" onSubmit={onSubmit}>
+          <form
+            className="space-y-4"
+            onSubmit={onSubmit}
+            onClick={() => console.log(errors)}
+          >
             <div className="grid gap-2">
-              <Label htmlFor="email">メールアドレス</Label>
+              <Label>メールアドレス</Label>
               <Input
                 id="email"
                 type="email"
                 placeholder="email@example.com"
                 {...register('email')}
               />
+              {errors.email && (
+                <p className="text-sm text-destructive">
+                  {errors.email.message}
+                </p>
+              )}
             </div>
             <div className="grid gap-2">
               <Label htmlFor="password">パスワード</Label>
               <Input id="password" type="password" {...register('password')} />
+              {errors.password && (
+                <p className="text-sm text-destructive">
+                  {errors.password.message}
+                </p>
+              )}
             </div>
             <Button className="bg-themeblue w-full">会員登録</Button>
           </form>
