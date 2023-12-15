@@ -19,6 +19,8 @@ import { useRouter } from 'next/navigation';
 import { pagesPath } from '@/gen/$path';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { FirebaseError } from 'firebase/app';
+import { toast } from '@/components/ui/use-toast';
 
 interface SignUp {
   email: string;
@@ -50,7 +52,15 @@ export const SignUpPage = () => {
       console.log(userCredential);
       router.push(pagesPath.costume.$url().path);
     } catch (error) {
-      console.log(error);
+      if (
+        error instanceof FirebaseError &&
+        error.code === 'auth/email-already-in-use'
+      ) {
+        toast({
+          variant: 'destructive',
+          description: 'このメールアドレスはすでに使われています',
+        });
+      }
     }
   });
 
