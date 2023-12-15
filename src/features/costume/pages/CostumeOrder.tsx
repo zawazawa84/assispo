@@ -6,11 +6,12 @@ import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
 import { pagesPath } from '@/gen/$path';
 import { useForm } from 'react-hook-form';
-import { addDoc, collection, doc, updateDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase/sdk';
 import { useAuthContext } from '@/AuthContext';
 import { orderProps } from '@/utils/enum';
 import { format } from 'date-fns';
+import { toast } from '@/components/ui/use-toast';
 
 export const CostumeOrder = () => {
   const { user, userData } = useAuthContext()!;
@@ -27,6 +28,18 @@ export const CostumeOrder = () => {
   } = useForm<orderProps>();
 
   const onSubmit = handleSubmit(async (data) => {
+    const costumeRef = doc(db, 'products', costumeId);
+    const costumeSnap = await getDoc(costumeRef);
+    if (costumeSnap.exists()) {
+      if (costumeSnap.data().isRented) {
+        toast({
+          variant: 'destructive',
+          title: 'この商品はすでにレンタルされています',
+        });
+        return;
+      }
+    }
+
     const currentDate = new Date();
     const ordersCollectionRef = collection(db, 'orders');
     const orderRef = await addDoc(ordersCollectionRef, {
