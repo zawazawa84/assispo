@@ -3,6 +3,10 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import { toast } from '@/components/ui/use-toast';
+import { auth } from '@/lib/firebase/sdk';
+import { FirebaseError } from 'firebase/app';
+import { sendPasswordResetEmail } from 'firebase/auth';
 import { useForm } from 'react-hook-form';
 
 interface ResetPassword {
@@ -16,6 +20,23 @@ export const ResetPassword = () => {
     formState: { errors, isSubmitting },
   } = useForm<ResetPassword>();
 
+  const onSubmit = handleSubmit(async (data: ResetPassword) => {
+    try {
+      await sendPasswordResetEmail(auth, data.email);
+      toast({
+        description: 'パスワードリセットメールを送信しました。',
+      });
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        toast({
+          variant: 'destructive',
+          description:
+            'メール送信に失敗しました。メールアドレスを確認してください。',
+        });
+      }
+    }
+  });
+
   return (
     <div className="flex items-center justify-center h-screen">
       <Card className="w-100 lg:border border-0 shadow-none">
@@ -26,11 +47,10 @@ export const ResetPassword = () => {
           <p>
             登録されているメールアドレスを入力してください。パスワード再設定のため認証メールを送信します。
           </p>
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={onSubmit}>
             <div className="grid gap-2">
               <Input
                 id="email"
-                type="email"
                 placeholder="email@example.com"
                 {...register('email')}
               />
