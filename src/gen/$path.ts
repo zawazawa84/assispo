@@ -7,6 +7,9 @@ const buildSuffix = (url?: {query?: Record<string, string>, hash?: string}) => {
 };
 
 export const pagesPath = {
+  "admin": {
+    $url: (url?: { hash?: string }) => ({ pathname: '/admin' as const, hash: url?.hash, path: `/admin${buildSuffix(url)}` })
+  },
   "bank": {
     $url: (url?: { hash?: string }) => ({ pathname: '/bank' as const, hash: url?.hash, path: `/bank${buildSuffix(url)}` })
   },
@@ -37,6 +40,9 @@ export const pagesPath = {
     $url: (url?: { hash?: string }) => ({ pathname: '/mypage' as const, hash: url?.hash, path: `/mypage${buildSuffix(url)}` })
   },
   "signin": {
+    "reset": {
+      $url: (url?: { hash?: string }) => ({ pathname: '/signin/reset' as const, hash: url?.hash, path: `/signin/reset${buildSuffix(url)}` })
+    },
     $url: (url?: { hash?: string }) => ({ pathname: '/signin' as const, hash: url?.hash, path: `/signin${buildSuffix(url)}` })
   },
   "signup": {

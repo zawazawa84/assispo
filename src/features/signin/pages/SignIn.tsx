@@ -108,9 +108,12 @@ export const SignInPage = () => {
                   {errors.password.message}
                 </p>
               )}
-              <Link href={''}>
-                <p className="text-sm text-themeblue">パスワードをお忘れの方</p>
-              </Link>
+              <p
+                className="text-sm text-themeblue cursor-pointer"
+                onClick={() => router.push(pagesPath.signin.reset.$url().path)}
+              >
+                パスワードをお忘れの方
+              </p>
             </div>
             <div className="grid gap-2">
               <Button className="bg-themeblue">ログイン</Button>
