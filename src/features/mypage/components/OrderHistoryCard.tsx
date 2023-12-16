@@ -86,7 +86,15 @@ export const OrderHistoryCard = ({
               </p>
             </div>
             <div className="space-y-2">
-              <Button className="w-full bg-themeblue">
+              <Button
+                className="w-full bg-themeblue"
+                onClick={() =>
+                  router.push(
+                    pagesPath.costume._costumeId(orderData.productcode).$url()
+                      .path,
+                  )
+                }
+              >
                 <p>衣装詳細</p>
               </Button>
               <Button
