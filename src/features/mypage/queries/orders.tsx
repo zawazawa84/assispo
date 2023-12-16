@@ -38,4 +38,27 @@ export const ordersQueries = createQueryKeys('orders', {
       };
     },
   }),
+  getAllOrders: () => ({
+    queryKey: ['orders'],
+    queryFn: async () => {
+      const q = collection(db, 'orders');
+
+      const orderQuerySnapshot = await getDocs(q);
+
+      const orderData: orderHistoryProps[] = await Promise.all(
+        orderQuerySnapshot.docs.map(async (order) => {
+          const docRef = doc(db, 'products', `${order.data().productcode}`);
+          const costumeDocSnap = await getDoc(docRef);
+          return {
+            orderId: order.id,
+            ...(costumeDocSnap.data() as costumeProps),
+            ...(order.data() as orderProps),
+          };
+        }),
+      );
+      return {
+        results: orderData,
+      };
+    },
+  }),
 });
