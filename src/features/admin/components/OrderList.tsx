@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { db } from '@/lib/firebase/sdk';
 import queryClient from '@/lib/react-query';
-import { orderHistoryProps } from '@/utils/enum';
+import { numberToOrderStatus, orderHistoryProps } from '@/utils/enum';
 import { doc, updateDoc } from 'firebase/firestore';
 
 export const OrderList = ({
@@ -63,7 +63,7 @@ export const OrderList = ({
         </p>
         <p className="text-gray-700 text-base mb-4">
           <span className="font-semibold">注文ステータス:</span>{' '}
-          {orderData.orderStatus}
+          {numberToOrderStatus(orderData.orderStatus)}
         </p>
         <p className="text-gray-700 text-base mb-4">
           <span className="font-semibold">返却ステータス:</span>{' '}
