@@ -12,6 +12,30 @@ import {
 } from 'firebase/firestore';
 
 export const ordersQueries = createQueryKeys('orders', {
+  getOrder: ({ user, orderId }) => ({
+    queryKey: ['orders', user],
+    queryFn: async () => {
+      const q = query(
+        collection(db, 'orders'),
+        where('userId', '==', `${user?.uid}`),
+      );
+
+      const orderQuerySnapshot = await getDocs(q);
+
+      const orderData = orderQuerySnapshot.docs
+        .find((doc) => doc.id === orderId)
+        ?.data();
+
+      const docRef = doc(db, 'products', `${orderData?.productcode}`);
+      const costumeDocSnap = await getDoc(docRef);
+      const newOrderData = {
+        ...(costumeDocSnap.data() as costumeProps),
+        ...(orderData as orderProps),
+      };
+
+      return { result: newOrderData };
+    },
+  }),
   getOrders: ({ user }) => ({
     queryKey: ['orders', user],
     queryFn: async () => {

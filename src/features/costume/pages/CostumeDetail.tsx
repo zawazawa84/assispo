@@ -16,7 +16,6 @@ import { useQuery } from '@tanstack/react-query';
 import { FaHeart, FaRegHeart } from 'react-icons/fa6';
 
 export const CostumeDetail = () => {
-  const [costume, setCostume] = useState<costumeProps>();
   const router = useRouter();
   const params = useParams();
 

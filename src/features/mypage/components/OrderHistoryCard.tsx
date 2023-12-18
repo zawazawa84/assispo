@@ -1,3 +1,4 @@
+'use client';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -20,7 +21,7 @@ import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase/sdk';
 import { useQueryClient } from '@tanstack/react-query';
 import { toast } from '@/components/ui/use-toast';
-import { addDaysToDate } from '@/utils/util';
+import { addDaysToDate } from '@/utils/date';
 
 export const OrderHistoryCard = ({
   orderData,
@@ -52,7 +53,11 @@ export const OrderHistoryCard = ({
             variant="outline"
             size="sm"
             className="border-themeblue lg:mt-0"
-            onClick={() => router.push(pagesPath.bank.$url().path)}
+            onClick={() =>
+              router.push(
+                pagesPath.bank._orderId(orderData.orderId).$url().path,
+              )
+            }
           >
             <p className="text-themeblue">お支払い情報はこちら</p>
           </Button>

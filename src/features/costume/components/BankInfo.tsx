@@ -1,4 +1,23 @@
+'use client';
+import { useAuthContext } from '@/AuthContext';
+import { useQuery } from '@tanstack/react-query';
+import { ordersQueries } from '@/features/mypage/queries/orders';
+import { useParams } from 'next/navigation';
+import { addDaysToDate } from '@/utils/date';
+import { termToPrice } from '@/utils/enum';
+
 export const BankInfo = () => {
+  const { user } = useAuthContext()!;
+  const params = useParams();
+
+  const orderId = params.orderId as string;
+
+  const { data } = useQuery({
+    ...ordersQueries.getOrder({ user: user, orderId: orderId }),
+  });
+
+  const orderData = data?.result;
+
   return (
     <div className="border rounded-sm p-4 text-gray-700 text-base space-y-2">
       <div>
@@ -33,13 +52,26 @@ export const BankInfo = () => {
         <span className="font-semibold text-right">
           振込金額&nbsp;&nbsp;&nbsp;&nbsp;
         </span>
-        <span>:</span>
+        <span>
+          :{' '}
+          {orderData
+            ? `¥${Number(orderData?.price) + termToPrice(orderData?.term)!}`
+            : '読み込み中'}
+        </span>
       </div>
       <div>
         <span className="font-semibold text-right">
           振込期限&nbsp;&nbsp;&nbsp;&nbsp;
         </span>
-        <span>:</span>
+        <span>
+          :{' '}
+          {orderData?.date
+            ? addDaysToDate({
+                dateStr: orderData?.date,
+                days: 3,
+              })
+            : '読み込み中'}
+        </span>
       </div>
     </div>
   );

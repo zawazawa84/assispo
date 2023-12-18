@@ -11,7 +11,9 @@ export const pagesPath = {
     $url: (url?: { hash?: string }) => ({ pathname: '/admin' as const, hash: url?.hash, path: `/admin${buildSuffix(url)}` })
   },
   "bank": {
-    $url: (url?: { hash?: string }) => ({ pathname: '/bank' as const, hash: url?.hash, path: `/bank${buildSuffix(url)}` })
+    _orderId: (orderId: string | number) => ({
+      $url: (url?: { hash?: string }) => ({ pathname: '/bank/[orderId]' as const, query: { orderId }, hash: url?.hash, path: `/bank/${orderId}${buildSuffix(url)}` })
+    })
   },
   "costume": {
     _costumeId: (costumeId: string | number) => ({

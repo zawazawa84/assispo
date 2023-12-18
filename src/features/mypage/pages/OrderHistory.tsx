@@ -2,24 +2,13 @@
 
 import { useAuthContext } from '@/AuthContext';
 import { Header } from '@/components/Layout/Header';
-import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { pagesPath } from '@/gen/$path';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { OrderHistoryCard } from '../components/OrderHistoryCard';
 import { useQuery } from '@tanstack/react-query';
 import { ordersQueries } from '../queries/orders';
 
 export const OrderHistory = () => {
   const { user } = useAuthContext()!;
-  const router = useRouter();
 
   const { data, refetch } = useQuery({
     ...ordersQueries.getOrders({ user: user }),
