@@ -35,6 +35,12 @@ export const BankInfo = () => {
         </span>
         <span>:</span>
       </div>
+      <div>
+        <span className="font-semibold text-right">
+          振込期限&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+        <span>:</span>
+      </div>
     </div>
   );
 };

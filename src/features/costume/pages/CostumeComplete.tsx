@@ -21,7 +21,7 @@ export const CostumeComplete = () => {
       <header className="bg-white">
         <Header />
       </header>
-      <div className="flex items-center justify-center mt-16">
+      <div className="flex items-center justify-center lg:mt-16">
         <Card className="w-100 border-0 shadow-none">
           <CardHeader>
             <CardTitle className="text-center">
@@ -42,6 +42,7 @@ export const CostumeComplete = () => {
               </Link>
               よりご確認ください。
             </p>
+            <p className="text-center">※発送状況等は反映に時間がかかります</p>
           </CardContent>
           <CardFooter className="grid gap-2 space-y-1">
             <Button
