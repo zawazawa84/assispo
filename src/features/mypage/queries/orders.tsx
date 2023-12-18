@@ -33,8 +33,23 @@ export const ordersQueries = createQueryKeys('orders', {
           };
         }),
       );
+      const BeforeArrivalOrderData = orderData.filter(
+        (order) =>
+          order.returnStatus !== 2 &&
+          order.returnStatus !== 3 &&
+          order.returnStatus !== 4,
+      );
+      const ArrivedOrderData = orderData.filter(
+        (order) => order.returnStatus === 2 || order.returnStatus === 3,
+      );
+      const ReturnedOrderData = orderData.filter(
+        (order) => order.returnStatus === 4,
+      );
+
       return {
-        results: orderData,
+        BeforeArrivalOrderData,
+        ArrivedOrderData,
+        ReturnedOrderData,
       };
     },
   }),

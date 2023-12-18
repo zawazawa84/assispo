@@ -24,7 +24,9 @@ export const OrderHistory = () => {
   const { data, refetch } = useQuery({
     ...ordersQueries.getOrders({ user: user }),
   });
-  const orderData = data?.results;
+  const BeforeArrivalOrderData = data?.BeforeArrivalOrderData;
+  const ArrivedOrderData = data?.ArrivedOrderData;
+  const ReturnedOrderData = data?.ReturnedOrderData;
 
   return (
     <div className="mx-auto max-w-screen-2xl">
@@ -36,16 +38,19 @@ export const OrderHistory = () => {
         <div className="lg:flex mt-8 space-x-8">
           <TabsList className="flex justify-center lg:ml-56 mx-2 ">
             <TabsTrigger value="before" className="w-52">
-              到着前商品
+              到着前
             </TabsTrigger>
             <TabsTrigger value="after" className="w-52">
-              到着済商品
+              到着済
+            </TabsTrigger>
+            <TabsTrigger value="return" className="w-52">
+              返却済
             </TabsTrigger>
           </TabsList>
         </div>
         <TabsContent value="before" className="h-screen mt-4 lg:ml-56 lg:mr-56">
           <div className="space-y-5 rounded-md">
-            {orderData?.map((order, index) => {
+            {BeforeArrivalOrderData?.map((order, index) => {
               return (
                 <OrderHistoryCard
                   orderData={order}
@@ -56,296 +61,30 @@ export const OrderHistory = () => {
             })}
           </div>
         </TabsContent>
-        <TabsContent value="after" className="h-screen mt-8 lg:ml-56 lg:mr-56">
+        <TabsContent value="after" className="h-screen mt-4 lg:ml-56 lg:mr-56">
           <div className="space-y-5 rounded-md">
-            <Card className="px-4 pt-4 border rounded-md">
-              <CardHeader>
-                <h1 className="text-xl pb-4 border-b border-[#dcdcdc]">
-                  レンタル期間中
-                </h1>
-              </CardHeader>
-              <CardContent>
-                <div className="flex justify-around">
-                  <Image
-                    src={`/item3.jpg`}
-                    alt=""
-                    width={150}
-                    height={220}
-                    className="rounded-sm object-contain aspect-square bg-secondary"
-                  />
-                  <div className="w-2/5 space-y-3 pl-5">
-                    <p>テスト衣装</p>
-                    <p className="text-sm">
-                      <span className="text-[#989898]">サイズ : </span> シニア
-                    </p>
-                    <p className="text-sm">
-                      <span className="text-[#989898]">洗濯 :</span> 可
-                    </p>
-                    <p className="text-sm">
-                      <span className="text-[#989898]">レンタル期間 :</span>{' '}
-                      7日間
-                    </p>
-                    <p className="text-sm">
-                      <span className="text-[#989898]">基本料金 :</span> ¥3,960
-                    </p>
-                  </div>
-                  <div className="space-y-4">
-                    <div>
-                      <p>
-                        <span className="text-[#989898]">注文日&emsp; :</span>{' '}
-                        2023.9.28
-                      </p>
-                      <p>
-                        <span className="text-[#989898]">注文番号 :</span>{' '}
-                        0000000000
-                      </p>
-                    </div>
-                    <div className="space-y-2">
-                      <Button className="w-full bg-themeblue">
-                        <p>注文詳細</p>
-                      </Button>
-                      <Button
-                        variant="outline"
-                        className="w-full border-themeblue"
-                        onClick={() =>
-                          router.push(
-                            pagesPath.mypage.orderhistory._orderId('1').$url()
-                              .path,
-                          )
-                        }
-                      >
-                        <p className="text-themeblue">商品返却手続き</p>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-              <CardFooter>
-                <div className="flex w-full pt-6 space-x-5 border-t border-[#dcdcdc]">
-                  <p>
-                    <span className="text-[#989898]">合計金額 :</span> ¥5,430{' '}
-                    <span className="text-[#989898]">
-                      (基本料金 + レンタル期間料 + 配達手数料)
-                    </span>
-                  </p>
-                  <p>
-                    <span className="text-[#989898]">支払い方法 :</span> 現金
-                  </p>
-                </div>
-              </CardFooter>
-            </Card>
-            <Card className="px-4 pt-4 border rounded-md">
-              <CardHeader>
-                <h1 className="text-xl pb-4 border-b border-[#dcdcdc]">
-                  レンタル期間切れ
-                </h1>
-              </CardHeader>
-              <CardContent>
-                <div className="flex justify-around">
-                  <Image
-                    src={`/item3.jpg`}
-                    alt=""
-                    width={150}
-                    height={250}
-                    className="rounded-sm object-contain aspect-square bg-secondary"
-                  />
-                  <div className="w-2/5 space-y-3 pl-5">
-                    <p>テスト衣装</p>
-                    <p className="text-sm">
-                      <span className="text-[#989898]">サイズ :</span> シニア
-                    </p>
-                    <p className="text-sm">
-                      <span className="text-[#989898]">洗濯 :</span> 可
-                    </p>
-                    <p className="text-sm">
-                      <span className="text-[#989898]">レンタル期間 :</span>{' '}
-                      7日間
-                    </p>
-                    <p className="text-sm">
-                      <span className="text-[#989898]">基本料金 :</span> ¥3,960
-                    </p>
-                  </div>
-                  <div className="space-y-4">
-                    <div>
-                      <p>
-                        <span className="text-[#989898]">注文日&emsp; :</span>{' '}
-                        2023.9.28
-                      </p>
-                      <p>
-                        <span className="text-[#989898]">注文番号 :</span>{' '}
-                        0000000000
-                      </p>
-                    </div>
-                    <div className="space-y-2">
-                      <Button className="w-full bg-themeblue">
-                        <p>注文詳細</p>
-                      </Button>
-                      <Button
-                        variant="outline"
-                        className="w-full border-themeblue"
-                      >
-                        <p className="text-themeblue">商品返却手続き</p>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-              <CardFooter>
-                <div className="flex w-full pt-6 space-x-5 border-t border-[#dcdcdc]">
-                  <p>
-                    <span className="text-[#989898]">合計金額 :</span> ¥5,430{' '}
-                    <span className="text-[#989898]">
-                      (基本料金 + レンタル期間料 + 配達手数料)
-                    </span>
-                  </p>
-                  <p>
-                    <span className="text-[#989898]">支払い方法 :</span> 現金
-                  </p>
-                </div>
-              </CardFooter>
-            </Card>
-            <Card className="px-4 pt-4 border rounded-md">
-              <CardHeader>
-                <h1 className="text-xl pb-4 border-b border-[#dcdcdc]">
-                  返却中
-                </h1>
-              </CardHeader>
-              <CardContent>
-                <div className="flex justify-around">
-                  <Image
-                    src={`/item3.jpg`}
-                    alt=""
-                    width={150}
-                    height={220}
-                    className="rounded-sm object-contain aspect-square bg-secondary"
-                  />
-                  <div className="w-2/5 space-y-3 pl-5">
-                    <p>テスト衣装</p>
-                    <p className="text-sm">
-                      <span className="text-[#989898]">サイズ :</span> シニア
-                    </p>
-                    <p className="text-sm">
-                      <span className="text-[#989898]">洗濯 :</span> 可
-                    </p>
-                    <p className="text-sm">
-                      <span className="text-[#989898]">レンタル期間 :</span>{' '}
-                      7日間
-                    </p>
-                    <p className="text-sm">
-                      <span className="text-[#989898]">基本料金 :</span> ¥3,960
-                    </p>
-                  </div>
-                  <div className="space-y-4">
-                    <div>
-                      <p>
-                        <span className="text-[#989898]">注文日&emsp; :</span>{' '}
-                        2023.9.28
-                      </p>
-                      <p>
-                        <span className="text-[#989898]">注文番号 :</span>{' '}
-                        0000000000
-                      </p>
-                    </div>
-                    <div className="space-y-2">
-                      <Button className="w-full bg-themeblue">
-                        <p>注文詳細</p>
-                      </Button>
-                      <Button
-                        variant="outline"
-                        className="w-full border-themeblue"
-                        disabled={true}
-                      >
-                        <p className="text-themeblue">商品返却手続き</p>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-              <CardFooter>
-                <div className="flex w-full pt-6 space-x-5 border-t border-[#dcdcdc]">
-                  <p>
-                    <span className="text-[#989898]">合計金額 :</span> ¥5,430{' '}
-                    <span className="text-[#989898]">
-                      (基本料金 + レンタル期間料 + 配達手数料)
-                    </span>
-                  </p>
-                  <p>
-                    <span className="text-[#989898]">支払い方法 :</span> 現金
-                  </p>
-                </div>
-              </CardFooter>
-            </Card>
-            <Card className="px-4 pt-4 border rounded-md">
-              <CardHeader>
-                <h1 className="text-xl pb-4 border-b border-[#dcdcdc]">
-                  返却済み
-                </h1>
-              </CardHeader>
-              <CardContent>
-                <div className="flex justify-around">
-                  <Image
-                    src={`/item3.jpg`}
-                    alt=""
-                    width={150}
-                    height={220}
-                    className="rounded-sm object-contain aspect-square bg-secondary"
-                  />
-                  <div className="w-2/5 space-y-3 pl-5">
-                    <p>テスト衣装</p>
-                    <p className="text-sm">
-                      <span className="text-[#989898]">サイズ :</span> シニア
-                    </p>
-                    <p className="text-sm">
-                      <span className="text-[#989898]">洗濯 :</span> 可
-                    </p>
-                    <p className="text-sm">
-                      <span className="text-[#989898]">レンタル期間 :</span>{' '}
-                      7日間
-                    </p>
-                    <p className="text-sm">
-                      <span className="text-[#989898]">基本料金 :</span> ¥3,960
-                    </p>
-                  </div>
-                  <div className="space-y-4">
-                    <div>
-                      <p>
-                        <span className="text-[#989898]">注文日&emsp; :</span>{' '}
-                        2023.9.28
-                      </p>
-                      <p>
-                        <span className="text-[#989898]">注文番号 :</span>{' '}
-                        0000000000
-                      </p>
-                    </div>
-                    <div className="space-y-2">
-                      <Button className="w-full bg-themeblue">
-                        <p>注文詳細</p>
-                      </Button>
-                      <Button
-                        variant="outline"
-                        className="w-full border-themeblue"
-                        disabled={true}
-                      >
-                        <p className="text-themeblue">商品返却手続き</p>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-              <CardFooter>
-                <div className="flex w-full pt-6 space-x-5 border-t border-[#dcdcdc]">
-                  <p>
-                    <span className="text-[#989898]">合計金額 :</span> ¥5,430{' '}
-                    <span className="text-[#989898]">
-                      (基本料金 + レンタル期間料 + 配達手数料)
-                    </span>
-                  </p>
-                  <p>
-                    <span className="text-[#989898]">支払い方法 :</span> 現金
-                  </p>
-                </div>
-              </CardFooter>
-            </Card>
+            {ArrivedOrderData?.map((order, index) => {
+              return (
+                <OrderHistoryCard
+                  orderData={order}
+                  refetch={refetch}
+                  key={index}
+                />
+              );
+            })}
+          </div>
+        </TabsContent>
+        <TabsContent value="return" className="h-screen mt-4 lg:ml-56 lg:mr-56">
+          <div className="space-y-5 rounded-md">
+            {ReturnedOrderData?.map((order, index) => {
+              return (
+                <OrderHistoryCard
+                  orderData={order}
+                  refetch={refetch}
+                  key={index}
+                />
+              );
+            })}
           </div>
         </TabsContent>
       </Tabs>
