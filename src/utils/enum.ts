@@ -83,7 +83,7 @@ export const changePaymentMethodFromEnglish = (paymentMethod: string) => {
   }
 };
 
-const orderStatusProps = {
+export const orderStatusProps = {
   unpaid: 1,
   deliveryProcessing: 2,
   underDelivery: 3,

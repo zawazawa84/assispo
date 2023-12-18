@@ -10,6 +10,7 @@ import {
   numberToOrderStatus,
   numberToSize,
   orderHistoryProps,
+  orderStatusProps,
   termToPrice,
 } from '@/utils/enum';
 import Image from 'next/image';
@@ -110,6 +111,7 @@ export const OrderHistoryCard = ({
               <Button
                 variant="outline"
                 className="w-full border-destructive"
+                disabled={orderData.orderStatus != orderStatusProps.unpaid}
                 onClick={cancelOrder}
               >
                 <p className="text-destructive">ご注文の取り消し</p>
