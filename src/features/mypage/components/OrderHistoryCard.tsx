@@ -18,6 +18,7 @@ import { pagesPath } from '@/gen/$path';
 import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase/sdk';
 import { useQueryClient } from '@tanstack/react-query';
+import { toast } from '@/components/ui/use-toast';
 
 export const OrderHistoryCard = ({
   orderData,
@@ -28,6 +29,15 @@ export const OrderHistoryCard = ({
 }) => {
   const router = useRouter();
   const queryClient = useQueryClient();
+
+  const cancelOrder = async () => {
+    await deleteDoc(doc(db, 'orders', orderData.orderId));
+    const docRef = doc(db, 'products', orderData.productcode);
+    await updateDoc(docRef, { isRented: false });
+    queryClient.invalidateQueries(['costumes']);
+    refetch();
+    toast({ title: '注文を取り消しました' });
+  };
 
   return (
     <Card className="lg:px-4">
@@ -100,13 +110,7 @@ export const OrderHistoryCard = ({
               <Button
                 variant="outline"
                 className="w-full border-destructive"
-                onClick={async () => {
-                  await deleteDoc(doc(db, 'orders', orderData.orderId));
-                  const docRef = doc(db, 'products', orderData.productcode);
-                  await updateDoc(docRef, { isRented: false });
-                  queryClient.invalidateQueries(['costumes']);
-                  refetch();
-                }}
+                onClick={cancelOrder}
               >
                 <p className="text-destructive">ご注文の取り消し</p>
               </Button>
