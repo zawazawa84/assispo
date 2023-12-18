@@ -12,7 +12,7 @@ export interface costumeProps {
 
 export interface orderProps {
   userId: string;
-  date: Date;
+  date: string;
   term: string;
   productcode: string;
   fromAddress: string;
@@ -62,6 +62,19 @@ export const termToPrice = (term: string | undefined) => {
       return 2000;
     case termProps.oneMonth:
       return 2400;
+  }
+};
+
+export const termToNumber = (term: string | undefined) => {
+  switch (term) {
+    case termProps.oneWeek:
+      return 7;
+    case termProps.twoWeek:
+      return 14;
+    case termProps.threeWeek:
+      return 21;
+    case termProps.oneMonth:
+      return 31;
   }
 };
 

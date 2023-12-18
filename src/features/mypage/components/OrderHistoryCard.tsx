@@ -6,11 +6,11 @@ import {
   CardHeader,
 } from '@/components/ui/card';
 import {
-  changePaymentMethodFromEnglish,
   numberToOrderStatus,
   numberToSize,
   orderHistoryProps,
   orderStatusProps,
+  termToNumber,
   termToPrice,
 } from '@/utils/enum';
 import Image from 'next/image';
@@ -20,6 +20,7 @@ import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase/sdk';
 import { useQueryClient } from '@tanstack/react-query';
 import { toast } from '@/components/ui/use-toast';
+import { addDaysToDate } from '@/utils/util';
 
 export const OrderHistoryCard = ({
   orderData,
@@ -139,6 +140,13 @@ export const OrderHistoryCard = ({
             <span className="text-[#989898]">
               (基本料金 + レンタル期間料 + 配達手数料)
             </span>
+          </p>
+          <p>
+            <span className="text-[#989898]">返却期限 :</span>{' '}
+            {addDaysToDate({
+              dateStr: orderData.date,
+              days: termToNumber(orderData.term) as number,
+            })}
           </p>
         </div>
       </CardFooter>
