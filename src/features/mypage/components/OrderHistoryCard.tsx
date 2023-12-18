@@ -140,10 +140,6 @@ export const OrderHistoryCard = ({
               (基本料金 + レンタル期間料 + 配達手数料)
             </span>
           </p>
-          <p>
-            <span className="text-[#989898]">支払い方法 :</span>{' '}
-            {changePaymentMethodFromEnglish(orderData.paymentMethod)}
-          </p>
         </div>
       </CardFooter>
     </Card>

@@ -49,8 +49,6 @@ export const CostumeOrder = () => {
       productcode: costumeId,
       fromAddress: data.fromAddress ?? 'アシスポ住所',
       toAddress: userData?.address,
-      paymentMethod: data.paymentMethod,
-      deliveryMethod: data.deliveryMethod ?? '1週間後',
       comment: '',
       orderStatus: 1,
       returnStatus: 1,

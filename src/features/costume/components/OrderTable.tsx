@@ -60,33 +60,7 @@ export const OrderTable = ({ register, userData, control }: any) => {
         <TableRow>
           <TableCell className="whitespace-nowrap">お支払い方法</TableCell>
           <TableCell>
-            <Controller
-              control={control}
-              name="paymentMethod"
-              render={({ field: { onChange, value } }) => (
-                <RadioGroup
-                  className="lg:flex lg:space-x-10"
-                  value={value}
-                  onValueChange={onChange}
-                >
-                  <div className="flex space-x-1">
-                    <RadioGroupItem id="cash" value="cash" />
-                    <label htmlFor="cash" className="text-sm leading-none">
-                      代金引換
-                    </label>
-                  </div>
-                  <div className="flex space-x-1">
-                    <RadioGroupItem id="creditCard" value="creditCard" />
-                    <label
-                      htmlFor="creditCard"
-                      className="text-sm leading-none"
-                    >
-                      クレジットカード
-                    </label>
-                  </div>
-                </RadioGroup>
-              )}
-            />
+            <p>銀行振り込み</p>
           </TableCell>
         </TableRow>
         <TableRow>
