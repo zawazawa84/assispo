@@ -99,6 +99,7 @@ export const orderStatusProps = {
   unpaid: 1,
   deliveryProcessing: 2,
   underDelivery: 3,
+  isCanceled: 0,
 } as const;
 type orderStatusProps =
   (typeof orderStatusProps)[keyof typeof orderStatusProps];
@@ -111,5 +112,7 @@ export const numberToOrderStatus = (number: number) => {
       return '配達処理中';
     case orderStatusProps.underDelivery:
       return '配達中';
+    case orderStatusProps.isCanceled:
+      return 'キャンセル済';
   }
 };

@@ -48,7 +48,11 @@ export const OrderHistoryCard = ({
       <CardHeader>
         <div className="flex pb-4 border-b border-[#dcdcdc] justify-between items-center">
           <h1 className="text-xl">
-            {numberToOrderStatus(orderData.orderStatus)}
+            {numberToOrderStatus(
+              orderData.isCanceled
+                ? orderStatusProps.isCanceled
+                : orderData.orderStatus,
+            )}
           </h1>
           <Button
             variant="outline"
