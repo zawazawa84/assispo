@@ -27,19 +27,21 @@ exports.scheduledFunction = functions.pubsub
     const fourDaysAgo = subDays(nowJst, 4);
     const formattedDate = format(fourDaysAgo, "yyyy.MM.dd");
 
-    const snapshot = await db
+    const orderSnapshot = await db
       .collection("orders")
       .where("orderStatus", "==", 1)
       .get();
-    const deletions: any[] = [];
-    snapshot.forEach((doc) => {
+    const updates: any[] = [];
+    orderSnapshot.forEach((doc) => {
       const data = doc.data();
       console.log(data.date, formattedDate, nowJst);
       if (data.date == formattedDate) {
-        deletions.push(doc.ref.delete());
+        const productRef = db.collection("products").doc(data.productcode);
+        updates.push(productRef.update({isRented: false}));
+        updates.push(doc.ref.update({isCanceled: true}));
       }
     });
 
-    await Promise.all(deletions);
+    await Promise.all(updates);
     return null;
   });
