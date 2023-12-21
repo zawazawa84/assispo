@@ -34,9 +34,10 @@ export const OrderHistoryCard = ({
   const queryClient = useQueryClient();
 
   const cancelOrder = async () => {
-    await deleteDoc(doc(db, 'orders', orderData.orderId));
-    const docRef = doc(db, 'products', orderData.productcode);
-    await updateDoc(docRef, { isRented: false });
+    const orderDocRef = doc(db, 'orders', orderData.orderId);
+    await updateDoc(orderDocRef, { isCanceled: true });
+    const costumeDocRef = doc(db, 'products', orderData.productcode);
+    await updateDoc(costumeDocRef, { isRented: false });
     queryClient.invalidateQueries(['costumes']);
     refetch();
     toast({ title: '注文を取り消しました' });
@@ -117,7 +118,10 @@ export const OrderHistoryCard = ({
               <Button
                 variant="outline"
                 className="w-full border-destructive"
-                disabled={orderData.orderStatus != orderStatusProps.unpaid}
+                disabled={
+                  orderData.orderStatus != orderStatusProps.unpaid ||
+                  orderData.isCanceled == true
+                }
                 onClick={cancelOrder}
               >
                 <p className="text-destructive">ご注文の取り消し</p>
