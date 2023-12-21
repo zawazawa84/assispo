@@ -1,6 +1,11 @@
 import { useAuthContext } from '@/AuthContext';
 import { db } from '@/lib/firebase/sdk';
-import { costumeProps, orderHistoryProps, orderProps } from '@/utils/enum';
+import {
+  costumeProps,
+  orderHistoryProps,
+  orderProps,
+  returnStatusProps,
+} from '@/utils/enum';
 import { createQueryKeys } from '@lukemorales/query-key-factory';
 import {
   collection,
@@ -59,15 +64,17 @@ export const ordersQueries = createQueryKeys('orders', {
       );
       const BeforeArrivalOrderData = orderData.filter(
         (order) =>
-          order.returnStatus !== 2 &&
-          order.returnStatus !== 3 &&
-          order.returnStatus !== 4,
+          order.returnStatus !== returnStatusProps.renting &&
+          order.returnStatus !== returnStatusProps.returnProcedure &&
+          order.returnStatus !== returnStatusProps.returned,
       );
       const ArrivedOrderData = orderData.filter(
-        (order) => order.returnStatus === 2 || order.returnStatus === 3,
+        (order) =>
+          order.returnStatus === returnStatusProps.renting ||
+          order.returnStatus === returnStatusProps.returnProcedure,
       );
       const ReturnedOrderData = orderData.filter(
-        (order) => order.returnStatus === 4,
+        (order) => order.returnStatus === returnStatusProps.returned,
       );
 
       return {

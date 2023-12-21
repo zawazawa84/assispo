@@ -8,9 +8,11 @@ import {
 } from '@/components/ui/card';
 import {
   numberToOrderStatus,
+  numberToReturnStatus,
   numberToSize,
   orderHistoryProps,
   orderStatusProps,
+  returnStatusProps,
   termToNumber,
   termToPrice,
 } from '@/utils/enum';
@@ -48,11 +50,13 @@ export const OrderHistoryCard = ({
       <CardHeader>
         <div className="flex pb-4 border-b border-[#dcdcdc] justify-between items-center">
           <h1 className="text-xl">
-            {numberToOrderStatus(
-              orderData.isCanceled
-                ? orderStatusProps.isCanceled
-                : orderData.orderStatus,
-            )}
+            {orderData.returnStatus == returnStatusProps.default
+              ? numberToOrderStatus(
+                  orderData.isCanceled
+                    ? orderStatusProps.isCanceled
+                    : orderData.orderStatus,
+                )
+              : numberToReturnStatus(orderData.returnStatus)}
           </h1>
           <Button
             variant="outline"

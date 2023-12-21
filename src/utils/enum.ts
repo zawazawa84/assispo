@@ -116,3 +116,23 @@ export const numberToOrderStatus = (number: number) => {
       return 'キャンセル済';
   }
 };
+
+export const returnStatusProps = {
+  default: 1,
+  renting: 2,
+  returnProcedure: 3,
+  returned: 4,
+} as const;
+type returnStatusProps =
+  (typeof returnStatusProps)[keyof typeof returnStatusProps];
+
+export const numberToReturnStatus = (number: number) => {
+  switch (number) {
+    case returnStatusProps.renting:
+      return 'レンタル中';
+    case returnStatusProps.returnProcedure:
+      return '返却手続き済';
+    case returnStatusProps.returned:
+      return '返却済';
+  }
+};
