@@ -18,7 +18,7 @@ admin.initializeApp();
 const db = admin.firestore();
 
 exports.scheduledFunction = functions.pubsub
-  .schedule("every 1 minutes")
+  .schedule("every 1 minutes") // 今はテスト用に一分ごとに叩いている
   .timeZone("Asia/Tokyo")
   .onRun(async () => {
     const nowUtc = new Date();
@@ -29,7 +29,8 @@ exports.scheduledFunction = functions.pubsub
 
     const orderSnapshot = await db
       .collection("orders")
-      .where("orderStatus", "==", 1)
+      .where("isCanceled", "==", false) // キャンセルされていない注文のみ
+      .where("orderStatus", "==", 1) // 振り込んでいない注文のみ
       .get();
     const updates: any[] = [];
     orderSnapshot.forEach((doc) => {
