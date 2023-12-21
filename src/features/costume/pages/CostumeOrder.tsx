@@ -52,6 +52,7 @@ export const CostumeOrder = () => {
       comment: '',
       orderStatus: 1,
       returnStatus: 1,
+      isCanceled: false,
     });
     await updateDoc(doc(db, 'products', costumeId), {
       isRented: true,

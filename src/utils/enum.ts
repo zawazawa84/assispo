@@ -20,6 +20,7 @@ export interface orderProps {
   comment: string;
   orderStatus: number;
   returnStatus: number;
+  isCanceled: boolean;
 }
 
 export interface orderHistoryProps extends costumeProps, orderProps {
