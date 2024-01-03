@@ -68,6 +68,7 @@ export const CostumeList = () => {
               <SelectContent>
                 <SelectGroup>
                   <SelectLabel>Sizes</SelectLabel>
+                  <SelectItem value="0">指定しない</SelectItem>
                   <SelectItem value="1">Child(~小学6年生)</SelectItem>
                   <SelectItem value="2">Junior(中学1~3年生)</SelectItem>
                   <SelectItem value="3">Senior(高校1年生~)</SelectItem>

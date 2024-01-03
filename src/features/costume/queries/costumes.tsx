@@ -21,7 +21,10 @@ export const costumesQueries = createQueryKeys('costumes', {
     queryFn: async () => {
       let q;
       if (size) {
-        q = query(collection(db, 'products'), where('size', '==', size));
+        q =
+          size == '0'
+            ? query(collection(db, 'products'))
+            : query(collection(db, 'products'), where('size', '==', size));
       } else {
         q = query(collection(db, 'products'));
       }
