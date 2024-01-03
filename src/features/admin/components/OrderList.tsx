@@ -1,7 +1,12 @@
 import { Button } from '@/components/ui/button';
+import { toast } from '@/components/ui/use-toast';
 import { db } from '@/lib/firebase/sdk';
 import queryClient from '@/lib/react-query';
-import { numberToOrderStatus, orderHistoryProps } from '@/utils/enum';
+import {
+  numberToOrderStatus,
+  orderHistoryProps,
+  orderStatusProps,
+} from '@/utils/enum';
 import { doc, updateDoc } from 'firebase/firestore';
 
 export const OrderList = ({
@@ -44,6 +49,16 @@ export const OrderList = ({
     }
   };
 
+  const cancelOrder = async () => {
+    const orderDocRef = doc(db, 'orders', orderData.orderId);
+    await updateDoc(orderDocRef, { isCanceled: true });
+    const costumeDocRef = doc(db, 'products', orderData.productcode);
+    await updateDoc(costumeDocRef, { isRented: false });
+    queryClient.invalidateQueries(['costumes']);
+    refetch();
+    toast({ title: '注文を取り消しました' });
+  };
+
   return (
     <div>
       <div className="rounded border p-6">
@@ -63,7 +78,11 @@ export const OrderList = ({
         </p>
         <p className="text-gray-700 text-base mb-4">
           <span className="font-semibold">注文ステータス:</span>{' '}
-          {numberToOrderStatus(orderData.orderStatus)}
+          {numberToOrderStatus(
+            orderData.isCanceled
+              ? orderStatusProps.isCanceled
+              : orderData.orderStatus,
+          )}
         </p>
         <p className="text-gray-700 text-base mb-4">
           <span className="font-semibold">返却ステータス:</span>{' '}
@@ -79,6 +98,14 @@ export const OrderList = ({
           <OrderStatusButton orderStatus={orderData.orderStatus} />
           <Button variant="outline" className="border-themeblue">
             <p className="text-themeblue">コメントの変更</p>
+          </Button>
+          <Button
+            variant="outline"
+            className="border-destructive"
+            disabled={orderData.isCanceled == true}
+            onClick={cancelOrder}
+          >
+            <p className="text-destructive">ご注文の取り消し</p>
           </Button>
         </div>
       </div>
