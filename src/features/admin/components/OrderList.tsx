@@ -5,19 +5,14 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
 import { toast } from '@/components/ui/use-toast';
 import { db } from '@/lib/firebase/sdk';
 import queryClient from '@/lib/react-query';
-import {
-  numberToOrderStatus,
-  orderHistoryProps,
-  orderStatusProps,
-} from '@/utils/enum';
-import { doc, setDoc, updateDoc } from 'firebase/firestore';
+import { orderHistoryProps } from '@/utils/enum';
+import { doc, updateDoc } from 'firebase/firestore';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -37,13 +32,25 @@ export const OrderList = ({
   } = useForm<{ comment: string }>();
 
   const updateComment = handleSubmit(async (data) => {
-    await updateDoc(doc(db, 'orders', `${orderData.orderId}`), {
+    await updateDoc(doc(db, 'orders', orderData.orderId), {
       comment: data.comment,
     });
     setEditable(false);
     refetch();
     toast({ title: 'コメントを更新しました' });
   });
+
+  const updateOrderStatus = async (data: number) => {
+    await updateDoc(doc(db, 'orders', orderData.orderId), {
+      orderStatus: data,
+    });
+  };
+
+  const updateReturnStatus = async (data: number) => {
+    await updateDoc(doc(db, 'orders', orderData.orderId), {
+      returnStatus: data,
+    });
+  };
 
   const cancelOrder = async () => {
     const orderDocRef = doc(db, 'orders', orderData.orderId);
@@ -75,18 +82,14 @@ export const OrderList = ({
         <p className="flex items-center space-x-2 text-gray-700 text-base">
           <span className="font-semibold">注文ステータス:</span>{' '}
           <Select
-            defaultValue={String(
-              orderData.isCanceled
-                ? orderStatusProps.isCanceled
-                : orderData.orderStatus,
-            )}
+            onValueChange={(status) => updateOrderStatus(Number(status))}
+            defaultValue={String(orderData.orderStatus)}
           >
             <SelectTrigger className="w-48">
               <SelectValue placeholder="サイズを選ぶ" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectItem value="0">キャンセル済</SelectItem>
                 <SelectItem value="1">代金未払い</SelectItem>
                 <SelectItem value="2">配達処理中</SelectItem>
                 <SelectItem value="3">配達中</SelectItem>
@@ -96,7 +99,10 @@ export const OrderList = ({
         </p>
         <p className="flex items-center space-x-2 text-gray-700 text-base ">
           <span className="font-semibold">返却ステータス:</span>{' '}
-          <Select defaultValue={String(orderData.returnStatus)}>
+          <Select
+            onValueChange={(status) => updateReturnStatus(Number(status))}
+            defaultValue={String(orderData.returnStatus)}
+          >
             <SelectTrigger className="w-48">
               <SelectValue placeholder="サイズを選ぶ" />
             </SelectTrigger>
@@ -142,7 +148,10 @@ export const OrderList = ({
             variant="outline"
             className="border-destructive"
             disabled={orderData.isCanceled == true}
-            onClick={cancelOrder}
+            onClick={(e) => {
+              e.preventDefault();
+              cancelOrder();
+            }}
           >
             <p className="text-destructive">ご注文の取り消し</p>
           </Button>
