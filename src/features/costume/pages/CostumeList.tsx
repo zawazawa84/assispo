@@ -16,6 +16,7 @@ import { useQuery } from '@tanstack/react-query';
 import { costumesQueries } from '../queries/costumes';
 import InfiniteScroll from 'react-infinite-scroller';
 import { DocumentData, QueryDocumentSnapshot } from 'firebase/firestore';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export const CostumeList = () => {
   const [costumeList, setCostumeList] = useState<
@@ -44,6 +45,10 @@ export const CostumeList = () => {
     setCostumeList((prev) => [...prev, ...costumes!]);
     setLastDoc(data?.lastDoc);
   };
+
+  if (!costumes) {
+    return <Skeleton />;
+  }
 
   return (
     <div className="mx-auto max-w-screen-2xl">
@@ -79,24 +84,46 @@ export const CostumeList = () => {
         </div>
         <TabsContent value="item" className="mt-4 lg:ml-56 lg:mr-56 px-2">
           <h1 className="text-xl font-bold text-slate-500 px-2">衣装一覧</h1>
-          <InfiniteScroll
-            hasMore={hasMore}
-            loadMore={() => {
-              loadMore();
-            }}
-          >
+          {costumes ? (
+            <InfiniteScroll
+              hasMore={hasMore}
+              loadMore={() => {
+                loadMore();
+              }}
+            >
+              <div className="grid grid-cols-3 lg:grid-cols-5 gap-2">
+                {costumeList?.map((costume, index) => {
+                  const costumeData = {
+                    id: costume.id,
+                    content: costume.data(),
+                  };
+                  return <CostumeItem costumeData={costumeData} key={index} />;
+                })}
+              </div>
+            </InfiniteScroll>
+          ) : (
             <div className="grid grid-cols-3 lg:grid-cols-5 gap-2">
-              {costumeList?.map((costume, index) => {
-                const costumeData = { id: costume.id, content: costume.data() };
-                return <CostumeItem costumeData={costumeData} key={index} />;
-              })}
+              {Array.from({ length: 5 }).map((_, index) => (
+                <Skeleton
+                  key={index}
+                  className="mt-4 w-220 rounded-sm aspect-square"
+                />
+              ))}
             </div>
-          </InfiniteScroll>
+          )}
         </TabsContent>
         <TabsContent value="favorite" className="mt-4 lg:ml-56 lg:mr-56 px-2">
           <h1 className="text-xl font-bold text-slate-500 px-2">
             お気に入り一覧
           </h1>
+          <div className="grid grid-cols-3 lg:grid-cols-5 gap-2">
+            {Array.from({ length: 10 }).map((_, index) => (
+              <Skeleton
+                key={index}
+                className="mt-4 w-220 rounded-sm aspect-square"
+              />
+            ))}
+          </div>
         </TabsContent>
       </Tabs>
     </div>
