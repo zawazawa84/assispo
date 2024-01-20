@@ -82,7 +82,7 @@ export const CostumeDetail = () => {
           <div>
             <h1 className="font-semibold text-xl text-slate-800">商品説明</h1>
             <Separator className="my-2" />
-            <p>テスト</p>
+            <p>{costumeData.description}</p>
           </div>
         </div>
       </div>

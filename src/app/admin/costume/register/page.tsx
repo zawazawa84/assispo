@@ -1,9 +1,9 @@
 'use client';
 import { useAuthContext } from '@/AuthContext';
-import { Admin } from '@/features/admin/pages/Admin';
+import { RegisterCostume } from '@/features/admin/pages/RegisterCostume';
 import { redirect } from 'next/navigation';
 
-export default function AdminPage() {
+export default function RegisterCostumePage() {
   const { user } = useAuthContext()!;
   if (!user) {
     return <div>403 Forbidden</div>;
@@ -13,5 +13,5 @@ export default function AdminPage() {
     redirect('/costume');
   }
 
-  return <Admin />;
+  return <RegisterCostume />;
 }

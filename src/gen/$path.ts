@@ -8,7 +8,15 @@ const buildSuffix = (url?: {query?: Record<string, string>, hash?: string}) => {
 
 export const pagesPath = {
   "admin": {
-    $url: (url?: { hash?: string }) => ({ pathname: '/admin' as const, hash: url?.hash, path: `/admin${buildSuffix(url)}` })
+    "costume": {
+      "register": {
+        $url: (url?: { hash?: string }) => ({ pathname: '/admin/costume/register' as const, hash: url?.hash, path: `/admin/costume/register${buildSuffix(url)}` })
+      },
+      $url: (url?: { hash?: string }) => ({ pathname: '/admin/costume' as const, hash: url?.hash, path: `/admin/costume${buildSuffix(url)}` })
+    },
+    "order": {
+      $url: (url?: { hash?: string }) => ({ pathname: '/admin/order' as const, hash: url?.hash, path: `/admin/order${buildSuffix(url)}` })
+    }
   },
   "bank": {
     _orderId: (orderId: string | number) => ({

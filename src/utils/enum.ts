@@ -8,6 +8,7 @@ export interface costumeProps {
   size: string;
   state: string;
   washable: boolean;
+  description: string;
 }
 
 export interface orderProps {
