@@ -4,7 +4,12 @@ import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import Image from 'next/image';
 import { Controller } from 'react-hook-form';
 
-export const OrderTable = ({ register, userData, control }: any) => {
+export const OrderTable = ({
+  register,
+  costumeData,
+  userData,
+  control,
+}: any) => {
   return (
     <Table>
       <TableBody className="border-y border-[#dcdcdc]">
@@ -54,7 +59,7 @@ export const OrderTable = ({ register, userData, control }: any) => {
           <TableCell className="max-w-sm">
             <p>{userData?.name} 様</p>
             <p>住所: {userData?.address}</p>
-            <p>電話: 090-1234-5678</p>
+            <p>電話: {userData?.phoneNumber}</p>
           </TableCell>
         </TableRow>
         <TableRow>
@@ -72,14 +77,14 @@ export const OrderTable = ({ register, userData, control }: any) => {
                   <TableCell>商品</TableCell>
                   <TableCell>
                     <Image
-                      src={'/item3.jpg'}
+                      src={costumeData.image}
                       alt=""
                       width={70}
                       height={10}
                       className="object-contain aspect-[5/6] bg-secondary"
                     />
                   </TableCell>
-                  <TableCell>¥3,900</TableCell>
+                  <TableCell>¥{costumeData.price}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>

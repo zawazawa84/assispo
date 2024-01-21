@@ -9,9 +9,11 @@ import { useForm } from 'react-hook-form';
 import { addDoc, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase/sdk';
 import { useAuthContext } from '@/AuthContext';
-import { orderProps } from '@/utils/enum';
+import { costumeProps, orderProps } from '@/utils/enum';
 import { format } from 'date-fns';
 import { toast } from '@/components/ui/use-toast';
+import { useQuery } from '@tanstack/react-query';
+import { costumesQueries } from '../queries/costumes';
 
 export const CostumeOrder = () => {
   const { user, userData } = useAuthContext()!;
@@ -19,6 +21,13 @@ export const CostumeOrder = () => {
   const params = useParams();
 
   const costumeId = params.costumeId as string;
+
+  const { data } = useQuery({
+    ...costumesQueries.getCostumeDetail({
+      costumeId: costumeId,
+    }),
+  });
+  const costumeData = data?.results as costumeProps;
 
   const {
     register,
@@ -81,6 +90,7 @@ export const CostumeOrder = () => {
           <form className="lg:flex lg:space-x-8" onSubmit={onSubmit}>
             <OrderTable
               register={register}
+              costumeData={costumeData}
               userData={userData}
               control={control}
             />
@@ -95,7 +105,7 @@ export const CostumeOrder = () => {
               <div className="space-y-1">
                 <div className="flex justify-between">
                   <p className="text-sm">基本料金</p>
-                  <p className="text-sm">¥3,900</p>
+                  <p className="text-sm">¥{costumeData.price}</p>
                 </div>
                 <div className="flex justify-between">
                   <p className="text-sm">レンタル料</p>

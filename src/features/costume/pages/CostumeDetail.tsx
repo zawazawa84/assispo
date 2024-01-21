@@ -36,7 +36,7 @@ export const CostumeDetail = () => {
       <div className="lg:flex h-screen mt-16 lg:ml-56 lg:mr-56 lg:space-x-12 ">
         <div className="flex-shrink-0">
           <Image
-            src={'/item3.jpg'}
+            src={costumeData?.image as unknown as string}
             alt=""
             width={500}
             height={500}
@@ -82,7 +82,7 @@ export const CostumeDetail = () => {
           <div>
             <h1 className="font-semibold text-xl text-slate-800">商品説明</h1>
             <Separator className="my-2" />
-            <p>{costumeData.description}</p>
+            <p>{costumeData?.description}</p>
           </div>
         </div>
       </div>

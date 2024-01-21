@@ -75,7 +75,7 @@ export const OrderHistoryCard = ({
       <CardContent>
         <div className="lg:flex justify-around">
           <Image
-            src={`/item3.jpg`}
+            src={orderData.image as unknown as string}
             alt=""
             width={150}
             height={220}
