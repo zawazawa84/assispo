@@ -16,6 +16,15 @@ import {
 const LIMIT = 20;
 
 export const costumesQueries = createQueryKeys('costumes', {
+  getAllCostumes: () => ({
+    queryKey: ['costumes'],
+    queryFn: async () => {
+      const querySnapshot = await getDocs(query(collection(db, 'products')));
+      return {
+        results: querySnapshot.docs,
+      };
+    },
+  }),
   getCostumes: ({ size, lastDoc }) => ({
     queryKey: ['costumes', size, lastDoc],
     queryFn: async () => {
