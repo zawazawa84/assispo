@@ -18,8 +18,12 @@ import { addDoc, collection } from 'firebase/firestore';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { toast } from '@/components/ui/use-toast';
+import { useRouter } from 'next/navigation';
+import { pagesPath } from '@/gen/$path';
+import Image from 'next/image';
 
 export const RegisterCostume = () => {
+  const router = useRouter();
   const [imagePreview, setImagePreview] = useState<string>();
 
   const {
@@ -65,6 +69,20 @@ export const RegisterCostume = () => {
       <h1 className="text-4xl font-bold mt-4">管理画面</h1>
       <div className="flex items-center justify-between mt-4">
         <h1 className="text-xl font-bold text-slate-500 ">衣装登録</h1>
+        <div className="space-x-4">
+          <Button
+            className="bg-themeblue"
+            onClick={() => router.push(pagesPath.admin.costume.$url().path)}
+          >
+            衣装管理
+          </Button>
+          <Button
+            className="bg-themeblue"
+            onClick={() => router.push(pagesPath.admin.order.$url().path)}
+          >
+            注文管理
+          </Button>
+        </div>
       </div>
       <div className="flex space-x-4">
         <div className="w-full flex flex-col">
@@ -77,7 +95,7 @@ export const RegisterCostume = () => {
             />
           </div>
           {imagePreview && (
-            <img src={imagePreview} alt="" width={300} height={300} />
+            <Image src={imagePreview} alt="" width={300} height={300} />
           )}
         </div>
         <form className="space-y-4 w-full" onSubmit={onSubmit}>
