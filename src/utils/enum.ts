@@ -1,6 +1,7 @@
 export interface costumeProps {
   category: string;
   deliveryCharge: string;
+  image: FileList;
   isRented: boolean;
   name: string;
   others: string;
