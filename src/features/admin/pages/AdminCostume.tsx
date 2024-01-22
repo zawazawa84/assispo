@@ -10,7 +10,7 @@ import { CostumeList } from '../components/CostumeList';
 export const AdminCostume = () => {
   const router = useRouter();
 
-  const { data } = useQuery({
+  const { data, refetch } = useQuery({
     ...costumesQueries.getAllCostumes(),
   });
   const costumes = data?.results;
@@ -38,9 +38,19 @@ export const AdminCostume = () => {
         </div>
       </div>
       <div className="grid lg:grid-cols-2 gap-4">
-        {costumes?.map((costume, index) => (
-          <CostumeList costumeData={costume.data()} key={index} />
-        ))}
+        {costumes?.map((costume, index) => {
+          const costumeData = {
+            id: costume.id,
+            content: costume.data(),
+          };
+          return (
+            <CostumeList
+              costumeData={costumeData}
+              key={index}
+              refetch={refetch}
+            />
+          );
+        })}
       </div>
     </div>
   );
