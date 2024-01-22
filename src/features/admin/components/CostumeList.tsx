@@ -1,11 +1,15 @@
 import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
+import { pagesPath } from '@/gen/$path';
 import { db } from '@/lib/firebase/sdk';
 import { numberToSize } from '@/utils/enum';
 import { deleteDoc, doc } from 'firebase/firestore';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export const CostumeList = ({ costumeData, refetch }: any) => {
+  const router = useRouter();
+
   const deleteCostume = async () => {
     await deleteDoc(doc(db, 'products', costumeData.id));
     refetch();
@@ -57,7 +61,16 @@ export const CostumeList = ({ costumeData, refetch }: any) => {
             {costumeData.content.description}
           </p>
           <div className="space-x-4">
-            <Button className="bg-themeblue" type="submit">
+            <Button
+              className="bg-themeblue"
+              type="submit"
+              onClick={() =>
+                router.push(
+                  pagesPath.admin.costume.edit._costumeId(costumeData.id).$url()
+                    .path,
+                )
+              }
+            >
               衣装編集
             </Button>
             <Button

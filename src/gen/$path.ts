@@ -9,6 +9,11 @@ const buildSuffix = (url?: {query?: Record<string, string>, hash?: string}) => {
 export const pagesPath = {
   "admin": {
     "costume": {
+      "edit": {
+        _costumeId: (costumeId: string | number) => ({
+          $url: (url?: { hash?: string }) => ({ pathname: '/admin/costume/edit/[costumeId]' as const, query: { costumeId }, hash: url?.hash, path: `/admin/costume/edit/${costumeId}${buildSuffix(url)}` })
+        })
+      },
       "register": {
         $url: (url?: { hash?: string }) => ({ pathname: '/admin/costume/register' as const, hash: url?.hash, path: `/admin/costume/register${buildSuffix(url)}` })
       },
@@ -66,9 +71,6 @@ export type PagesPath = typeof pagesPath;
 export const staticPath = {
   assispo_favicon_png: '/assispo_favicon.png',
   assispo_logo_png: '/assispo_logo.png',
-  item1_png: '/item1.png',
-  item2_png: '/item2.png',
-  item3_jpg: '/item3.jpg',
   next_svg: '/next.svg',
   vercel_svg: '/vercel.svg'
 } as const;

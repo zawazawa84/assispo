@@ -14,24 +14,48 @@ import { Textarea } from '@/components/ui/textarea';
 import { db } from '@/lib/firebase/sdk';
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
 import { costumeProps } from '@/utils/enum';
-import { addDoc, collection } from 'firebase/firestore';
+import { doc, updateDoc } from 'firebase/firestore';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { toast } from '@/components/ui/use-toast';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { pagesPath } from '@/gen/$path';
 import Image from 'next/image';
+import { useQuery } from '@tanstack/react-query';
+import { costumesQueries } from '@/features/costume/queries/costumes';
 
-export const RegisterCostume = () => {
-  const router = useRouter();
+export const EditCostume = () => {
   const [imagePreview, setImagePreview] = useState<string>();
+
+  const router = useRouter();
+  const params = useParams();
+
+  const costumeId = params.costumeId;
+
+  const { data } = useQuery({
+    ...costumesQueries.getCostumeDetail({ costumeId: costumeId }),
+    enabled: !!costumeId,
+  });
+
+  const costumes = data?.results as costumeProps;
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     control,
-  } = useForm<costumeProps>();
+  } = useForm<costumeProps>({
+    defaultValues: {
+      name: costumes?.name,
+      category: costumes?.category,
+      price: costumes?.price,
+      size: costumes?.size,
+      state: costumes?.state,
+      washable: costumes?.washable,
+      others: costumes?.others,
+      description: costumes?.description,
+    },
+  });
 
   const handleImageChange = (e: any) => {
     const file = e.target.files[0];
@@ -42,17 +66,19 @@ export const RegisterCostume = () => {
   };
 
   const onSubmit = handleSubmit(async (data) => {
-    const storage = getStorage();
-    const storageRef = ref(storage, `images/${data.image[0].name}`);
-    await uploadBytes(storageRef, data.image[0]);
-    const imageUrl = await getDownloadURL(storageRef);
+    let imageUrl;
+    if (data.image.length != 0) {
+      const storage = getStorage();
+      const storageRef = ref(storage, `images/${data.image[0].name}`);
+      await uploadBytes(storageRef, data.image[0]);
+      imageUrl = await getDownloadURL(storageRef);
+    }
 
     data.washable = (data.washable as unknown as string) == '1' ? true : false;
-    await addDoc(collection(db, 'products'), {
+    await updateDoc(doc(db, 'products', costumeId), {
       category: data.category,
       deliveryCharge: 'assispo負担',
-      image: imageUrl,
-      isRented: false,
+      image: imageUrl ?? costumes.image,
       name: data.name,
       others: data.others,
       price: data.price,
@@ -61,14 +87,14 @@ export const RegisterCostume = () => {
       washable: data.washable,
       description: data.description,
     });
-    toast({ title: '衣装を登録しました' });
+    toast({ title: '衣装を編集しました' });
   });
 
   return (
-    <div className="mx-auto max-w-screen-2xl p-4 space-y-8">
+    <div key={costumeId} className="mx-auto max-w-screen-2xl p-4 space-y-8">
       <h1 className="text-4xl font-bold mt-4">管理画面</h1>
       <div className="flex items-center justify-between mt-4">
-        <h1 className="text-xl font-bold text-slate-500 ">衣装登録</h1>
+        <h1 className="text-xl font-bold text-slate-500 ">衣装編集</h1>
         <div className="space-x-4">
           <Button
             className="bg-themeblue"
@@ -94,9 +120,12 @@ export const RegisterCostume = () => {
               onChange={handleImageChange}
             />
           </div>
-          {imagePreview && (
-            <Image src={imagePreview} alt="" width={300} height={300} />
-          )}
+          <Image
+            src={imagePreview ?? (costumes?.image as unknown as string)}
+            alt=""
+            width={300}
+            height={300}
+          />
         </div>
         <form className="space-y-4 w-full" onSubmit={onSubmit}>
           <div>
@@ -169,7 +198,7 @@ export const RegisterCostume = () => {
             className="bg-themeblue"
             disabled={isSubmitting}
           >
-            登録する
+            保存する
           </Button>
         </form>
       </div>
