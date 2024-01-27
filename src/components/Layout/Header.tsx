@@ -30,7 +30,7 @@ export const Header = () => {
   };
 
   return (
-    <div className="flex justify-between w-full h-20 border-b place-items-center">
+    <div className="flex justify-between w-full h-20 border-b place-items-center px-4">
       <div
         onClick={() => router.push(pagesPath.costume.$url().path)}
         className="cursor-pointer"
