@@ -4,7 +4,7 @@ import { signOut } from 'firebase/auth';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { pagesPath } from '@/gen/$path';
+import { pagesPath, staticPath } from '@/gen/$path';
 import { useAuthContext } from '@/AuthContext';
 import { auth } from '@/lib/firebase/sdk';
 import {
@@ -37,7 +37,7 @@ export const Header = () => {
       >
         <Image
           alt=""
-          src="/assispo_logo.png"
+          src={staticPath.assispo_logo_png}
           width={130}
           height={10}
           className="object-cover lg:ml-10"
