@@ -15,6 +15,7 @@ import {
   returnStatusProps,
   termToNumber,
   termToPrice,
+  termToString,
 } from '@/utils/enum';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -93,7 +94,7 @@ export const OrderHistoryCard = ({
             </p>
             <p className="text-sm">
               <span className="text-[#989898]">レンタル期間 : </span>
-              {orderData.term}
+              {termToString(orderData.term)}
             </p>
             <p className="text-sm">
               <span className="text-[#989898]">基本料金 : </span>¥

@@ -68,6 +68,19 @@ export const termToPrice = (term: string | undefined) => {
   }
 };
 
+export const termToString = (term: string | undefined) => {
+  switch (term) {
+    case termProps.oneWeek:
+      return '1週間';
+    case termProps.twoWeek:
+      return '2週間';
+    case termProps.threeWeek:
+      return '3週間';
+    case termProps.oneMonth:
+      return '1ヶ月';
+  }
+};
+
 export const termToNumber = (term: string | undefined) => {
   switch (term) {
     case termProps.oneWeek:
