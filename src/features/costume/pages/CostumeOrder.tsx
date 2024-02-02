@@ -37,7 +37,7 @@ export const CostumeOrder = () => {
     watch,
   } = useForm<orderProps>();
   const rentalTerm = watch('term');
-  console.log(rentalTerm);
+  console.log(Number(termToPrice(rentalTerm)));
 
   const onSubmit = handleSubmit(async (data) => {
     const costumeRef = doc(db, 'products', costumeId);
@@ -112,14 +112,14 @@ export const CostumeOrder = () => {
                 </div>
                 <div className="flex justify-between">
                   <p className="text-sm">レンタル料</p>
-                  <p className="text-sm">¥{termToPrice(rentalTerm)}</p>
+                  <p className="text-sm">¥{termToPrice(rentalTerm) ?? 0}</p>
                 </div>
                 <div className="flex justify-between pt-1 border-t border-themeblue">
                   <p>合計</p>
                   <p>
                     ¥
                     {Number(costumeData.price) +
-                      Number(termToPrice(rentalTerm))}
+                      (Number(termToPrice(rentalTerm)) || 0)}
                   </p>
                 </div>
                 <p className="text-xs pt-2">
