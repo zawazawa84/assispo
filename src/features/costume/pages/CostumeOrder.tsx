@@ -37,7 +37,6 @@ export const CostumeOrder = () => {
     watch,
   } = useForm<orderProps>();
   const rentalTerm = watch('term');
-  console.log(Number(termToPrice(rentalTerm)));
 
   const onSubmit = handleSubmit(async (data) => {
     const costumeRef = doc(db, 'products', costumeId);

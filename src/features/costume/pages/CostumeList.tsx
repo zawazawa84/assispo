@@ -34,7 +34,6 @@ export const CostumeList = () => {
     enabled: !!user?.uid,
   });
   const favoriteCostumes = favoriteCostumeData?.results.favoriteProducts;
-  console.log(favoriteCostumes);
 
   const { data: costumeData } = useQuery({
     ...costumesQueries.getCostumes({
