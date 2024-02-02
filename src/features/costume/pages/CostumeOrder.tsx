@@ -94,7 +94,7 @@ export const CostumeOrder = () => {
               userData={userData}
               control={control}
             />
-            <div className="flex flex-col lg:w-100 h-80 p-4 lg:ml-4 space-y-8 lg:border border-[#dcdcdc] rounded-md lg:bg-[#f6f6f6]">
+            <div className="flex flex-col lg:w-100 h-64 p-4 lg:ml-4 space-y-8 lg:border border-[#dcdcdc] rounded-md lg:bg-[#f6f6f6]">
               <Button
                 className="h-16 bg-themeblue"
                 type="submit"
@@ -110,14 +110,6 @@ export const CostumeOrder = () => {
                 <div className="flex justify-between">
                   <p className="text-sm">レンタル料</p>
                   <p className="text-sm">¥1,200</p>
-                </div>
-                <div className="flex justify-between">
-                  <p className="text-sm">送料</p>
-                  <p className="text-sm">¥0</p>
-                </div>
-                <div className="flex justify-between">
-                  <p className="text-sm">支払い手数料</p>
-                  <p className="text-sm">¥330</p>
                 </div>
                 <div className="flex justify-between pt-1 border-t border-themeblue">
                   <p>合計</p>

@@ -155,7 +155,7 @@ export const OrderHistoryCard = ({
             <span className="text-[#989898]">合計金額 : </span> ¥
             {Number(orderData.price) + termToPrice(orderData.term)!}{' '}
             <span className="text-[#989898]">
-              (基本料金 + レンタル期間料 + 配達手数料)
+              (基本料金 + レンタル期間料 ※配送料除く)
             </span>
           </p>
           <p>

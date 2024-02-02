@@ -50,7 +50,7 @@ export const RegisterCostume = () => {
     data.washable = (data.washable as unknown as string) == '1' ? true : false;
     await addDoc(collection(db, 'products'), {
       category: data.category,
-      deliveryCharge: 'assispo負担',
+      deliveryCharge: '注文者負担',
       image: imageUrl,
       isRented: false,
       name: data.name,

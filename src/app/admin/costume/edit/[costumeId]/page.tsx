@@ -9,7 +9,7 @@ export default function EditCostumePage() {
     return <div>403 Forbidden</div>;
   }
 
-  if (user?.uid != 'ihNdA7V5umNojt4QMzrz6Zr2nUl1') {
+  if (user?.uid != 'QbU9prxVaQfB8QH9Nx4U1jtlq052') {
     redirect('/costume');
   }
 
