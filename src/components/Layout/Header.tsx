@@ -2,19 +2,22 @@
 
 import { signOut } from 'firebase/auth';
 import Image from 'next/image';
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from '../ui/navigation-menu';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { pagesPath } from '@/gen/$path';
+import { pagesPath, staticPath } from '@/gen/$path';
 import { useAuthContext } from '@/AuthContext';
 import { auth } from '@/lib/firebase/sdk';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '../ui/dropdown-menu';
+import { User, History, LogOut, Home } from 'lucide-react';
+import { Button } from '../ui/button';
 
 export const Header = () => {
   const userData = useAuthContext()?.userData;
@@ -27,50 +30,56 @@ export const Header = () => {
   };
 
   return (
-    <div className="flex justify-between w-full h-20 border-b place-items-center">
+    <div className="flex justify-between w-full h-20 border-b place-items-center px-4">
       <div
         onClick={() => router.push(pagesPath.costume.$url().path)}
         className="cursor-pointer"
       >
         <Image
           alt=""
-          src="/assispo_logo.png"
+          src={staticPath.assispo_logo_png}
           width={130}
           height={10}
           className="object-cover lg:ml-10"
         />
       </div>
       <div className="flex space-x-4 lg:mr-10">
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className="lg:mr-12">
-                {userData?.name ? userData?.name : 'ゲスト'} 様
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="w-40 p-5 space-y-1">
-                  <li>
-                    <Link href={pagesPath.mypage.$url().path}>マイページ</Link>
-                  </li>
-                  <li>
-                    <Link href={pagesPath.mypage.orderhistory.$url().path}>
-                      注文履歴
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className="text-destructive"
-                      href={pagesPath.signin.$url().path}
-                      onClick={logOut}
-                    >
-                      ログアウト
-                    </Link>
-                  </li>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost">{userData?.name ?? 'ゲスト'} 様</Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-56">
+            <DropdownMenuLabel>アシスポ</DropdownMenuLabel>
+            <Link href={pagesPath.costume.$url().path}>
+              <DropdownMenuItem className="cursor-pointer">
+                <Home className="mr-2 h-4 w-4" />
+                <span>ホーム</span>
+              </DropdownMenuItem>
+            </Link>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <Link href={pagesPath.mypage.$url().path}>
+                <DropdownMenuItem className="cursor-pointer">
+                  <User className="mr-2 h-4 w-4" />
+                  <span>マイページ</span>
+                </DropdownMenuItem>
+              </Link>
+              <Link href={pagesPath.mypage.orderhistory.$url().path}>
+                <DropdownMenuItem className="cursor-pointer">
+                  <History className="mr-2 h-4 w-4" />
+                  <span>注文履歴</span>
+                </DropdownMenuItem>
+              </Link>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <Link href={pagesPath.signin.$url().path} onClick={logOut}>
+              <DropdownMenuItem className="text-destructive cursor-pointer">
+                <LogOut className="mr-2 h-4 w-4" />
+                <span>ログアウト</span>
+              </DropdownMenuItem>
+            </Link>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </div>
   );
