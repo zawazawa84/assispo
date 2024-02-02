@@ -9,7 +9,7 @@ import { useForm } from 'react-hook-form';
 import { addDoc, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase/sdk';
 import { useAuthContext } from '@/AuthContext';
-import { costumeProps, orderProps } from '@/utils/enum';
+import { costumeProps, orderProps, termToPrice } from '@/utils/enum';
 import { format } from 'date-fns';
 import { toast } from '@/components/ui/use-toast';
 import { useQuery } from '@tanstack/react-query';
@@ -34,7 +34,10 @@ export const CostumeOrder = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
     control,
+    watch,
   } = useForm<orderProps>();
+  const rentalTerm = watch('term');
+  console.log(rentalTerm);
 
   const onSubmit = handleSubmit(async (data) => {
     const costumeRef = doc(db, 'products', costumeId);
@@ -109,11 +112,15 @@ export const CostumeOrder = () => {
                 </div>
                 <div className="flex justify-between">
                   <p className="text-sm">レンタル料</p>
-                  <p className="text-sm">¥1,200</p>
+                  <p className="text-sm">¥{termToPrice(rentalTerm)}</p>
                 </div>
                 <div className="flex justify-between pt-1 border-t border-themeblue">
                   <p>合計</p>
-                  <p>¥5,430</p>
+                  <p>
+                    ¥
+                    {Number(costumeData.price) +
+                      Number(termToPrice(rentalTerm))}
+                  </p>
                 </div>
                 <p className="text-xs pt-2">
                   ※銀行振込完了後に衣装発送となります
