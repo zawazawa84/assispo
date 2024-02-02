@@ -52,7 +52,32 @@ export const costumesQueries = createQueryKeys('costumes', {
       };
     },
   }),
-  getCostumeDetail: ({ costumeId }) => ({
+  getFavoriteCostume: ({ userUid }: { userUid: string }) => ({
+    queryKey: ['favoriteProducts', userUid],
+    queryFn: async () => {
+      const favoriteProductsCollectionRef = collection(db, 'favoriteProducts');
+      const q = query(
+        favoriteProductsCollectionRef,
+        where('userId', '==', userUid),
+      );
+
+      const favoriteProductsIdList = (await getDocs(q)).docs.map(
+        (doc) => doc.data().productId,
+      );
+      const favoriteProducts = await Promise.all(
+        favoriteProductsIdList.map(async (productId) => {
+          const docRef = doc(db, 'products', productId);
+          const docSnap = await getDoc(docRef);
+          return docSnap;
+        }),
+      );
+
+      return {
+        results: { favoriteProducts, favoriteProductsIdList },
+      };
+    },
+  }),
+  getCostumeDetail: ({ costumeId }: { costumeId: string }) => ({
     queryKey: ['costumes'],
     queryFn: async () => {
       const docRef = doc(db, 'products', `${costumeId}`);

@@ -17,8 +17,11 @@ import { costumesQueries } from '../queries/costumes';
 import InfiniteScroll from 'react-infinite-scroller';
 import { DocumentData, QueryDocumentSnapshot } from 'firebase/firestore';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useAuthContext } from '@/AuthContext';
 
 export const CostumeList = () => {
+  const { user } = useAuthContext()!;
+
   const [costumeList, setCostumeList] = useState<
     QueryDocumentSnapshot<DocumentData, DocumentData>[]
   >([]);
@@ -26,14 +29,21 @@ export const CostumeList = () => {
   const [lastDoc, setLastDoc] =
     useState<QueryDocumentSnapshot<DocumentData, DocumentData>>();
 
-  const { data } = useQuery({
+  const { data: favoriteCostumeData } = useQuery({
+    ...costumesQueries.getFavoriteCostume({ userUid: user?.uid as string }),
+    enabled: !!user?.uid,
+  });
+  const favoriteCostumes = favoriteCostumeData?.results.favoriteProducts;
+  console.log(favoriteCostumes);
+
+  const { data: costumeData } = useQuery({
     ...costumesQueries.getCostumes({
       size: size,
       lastDoc: lastDoc,
     }),
   });
-  const costumes = data?.results;
-  const hasMore = data?.hasMore;
+  const costumes = costumeData?.results;
+  const hasMore = costumeData?.hasMore;
 
   const handleSizeChange = (event: any) => {
     setCostumeList([]);
@@ -43,7 +53,7 @@ export const CostumeList = () => {
 
   const loadMore = () => {
     setCostumeList((prev) => [...prev, ...costumes!]);
-    setLastDoc(data?.lastDoc);
+    setLastDoc(costumeData?.lastDoc);
   };
 
   if (!costumes) {
@@ -116,14 +126,21 @@ export const CostumeList = () => {
           <h1 className="text-xl font-bold text-slate-500 px-2">
             お気に入り一覧
           </h1>
-          <div className="grid grid-cols-3 lg:grid-cols-5 gap-2">
-            {Array.from({ length: 10 }).map((_, index) => (
-              <Skeleton
-                key={index}
-                className="mt-4 w-220 rounded-sm aspect-square"
-              />
-            ))}
-          </div>
+          {favoriteCostumes?.length != 0 ? (
+            <div className="grid grid-cols-3 lg:grid-cols-5 gap-2">
+              {favoriteCostumes?.map((favoriteCostume, index) => {
+                const costumeData = {
+                  id: favoriteCostume.id,
+                  content: favoriteCostume.data(),
+                };
+                return <CostumeItem costumeData={costumeData} key={index} />;
+              })}
+            </div>
+          ) : (
+            <div className="flex justify-center items-center h-80">
+              お気に入りに登録されている衣装はありません
+            </div>
+          )}
         </TabsContent>
       </Tabs>
     </div>

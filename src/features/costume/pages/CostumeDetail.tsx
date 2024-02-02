@@ -7,15 +7,16 @@ import { pagesPath } from '@/gen/$path';
 import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
 import { InfoTable } from '../components/InfoTable';
-import { useEffect, useState } from 'react';
-import { DocumentData, doc, getDoc } from 'firebase/firestore';
-import { db } from '@/lib/firebase/sdk';
 import { costumeProps } from '@/utils/enum';
 import { costumesQueries } from '../queries/costumes';
 import { useQuery } from '@tanstack/react-query';
 import { FaHeart, FaRegHeart } from 'react-icons/fa6';
+import { useFavorite } from '../hooks/useFavorite';
+import { useAuthContext } from '@/AuthContext';
 
 export const CostumeDetail = () => {
+  const { user } = useAuthContext()!;
+
   const router = useRouter();
   const params = useParams();
 
@@ -27,6 +28,16 @@ export const CostumeDetail = () => {
     }),
   });
   const costumeData = data?.results as costumeProps;
+
+  const { data: favoriteCostumeData, refetch } = useQuery({
+    ...costumesQueries.getFavoriteCostume({ userUid: user?.uid as string }),
+    enabled: !!user?.uid,
+  });
+  const favoriteCostumesId =
+    favoriteCostumeData?.results.favoriteProductsIdList;
+  const isFavorite = favoriteCostumesId?.includes(costumeId);
+
+  const { mutateAsync } = useFavorite();
 
   return (
     <div className="mx-auto max-w-screen-2xl">
@@ -56,9 +67,18 @@ export const CostumeDetail = () => {
                 <span className="text-base"> + レンタル期間に応じた金額</span>
               </h1>
             </div>
-            <button>
+            <button
+              onClick={async () => {
+                await mutateAsync({ productId: costumeId });
+                refetch();
+              }}
+            >
               <div className="flex flex-col items-center space-y-2">
-                <FaRegHeart style={{ fontSize: 32 }} />
+                {isFavorite ? (
+                  <FaHeart style={{ fontSize: 32, color: '#FF929C' }} />
+                ) : (
+                  <FaRegHeart style={{ fontSize: 32 }} />
+                )}
                 <h1 className="text-xs">お気に入り</h1>
               </div>
             </button>
