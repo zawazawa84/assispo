@@ -52,6 +52,7 @@ const termProps = {
   twoWeek: '2week',
   threeWeek: '3week',
   oneMonth: '1month',
+  threeMonth: '3month',
 } as const;
 type termProps = (typeof termProps)[keyof typeof termProps];
 
@@ -65,6 +66,8 @@ export const termToPrice = (term: string | undefined) => {
       return 2000;
     case termProps.oneMonth:
       return 2400;
+    case termProps.threeMonth:
+      return 3200;
   }
 };
 
@@ -78,6 +81,8 @@ export const termToString = (term: string | undefined) => {
       return '3週間';
     case termProps.oneMonth:
       return '1ヶ月';
+    case termProps.threeMonth:
+      return '3ヶ月';
   }
 };
 
@@ -91,6 +96,8 @@ export const termToNumber = (term: string | undefined) => {
       return 21;
     case termProps.oneMonth:
       return 31;
+    case termProps.threeMonth:
+      return 93;
   }
 };
 

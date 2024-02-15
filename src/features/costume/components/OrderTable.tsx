@@ -49,6 +49,12 @@ export const OrderTable = ({
                       1ヶ月
                     </label>
                   </div>
+                  <div className="flex space-x-1">
+                    <RadioGroupItem id="3month" value="3month" />
+                    <label htmlFor="1month" className="text-sm leading-none">
+                      3ヶ月
+                    </label>
+                  </div>
                 </RadioGroup>
               )}
             />
