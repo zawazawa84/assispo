@@ -4,12 +4,7 @@ import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import Image from 'next/image';
 import { Controller } from 'react-hook-form';
 
-export const OrderTable = ({
-  register,
-  costumeData,
-  userData,
-  control,
-}: any) => {
+export const OrderTable = ({ errors, costumeData, userData, control }: any) => {
   return (
     <Table>
       <TableBody className="border-y border-[#dcdcdc]">

@@ -26,6 +26,12 @@ import {
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useState } from 'react';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+const formSchema = z.object({
+  term: z.string(),
+});
 
 export const CostumeOrder = () => {
   const { user, userData } = useAuthContext()!;
@@ -43,13 +49,16 @@ export const CostumeOrder = () => {
   const costumeData = data?.results as costumeProps;
 
   const {
-    register,
     handleSubmit,
     formState: { errors, isSubmitting },
     control,
     watch,
-  } = useForm<orderProps>();
+  } = useForm<orderProps>({ resolver: zodResolver(formSchema) });
   const rentalTerm = watch('term');
+
+  const validateForm = handleSubmit(() => {
+    // バリデーションは行うが、ここでは何もしない
+  });
 
   const onSubmit = handleSubmit(async (data) => {
     const costumeRef = doc(db, 'products', costumeId);
@@ -101,10 +110,15 @@ export const CostumeOrder = () => {
           onClick={() => router.push(pagesPath.costume.$url().path)}
         />
         <h1 className="text-2xl font-semibold ml-2">注文内容の確認</h1>
+        {errors.term && (
+          <p className="text-destructive ml-2">
+            レンタル期間を選択してください
+          </p>
+        )}
         <div>
           <form className="lg:flex lg:space-x-8">
             <OrderTable
-              register={register}
+              errors={errors}
               costumeData={costumeData}
               userData={userData}
               control={control}
@@ -112,7 +126,7 @@ export const CostumeOrder = () => {
             <div className="flex flex-col lg:w-100 h-64 p-4 lg:ml-4 space-y-8 lg:border border-[#dcdcdc] rounded-md lg:bg-[#f6f6f6]">
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button className="h-16 bg-themeblue">
+                  <Button className="h-16 bg-themeblue" onClick={validateForm}>
                     <p className="text-lg">注文を確定する</p>
                   </Button>
                 </DialogTrigger>
