@@ -74,34 +74,36 @@ export const OrderHistoryCard = ({
         </div>
       </CardHeader>
       <CardContent>
-        <div className="lg:flex justify-around">
-          <Image
-            src={orderData.image as unknown as string}
-            alt=""
-            width={150}
-            height={220}
-            className="rounded-sm object-contain aspect-square bg-secondary"
-          />
-          <div className="w-2/5 space-y-3 pl-5">
-            <p>{orderData.name}</p>
-            <p className="text-sm">
-              <span className="text-[#989898]">サイズ : </span>
-              {numberToSize(orderData.size)}
-            </p>
-            <p className="text-sm">
-              <span className="text-[#989898]">洗濯 : </span>{' '}
-              {orderData.washable ? '可' : '不可'}
-            </p>
-            <p className="text-sm">
-              <span className="text-[#989898]">レンタル期間 : </span>
-              {termToString(orderData.term)}
-            </p>
-            <p className="text-sm">
-              <span className="text-[#989898]">基本料金 : </span>¥
-              {orderData.price}
-            </p>
+        <div className="lg:flex lg:mx-6 justify-between">
+          <div className="flex">
+            <Image
+              src={orderData.image as unknown as string}
+              alt=""
+              width={150}
+              height={220}
+              className="rounded-sm object-contain aspect-square bg-secondary"
+            />
+            <div className="space-y-3 ml-4 lg:ml-12">
+              <p>{orderData.name}</p>
+              <p className="text-sm">
+                <span className="text-[#989898]">サイズ : </span>
+                {numberToSize(orderData.size)}
+              </p>
+              <p className="text-sm">
+                <span className="text-[#989898]">洗濯 : </span>{' '}
+                {orderData.washable ? '可' : '不可'}
+              </p>
+              <p className="text-sm">
+                <span className="text-[#989898]">レンタル期間 : </span>
+                {termToString(orderData.term)}
+              </p>
+              <p className="text-sm">
+                <span className="text-[#989898]">基本料金 : </span>¥
+                {orderData.price}
+              </p>
+            </div>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-4 mt-6 pt-4 border-t lg:mt-0 lg:border-none lg:pt-0">
             <div>
               <p>
                 <span className="text-[#989898]">注文日&emsp; :</span>{' '}

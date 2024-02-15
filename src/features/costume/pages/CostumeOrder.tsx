@@ -84,10 +84,10 @@ export const CostumeOrder = () => {
           src="/assispo_logo.png"
           width={140}
           height={10}
-          className="object-cover cursor-pointer"
+          className="object-cover cursor-pointer ml-4"
           onClick={() => router.push(pagesPath.costume.$url().path)}
         />
-        <h1 className="text-2xl font-semibold px-2">注文内容の確認</h1>
+        <h1 className="text-2xl font-semibold ml-2">注文内容の確認</h1>
         <div>
           <form className="lg:flex lg:space-x-8" onSubmit={onSubmit}>
             <OrderTable

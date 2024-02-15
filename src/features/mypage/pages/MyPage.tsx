@@ -58,7 +58,7 @@ export const MyPage = () => {
       </header>
       <div className="mx-auto max-w-screen-2xl">
         <div className="h-screen space-y-8 mt-10 lg:ml-56 lg:mr-56">
-          <h1 className="text-2xl font-semibold">マイページ</h1>
+          <h1 className="text-2xl font-semibold ml-2">マイページ</h1>
           <div className="lg:p-8 lg:border rounded-md">
             <form onSubmit={onSubmit}>
               <Table>

@@ -23,7 +23,7 @@ export const OrderHistory = () => {
         <Header />
       </header>
       <div className="mx-auto max-w-screen-2xl">
-        <h1 className="text-2xl font-semibold mt-8 lg:ml-56 ">注文履歴</h1>
+        <h1 className="text-2xl font-semibold mt-8  ml-2 lg:ml-56">注文履歴</h1>
         <Tabs defaultValue="before">
           <div className="lg:flex mt-8 space-x-8">
             <TabsList className="flex justify-center lg:ml-56 mx-2 ">
