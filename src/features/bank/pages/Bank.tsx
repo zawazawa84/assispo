@@ -3,11 +3,13 @@ import { BankInfo } from '../../costume/components/BankInfo';
 
 export const Bank = () => {
   return (
-    <div className="mx-auto max-w-screen-2xl">
+    <div>
       <header className="sticky top-0 z-10 bg-white">
         <Header />
       </header>
-      <BankInfo />
+      <div className="mx-auto max-w-screen-2xl">
+        <BankInfo />
+      </div>
     </div>
   );
 };
