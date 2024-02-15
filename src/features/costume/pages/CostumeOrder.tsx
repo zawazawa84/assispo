@@ -16,6 +16,7 @@ import { useQuery } from '@tanstack/react-query';
 import { costumesQueries } from '../queries/costumes';
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -53,7 +54,7 @@ export const CostumeOrder = () => {
     formState: { errors, isSubmitting },
     control,
     watch,
-  } = useForm<orderProps>({ resolver: zodResolver(formSchema) });
+  } = useForm<{ term: string }>({ resolver: zodResolver(formSchema) });
   const rentalTerm = watch('term');
 
   const validateForm = handleSubmit(() => {
@@ -80,7 +81,7 @@ export const CostumeOrder = () => {
       date: format(currentDate, 'yyyy.MM.dd'),
       term: data.term,
       productcode: costumeId,
-      fromAddress: data.fromAddress ?? 'アシスポ住所',
+      fromAddress: 'アシスポ住所',
       toAddress: userData?.address,
       comment: '',
       orderStatus: 1,
@@ -126,7 +127,10 @@ export const CostumeOrder = () => {
             <div className="flex flex-col lg:w-100 h-64 p-4 lg:ml-4 space-y-8 lg:border border-[#dcdcdc] rounded-md lg:bg-[#f6f6f6]">
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button className="h-16 bg-themeblue" onClick={validateForm}>
+                  <Button
+                    className="h-16 bg-themeblue"
+                    onClick={() => setChecked(false)}
+                  >
                     <p className="text-lg">注文を確定する</p>
                   </Button>
                 </DialogTrigger>
@@ -239,14 +243,19 @@ export const CostumeOrder = () => {
                       <Checkbox onCheckedChange={() => setChecked(!checked)} />
                       <p>利用規約に同意する</p>
                     </div>
-                    <Button
-                      className="bg-themeblue"
-                      disabled={!checked || isSubmitting}
-                      type="submit"
-                      onClick={onSubmit}
-                    >
-                      注文確定
-                    </Button>
+                    <DialogClose>
+                      <Button
+                        className="bg-themeblue"
+                        disabled={!checked || isSubmitting}
+                        type="submit"
+                        onClick={() => {
+                          validateForm();
+                          onSubmit();
+                        }}
+                      >
+                        注文確定
+                      </Button>
+                    </DialogClose>
                   </DialogFooter>
                 </DialogContent>
               </Dialog>
