@@ -25,6 +25,16 @@ import { db } from '@/lib/firebase/sdk';
 import { useQueryClient } from '@tanstack/react-query';
 import { toast } from '@/components/ui/use-toast';
 import { addDaysToDate } from '@/utils/date';
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 
 export const OrderHistoryCard = ({
   orderData,
@@ -126,17 +136,36 @@ export const OrderHistoryCard = ({
               >
                 <p>衣装詳細</p>
               </Button>
-              <Button
-                variant="outline"
-                className="w-full border-destructive"
-                disabled={
-                  orderData.orderStatus != orderStatusProps.unpaid ||
-                  orderData.isCanceled == true
-                }
-                onClick={cancelOrder}
-              >
-                <p className="text-destructive">ご注文の取り消し</p>
-              </Button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full border-destructive"
+                    disabled={
+                      orderData.orderStatus != orderStatusProps.unpaid ||
+                      orderData.isCanceled == true
+                    }
+                  >
+                    <p className="text-destructive">ご注文の取り消し</p>
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[700px]">
+                  <DialogHeader>
+                    <DialogTitle>注文を取り消しますか？</DialogTitle>
+                    <DialogDescription></DialogDescription>
+                  </DialogHeader>
+                  <DialogFooter className="flex w-full">
+                    <DialogClose asChild>
+                      <Button className="bg-destructive" onClick={cancelOrder}>
+                        取消
+                      </Button>
+                    </DialogClose>
+                    <DialogClose asChild>
+                      <Button variant="outline">Close</Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         </div>
