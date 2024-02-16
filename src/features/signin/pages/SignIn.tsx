@@ -6,17 +6,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { pagesPath } from '@/gen/$path';
-import Link from 'next/link';
 import { FcGoogle } from 'react-icons/fc';
 import { auth } from '@/lib/firebase/sdk';
 import { FirebaseError } from 'firebase/app';
@@ -29,9 +22,7 @@ interface SignIn {
 
 const siginInSchemma = z.object({
   email: z.string().email({ message: '無効なメールアドレスです' }),
-  password: z
-    .string()
-    .min(6, { message: 'パスワードは6文字以上である必要があります' }),
+  password: z.string().min(1, { message: 'パスワードを入力してください' }),
 });
 
 export const SignInPage = () => {
