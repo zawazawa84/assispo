@@ -1,4 +1,13 @@
 import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import { toast } from '@/components/ui/use-toast';
 import { pagesPath } from '@/gen/$path';
 import { db } from '@/lib/firebase/sdk';
@@ -73,15 +82,28 @@ export const CostumeList = ({ costumeData, refetch }: any) => {
             >
               衣装編集
             </Button>
-            <Button
-              variant="outline"
-              className="border-destructive"
-              type="submit"
-            >
-              <p className="text-destructive" onClick={deleteCostume}>
-                衣装削除
-              </p>
-            </Button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="outline" className="border-destructive">
+                  <p className="text-destructive">衣装削除</p>
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[700px]">
+                <DialogHeader>
+                  <DialogTitle>注文を取り消しますか？</DialogTitle>
+                </DialogHeader>
+                <DialogFooter className="flex flex-col space-y-2 lg:space-y-0 justify-end">
+                  <DialogClose asChild>
+                    <Button className="bg-destructive" onClick={deleteCostume}>
+                      削除
+                    </Button>
+                  </DialogClose>
+                  <DialogClose asChild>
+                    <Button variant="outline">キャンセル</Button>
+                  </DialogClose>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </div>

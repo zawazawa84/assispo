@@ -27,7 +27,7 @@ export const AdminCostume = () => {
               router.push(pagesPath.admin.costume.register.$url().path)
             }
           >
-            衣装の登録
+            衣装登録
           </Button>
           <Button
             className="bg-themeblue"

@@ -20,7 +20,7 @@ import {
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { pagesPath } from '@/gen/$path';
-import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
+import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase/sdk';
 import { useQueryClient } from '@tanstack/react-query';
 import { toast } from '@/components/ui/use-toast';
@@ -29,7 +29,6 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -152,16 +151,15 @@ export const OrderHistoryCard = ({
                 <DialogContent className="sm:max-w-[700px]">
                   <DialogHeader>
                     <DialogTitle>注文を取り消しますか？</DialogTitle>
-                    <DialogDescription></DialogDescription>
                   </DialogHeader>
-                  <DialogFooter className="flex w-full">
+                  <DialogFooter className="flex flex-col space-y-2 lg:space-y-0 justify-end">
                     <DialogClose asChild>
                       <Button className="bg-destructive" onClick={cancelOrder}>
                         取消
                       </Button>
                     </DialogClose>
                     <DialogClose asChild>
-                      <Button variant="outline">Close</Button>
+                      <Button variant="outline">キャンセル</Button>
                     </DialogClose>
                   </DialogFooter>
                 </DialogContent>

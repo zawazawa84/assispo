@@ -1,4 +1,13 @@
 import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import {
   Select,
@@ -144,17 +153,38 @@ export const OrderList = ({
               コメントの保存
             </Button>
           )}
-          <Button
-            variant="outline"
-            className="border-destructive"
-            disabled={orderData.isCanceled == true}
-            onClick={(e) => {
-              e.preventDefault();
-              cancelOrder();
-            }}
-          >
-            <p className="text-destructive">ご注文の取り消し</p>
-          </Button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button
+                variant="outline"
+                className="border-destructive"
+                disabled={orderData.isCanceled == true}
+              >
+                <p className="text-destructive">ご注文の取り消し</p>
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[700px]">
+              <DialogHeader>
+                <DialogTitle>注文を取り消しますか？</DialogTitle>
+              </DialogHeader>
+              <DialogFooter className="flex flex-col space-y-2 lg:space-y-0 justify-end">
+                <DialogClose asChild>
+                  <Button
+                    className="bg-destructive"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      cancelOrder();
+                    }}
+                  >
+                    取消
+                  </Button>
+                </DialogClose>
+                <DialogClose asChild>
+                  <Button variant="outline">キャンセル</Button>
+                </DialogClose>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
     </form>
