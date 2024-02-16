@@ -6,7 +6,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { auth } from '@/lib/firebase/sdk';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from 'firebase/auth';
 import { FcGoogle } from 'react-icons/fc';
 import { useRouter } from 'next/navigation';
 import { pagesPath } from '@/gen/$path';
@@ -42,6 +45,10 @@ export const SignUpPage = () => {
         data.email,
         data.password,
       );
+      await sendEmailVerification(userCredential.user);
+      toast({
+        title: '認証メールを送信しました。メールを確認してください。',
+      });
       router.push(pagesPath.costume.$url().path);
     } catch (error) {
       if (
@@ -50,7 +57,7 @@ export const SignUpPage = () => {
       ) {
         toast({
           variant: 'destructive',
-          description: 'このメールアドレスはすでに使われています',
+          title: 'このメールアドレスはすでに使われています',
         });
       }
     }

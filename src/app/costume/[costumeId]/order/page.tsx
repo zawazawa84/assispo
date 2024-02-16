@@ -1,11 +1,27 @@
 'use client';
+
 import { useAuthContext } from '@/AuthContext';
 import { toast } from '@/components/ui/use-toast';
 import { CostumeOrder } from '@/features/costume/pages/CostumeOrder';
 import { redirect } from 'next/navigation';
 
 export default function CostumeOrderPage() {
-  const { userData } = useAuthContext()!;
+  const { user, userData } = useAuthContext()!;
+  if (!user) {
+    toast({
+      variant: 'destructive',
+      title: '購入手続きに進むにはログインを行なってください',
+    });
+    redirect('/signin');
+  }
+  if (!user?.emailVerified) {
+    toast({
+      variant: 'destructive',
+      title:
+        '購入手続きに進むには認証メールからメールアドレスの認証を行ってください',
+    });
+    redirect('/mypage');
+  }
   if (
     !(
       userData?.name &&
@@ -17,7 +33,10 @@ export default function CostumeOrderPage() {
       userData.email
     )
   ) {
-    toast({ variant: 'destructive', title: '個人情報を登録してください' });
+    toast({
+      variant: 'destructive',
+      title: '購入手続きに進むには個人情報を登録してください',
+    });
     redirect('/mypage');
   }
   return <CostumeOrder />;
