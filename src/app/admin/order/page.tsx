@@ -9,7 +9,7 @@ export default function AdminOrderPage() {
     return <div>403 Forbidden</div>;
   }
 
-  if (user?.uid != 'QbU9prxVaQfB8QH9Nx4U1jtlq052') {
+  if (user?.uid != 'KpHHsoIJVXQzzKMKTAOXRyy9nqh2') {
     redirect('/costume');
   }
 

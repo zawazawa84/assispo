@@ -3,16 +3,25 @@
 import { useAuthContext } from '@/AuthContext';
 import { toast } from '@/components/ui/use-toast';
 import { MyPage } from '@/features/mypage/pages/MyPage';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function UserPage() {
   const { user } = useAuthContext()!;
-  if (!user) {
-    toast({
-      variant: 'destructive',
-      title: 'マイページに進むにはログインを行なってください',
-    });
-    redirect('/signin');
-  }
+  const router = useRouter();
+
+  useEffect(() => {
+    if (user == undefined) {
+      return;
+    }
+    if (!user) {
+      toast({
+        variant: 'destructive',
+        title: 'マイページへ進むにはログインを行なってください',
+      });
+      router.push('/signin');
+    }
+  }, [user, router]);
+
   return <MyPage />;
 }

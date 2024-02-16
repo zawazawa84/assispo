@@ -188,13 +188,23 @@ export const OrderHistoryCard = ({
               (基本料金 + レンタル期間料 ※配送料除く)
             </span>
           </p>
-          <p>
-            <span className="text-[#989898]">返却期限 :</span>{' '}
-            {addDaysToDate({
-              dateStr: orderData.date,
-              days: termToNumber(orderData.term) as number,
-            })}
-          </p>
+          {orderData.orderStatus == orderStatusProps.unpaid ? (
+            <p>
+              <span className="text-[#989898]">振込期限 :</span>{' '}
+              {addDaysToDate({
+                dateStr: orderData.date,
+                days: termToNumber(orderData.term) as number,
+              })}
+            </p>
+          ) : (
+            <p>
+              <span className="text-[#989898]">返却期限 :</span>{' '}
+              {addDaysToDate({
+                dateStr: orderData.date,
+                days: termToNumber(orderData.term) as number,
+              })}
+            </p>
+          )}
         </div>
       </CardFooter>
     </Card>
