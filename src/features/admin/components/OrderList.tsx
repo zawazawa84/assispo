@@ -176,13 +176,7 @@ export const OrderList = ({
               </DialogHeader>
               <DialogFooter className="flex flex-col space-y-2 lg:space-y-0 justify-end">
                 <DialogClose asChild>
-                  <Button
-                    className="bg-destructive"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      cancelOrder();
-                    }}
-                  >
+                  <Button className="bg-destructive" onClick={cancelOrder}>
                     取消
                   </Button>
                 </DialogClose>
