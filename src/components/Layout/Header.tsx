@@ -34,7 +34,7 @@ export const Header = () => {
   const arrivedOrderData = data?.ArrivedOrderData;
   const returnDeadlineData = arrivedOrderData?.map((orderData) =>
     addDaysToDate({
-      dateStr: orderData.date,
+      dateStr: orderData.orderDate,
       days: termToNumber(orderData.term) as number,
     }),
   );

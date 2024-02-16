@@ -65,9 +65,9 @@ export const BankInfo = () => {
         </span>
         <span>
           :{' '}
-          {orderData?.date
+          {orderData?.orderDate
             ? addDaysToDate({
-                dateStr: orderData?.date,
+                dateStr: orderData?.orderDate,
                 days: 3,
               })
             : '読み込み中'}

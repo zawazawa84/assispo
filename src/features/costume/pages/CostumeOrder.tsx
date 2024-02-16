@@ -78,7 +78,8 @@ export const CostumeOrder = () => {
     const ordersCollectionRef = collection(db, 'orders');
     const orderRef = await addDoc(ordersCollectionRef, {
       userId: user?.uid,
-      date: format(currentDate, 'yyyy.MM.dd'),
+      arrivalDate: '',
+      orderDate: format(currentDate, 'yyyy.MM.dd'),
       term: data.term,
       productcode: costumeId,
       fromAddress: 'アシスポ住所',

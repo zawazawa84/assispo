@@ -20,7 +20,8 @@ import {
 import { toast } from '@/components/ui/use-toast';
 import { db } from '@/lib/firebase/sdk';
 import queryClient from '@/lib/react-query';
-import { orderHistoryProps } from '@/utils/enum';
+import { orderHistoryProps, returnStatusProps } from '@/utils/enum';
+import { format } from 'date-fns';
 import { doc, updateDoc } from 'firebase/firestore';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -56,6 +57,12 @@ export const OrderList = ({
   };
 
   const updateReturnStatus = async (data: number) => {
+    if (data == returnStatusProps.renting) {
+      const currentDate = new Date();
+      await updateDoc(doc(db, 'orders', orderData.orderId), {
+        arrivalDate: format(currentDate, 'yyyy.MM.dd'),
+      });
+    }
     await updateDoc(doc(db, 'orders', orderData.orderId), {
       returnStatus: data,
     });
@@ -76,7 +83,7 @@ export const OrderList = ({
       <div className="rounded border p-6 space-y-4">
         <p className="text-gray-700 text-base">
           <span className="font-semibold">注文日</span>{' '}
-          {orderData.date as unknown as string}
+          {orderData.orderDate as unknown as string}
         </p>
         <p className="text-gray-700 text-base">
           <span className="font-semibold">ユーザーID</span> {orderData.userId}
