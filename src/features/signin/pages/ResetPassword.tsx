@@ -4,9 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { toast } from '@/components/ui/use-toast';
+import { pagesPath } from '@/gen/$path';
 import { auth } from '@/lib/firebase/sdk';
 import { FirebaseError } from 'firebase/app';
 import { sendPasswordResetEmail } from 'firebase/auth';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
 interface ResetPassword {
@@ -14,6 +16,8 @@ interface ResetPassword {
 }
 
 export const ResetPassword = () => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -61,7 +65,18 @@ export const ResetPassword = () => {
               )}
             </div>
             <div className="grid gap-2">
-              <Button className="bg-themeblue">認証メールを送信する</Button>
+              <Button className="bg-themeblue" type="submit">
+                認証メールを送信する
+              </Button>
+              <Button
+                variant="outline"
+                onClick={(e) => {
+                  e.preventDefault();
+                  router.push(pagesPath.signin.$url().path);
+                }}
+              >
+                <p className="text-themeblue">ログインページへ戻る</p>
+              </Button>
             </div>
           </form>
         </CardContent>

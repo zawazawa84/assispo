@@ -114,6 +114,16 @@ export const SignUpPage = () => {
               )}
             </div>
             <Button className="bg-themeblue w-full">会員登録</Button>
+            <Button
+              className="w-full"
+              variant="outline"
+              onClick={(e) => {
+                e.preventDefault();
+                router.push(pagesPath.signin.$url().path);
+              }}
+            >
+              <p className="text-themeblue">ログインページへ戻る</p>
+            </Button>
           </form>
         </CardContent>
       </Card>
