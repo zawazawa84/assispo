@@ -42,49 +42,67 @@ export const OrderHistory = () => {
             value="before"
             className="h-screen mt-4 lg:ml-56 lg:mr-56"
           >
-            <div className="space-y-5 rounded-md">
-              {BeforeArrivalOrderData?.map((order, index) => {
-                return (
-                  <OrderHistoryCard
-                    orderData={order}
-                    refetch={refetch}
-                    key={index}
-                  />
-                );
-              })}
-            </div>
+            {BeforeArrivalOrderData?.length != 0 ? (
+              <div className="space-y-5 rounded-md">
+                {BeforeArrivalOrderData?.map((order, index) => {
+                  return (
+                    <OrderHistoryCard
+                      orderData={order}
+                      refetch={refetch}
+                      key={index}
+                    />
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="flex justify-center items-center h-80">
+                到着前の衣装はありません
+              </div>
+            )}
           </TabsContent>
           <TabsContent
             value="after"
             className="h-screen mt-4 lg:ml-56 lg:mr-56"
           >
-            <div className="space-y-5 rounded-md">
-              {ArrivedOrderData?.map((order, index) => {
-                return (
-                  <OrderHistoryCard
-                    orderData={order}
-                    refetch={refetch}
-                    key={index}
-                  />
-                );
-              })}
-            </div>
+            {ArrivedOrderData?.length != 0 ? (
+              <div className="space-y-5 rounded-md">
+                {ArrivedOrderData?.map((order, index) => {
+                  return (
+                    <OrderHistoryCard
+                      orderData={order}
+                      refetch={refetch}
+                      key={index}
+                    />
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="flex justify-center items-center h-80">
+                到着済の衣装はありません
+              </div>
+            )}
           </TabsContent>
           <TabsContent
             value="return"
             className="h-screen mt-4 lg:ml-56 lg:mr-56"
           >
-            <div className="space-y-5 rounded-md">
-              {ReturnedOrderData?.map((order, index) => {
-                return (
-                  <OrderHistoryCard
-                    orderData={order}
-                    refetch={refetch}
-                    key={index}
-                  />
-                );
-              })}
-            </div>
+            {ReturnedOrderData?.length != 0 ? (
+              <div className="space-y-5 rounded-md">
+                {ReturnedOrderData?.map((order, index) => {
+                  return (
+                    <OrderHistoryCard
+                      orderData={order}
+                      refetch={refetch}
+                      key={index}
+                    />
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="flex justify-center items-center h-80">
+                返却済の衣装はありません
+              </div>
+            )}
           </TabsContent>
         </Tabs>
       </div>
