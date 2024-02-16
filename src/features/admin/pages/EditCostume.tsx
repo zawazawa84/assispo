@@ -15,7 +15,7 @@ import { db } from '@/lib/firebase/sdk';
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
 import { costumeProps } from '@/utils/enum';
 import { doc, updateDoc } from 'firebase/firestore';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { toast } from '@/components/ui/use-toast';
 import { useParams, useRouter } from 'next/navigation';
@@ -41,6 +41,7 @@ export const EditCostume = () => {
 
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors, isSubmitting },
     control,
@@ -56,6 +57,21 @@ export const EditCostume = () => {
       description: costumes?.description,
     },
   });
+
+  useEffect(() => {
+    if (costumes) {
+      reset({
+        name: costumes?.name,
+        category: costumes?.category,
+        price: costumes?.price,
+        size: costumes?.size,
+        state: costumes?.state,
+        washable: costumes?.washable,
+        others: costumes?.others,
+        description: costumes?.description,
+      });
+    }
+  }, [costumes, reset]);
 
   const handleImageChange = (e: any) => {
     const file = e.target.files[0];
