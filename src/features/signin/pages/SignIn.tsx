@@ -58,7 +58,7 @@ export const SignInPage = () => {
       ) {
         toast({
           variant: 'destructive',
-          description: 'メールアドレスまたはパスワードが異なります',
+          title: 'メールアドレスまたはパスワードが異なります',
         });
       }
     }

@@ -28,14 +28,13 @@ export const ResetPassword = () => {
     try {
       await sendPasswordResetEmail(auth, data.email);
       toast({
-        description: 'パスワードリセットメールを送信しました。',
+        title: 'パスワードリセットメールを送信しました。',
       });
     } catch (error) {
       if (error instanceof FirebaseError) {
         toast({
           variant: 'destructive',
-          description:
-            'メール送信に失敗しました。メールアドレスを確認してください。',
+          title: 'メール送信に失敗しました。メールアドレスを確認してください。',
         });
       }
     }
