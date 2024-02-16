@@ -2,18 +2,11 @@
 
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { auth } from '@/lib/firebase/sdk';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import Link from 'next/link';
 import { FcGoogle } from 'react-icons/fc';
 import { useRouter } from 'next/navigation';
 import { pagesPath } from '@/gen/$path';
@@ -49,7 +42,6 @@ export const SignUpPage = () => {
         data.email,
         data.password,
       );
-      console.log(userCredential);
       router.push(pagesPath.costume.$url().path);
     } catch (error) {
       if (
@@ -85,11 +77,7 @@ export const SignUpPage = () => {
               </span>
             </div>
           </div>
-          <form
-            className="space-y-4"
-            onSubmit={onSubmit}
-            onClick={() => console.log(errors)}
-          >
+          <form className="space-y-4" onSubmit={onSubmit}>
             <div className="grid gap-2">
               <Label>メールアドレス</Label>
               <Input

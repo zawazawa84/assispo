@@ -40,7 +40,6 @@ export const SignInPage = () => {
         data.email,
         data.password,
       );
-      console.log(userCredential);
       router.push(pagesPath.costume.$url().path);
     } catch (error) {
       if (
