@@ -106,7 +106,9 @@ export const SignInPage = () => {
               </p>
             </div>
             <div className="grid gap-2">
-              <Button className="bg-themeblue">ログイン</Button>
+              <Button className="bg-themeblue" disabled={isSubmitting}>
+                ログイン
+              </Button>
             </div>
           </form>
           <div className="grid gap-2">

@@ -108,7 +108,9 @@ export const SignUpPage = () => {
                 </p>
               )}
             </div>
-            <Button className="bg-themeblue w-full">会員登録</Button>
+            <Button className="bg-themeblue w-full" disabled={isSubmitting}>
+              会員登録
+            </Button>
             <Button
               className="w-full"
               variant="outline"

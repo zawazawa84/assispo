@@ -64,7 +64,11 @@ export const ResetPassword = () => {
               )}
             </div>
             <div className="grid gap-2">
-              <Button className="bg-themeblue" type="submit">
+              <Button
+                className="bg-themeblue"
+                disabled={isSubmitting}
+                type="submit"
+              >
                 認証メールを送信する
               </Button>
               <Button
