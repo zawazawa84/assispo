@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_ENV=development next dev",
+    "start:prd": "NODE_ENV=production next start",
     "dev:path": "pathpida --enableStatic --output ./src/gen/",
     "build": "next build",
     "start": "next start",
