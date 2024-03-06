@@ -7,21 +7,20 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 export default function UserPage() {
-  const { user } = useAuthContext()!;
+  const { user, isLoading } = useAuthContext()!;
   const router = useRouter();
 
   useEffect(() => {
-    if (user == undefined) {
-      return;
+    if (!isLoading) {
+      if (!user) {
+        toast({
+          variant: 'destructive',
+          title: 'マイページへ進むにはログインを行なってください',
+        });
+        router.push('/signin');
+      }
     }
-    if (!user) {
-      toast({
-        variant: 'destructive',
-        title: 'マイページへ進むにはログインを行なってください',
-      });
-      router.push('/signin');
-    }
-  }, [user, router]);
+  }, [user, isLoading, router]);
 
   return <MyPage />;
 }

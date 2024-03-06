@@ -16,7 +16,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
-import { User, History, LogOut, Home } from 'lucide-react';
+import { User, History, LogIn, LogOut, Home } from 'lucide-react';
 import { Button } from '../ui/button';
 import { useQuery } from '@tanstack/react-query';
 import { ordersQueries } from '@/features/mypage/queries/orders';
@@ -103,10 +103,17 @@ export const Header = () => {
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
               <Link href={pagesPath.signin.$url().path} onClick={logOut}>
-                <DropdownMenuItem className="text-destructive cursor-pointer">
-                  <LogOut className="mr-2 h-4 w-4" />
-                  <span>ログアウト</span>
-                </DropdownMenuItem>
+                {!!user ? (
+                  <DropdownMenuItem className="text-destructive cursor-pointer">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>ログアウト</span>
+                  </DropdownMenuItem>
+                ) : (
+                  <DropdownMenuItem className="cursor-pointer">
+                    <LogIn className="mr-2 h-4 w-4" />
+                    <span>ログイン</span>
+                  </DropdownMenuItem>
+                )}
               </Link>
             </DropdownMenuContent>
           </DropdownMenu>

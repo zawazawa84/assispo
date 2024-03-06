@@ -1,5 +1,5 @@
-import SignIn from './signin/page';
+import Costume from './costume/page';
 
 export default function Home() {
-  return <SignIn />;
+  return <Costume />;
 }

@@ -263,7 +263,7 @@ export const CostumeOrder = () => {
               <div className="space-y-1">
                 <div className="flex justify-between">
                   <p className="text-sm">基本料金</p>
-                  <p className="text-sm">¥{costumeData.price}</p>
+                  <p className="text-sm">¥{costumeData?.price}</p>
                 </div>
                 <div className="flex justify-between">
                   <p className="text-sm">レンタル料</p>
@@ -273,7 +273,7 @@ export const CostumeOrder = () => {
                   <p>合計</p>
                   <p>
                     ¥
-                    {Number(costumeData.price) +
+                    {Number(costumeData?.price) +
                       (Number(termToPrice(rentalTerm)) || 0)}
                   </p>
                 </div>

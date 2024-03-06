@@ -18,6 +18,7 @@ export interface UserData {
 type AuthContextType = {
   user: User | null;
   userData: UserData | null;
+  isLoading: boolean;
 };
 
 export const AuthContext = createContext<AuthContextType | undefined>(
@@ -31,9 +32,12 @@ export function useAuthContext() {
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [userData, setUserData] = useState<UserData | null>(null);
+  const [isLoading, setIsLoading] = useState(true); // 読み込み状態の追跡
+
   const value = {
     user: user,
     userData: userData,
+    isLoading: isLoading,
   };
 
   useEffect(() => {
@@ -49,6 +53,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           setUserData(null);
         }
       }
+      setIsLoading(false);
     });
     return () => {
       unsubscribe();

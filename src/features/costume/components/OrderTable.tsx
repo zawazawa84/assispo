@@ -78,14 +78,14 @@ export const OrderTable = ({ errors, costumeData, userData, control }: any) => {
                   <TableCell>商品</TableCell>
                   <TableCell>
                     <Image
-                      src={costumeData.image}
+                      src={costumeData?.image}
                       alt=""
                       width={70}
                       height={10}
                       className="object-contain aspect-[5/6] bg-secondary"
                     />
                   </TableCell>
-                  <TableCell>¥{costumeData.price}</TableCell>
+                  <TableCell>¥{costumeData?.price}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
