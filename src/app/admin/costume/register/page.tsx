@@ -9,7 +9,7 @@ export default function RegisterCostumePage() {
     return <div>403 Forbidden</div>;
   }
 
-  if (user?.uid != 'KpHHsoIJVXQzzKMKTAOXRyy9nqh2') {
+  if (user?.email != 'taiki84taiki@gmail.com') {
     redirect('/costume');
   }
 
