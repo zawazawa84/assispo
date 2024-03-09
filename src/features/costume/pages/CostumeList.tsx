@@ -23,7 +23,7 @@ export const CostumeList = () => {
   const { user } = useAuthContext()!;
 
   const [costumeList, setCostumeList] = useState<
-    QueryDocumentSnapshot<DocumentData, DocumentData>[]
+    QueryDocumentSnapshot<DocumentData>[]
   >([]);
   const [size, setSize] = useState('');
   const [lastDoc, setLastDoc] =
@@ -115,7 +115,7 @@ export const CostumeList = () => {
               </InfiniteScroll>
             ) : (
               <div className="grid grid-cols-3 lg:grid-cols-5 gap-2">
-                {Array.from({ length: 5 }).map((_, index) => (
+                {Array.from({ length: 10 }).map((_, index) => (
                   <Skeleton
                     key={index}
                     className="mt-4 w-220 rounded-sm aspect-square"
