@@ -1,11 +1,13 @@
 'use client';
 
+import { useQuery } from '@tanstack/react-query';
+
+import { OrderHistoryCard } from '../components/OrderHistoryCard';
+import { ordersQueries } from '../queries/orders';
+
 import { useAuthContext } from '@/AuthContext';
 import { Header } from '@/components/Layout/Header';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { OrderHistoryCard } from '../components/OrderHistoryCard';
-import { useQuery } from '@tanstack/react-query';
-import { ordersQueries } from '../queries/orders';
 
 export const OrderHistory = () => {
   const { user } = useAuthContext()!;

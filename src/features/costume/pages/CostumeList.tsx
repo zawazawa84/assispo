@@ -1,6 +1,14 @@
 'use client';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useState } from 'react';
+
+import { useQuery } from '@tanstack/react-query';
+import { DocumentData, QueryDocumentSnapshot } from 'firebase/firestore';
+import InfiniteScroll from 'react-infinite-scroller';
+
 import { CostumeItem } from '../components/CostumeItem';
+import { costumesQueries } from '../queries/costumes';
+
+import { useAuthContext } from '@/AuthContext';
 import { Header } from '@/components/Layout/Header';
 import {
   Select,
@@ -11,13 +19,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { costumesQueries } from '../queries/costumes';
-import InfiniteScroll from 'react-infinite-scroller';
-import { DocumentData, QueryDocumentSnapshot } from 'firebase/firestore';
 import { Skeleton } from '@/components/ui/skeleton';
-import { useAuthContext } from '@/AuthContext';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export const CostumeList = () => {
   const { user } = useAuthContext()!;

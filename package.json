@@ -8,7 +8,8 @@
     "dev:path": "pathpida --enableStatic --output ./src/gen/",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
@@ -34,7 +35,6 @@
     "clsx": "^2.0.0",
     "date-fns": "^2.30.0",
     "eslint": "8.48.0",
-    "eslint-config-next": "13.4.19",
     "firebase": "^10.5.0",
     "firebase-admin": "^11.11.0",
     "firebase-functions": "^4.6.0",
@@ -55,7 +55,11 @@
   },
   "devDependencies": {
     "@types/react-infinite-scroller": "^1.2.5",
-    "@typescript-eslint/eslint-plugin": "^6.5.0",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint-config-next": "^14.1.4",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-unused-imports": "^3.1.0",
     "npm-run-all": "^4.1.5",
     "pathpida": "^0.22.0",
     "prettier": "^3.0.3"

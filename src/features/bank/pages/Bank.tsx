@@ -1,5 +1,6 @@
-import { Header } from '@/components/Layout/Header';
 import { BankInfo } from '../../costume/components/BankInfo';
+
+import { Header } from '@/components/Layout/Header';
 
 export const Bank = () => {
   return (

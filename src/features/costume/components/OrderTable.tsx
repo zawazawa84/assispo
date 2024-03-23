@@ -1,10 +1,11 @@
-import { Button } from '@/components/ui/button';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import Image from 'next/image';
+
 import { Controller } from 'react-hook-form';
 
-export const OrderTable = ({ errors, costumeData, userData, control }: any) => {
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
+
+export const OrderTable = ({ costumeData, userData, control }: any) => {
   return (
     <Table>
       <TableBody className="border-y border-[#dcdcdc]">

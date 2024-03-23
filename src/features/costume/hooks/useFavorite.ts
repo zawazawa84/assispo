@@ -1,5 +1,3 @@
-import { useAuthContext } from '@/AuthContext';
-import { db } from '@/lib/firebase/sdk';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   collection,
@@ -10,6 +8,9 @@ import {
   deleteDoc,
   doc,
 } from 'firebase/firestore';
+
+import { useAuthContext } from '@/AuthContext';
+import { db } from '@/lib/firebase/sdk';
 
 export const useFavorite = () => {
   const { user } = useAuthContext()!;

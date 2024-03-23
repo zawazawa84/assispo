@@ -1,11 +1,3 @@
-import { useAuthContext } from '@/AuthContext';
-import { db } from '@/lib/firebase/sdk';
-import {
-  costumeProps,
-  orderHistoryProps,
-  orderProps,
-  returnStatusProps,
-} from '@/utils/enum';
 import { createQueryKeys } from '@lukemorales/query-key-factory';
 import {
   collection,
@@ -15,6 +7,14 @@ import {
   query,
   where,
 } from 'firebase/firestore';
+
+import { db } from '@/lib/firebase/sdk';
+import {
+  costumeProps,
+  orderHistoryProps,
+  orderProps,
+  returnStatusProps,
+} from '@/utils/enum';
 
 export const ordersQueries = createQueryKeys('orders', {
   getOrder: ({ user, orderId }) => ({

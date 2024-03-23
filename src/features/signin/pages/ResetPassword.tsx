@@ -1,15 +1,17 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
+import { FirebaseError } from 'firebase/app';
+import { sendPasswordResetEmail } from 'firebase/auth';
+import { useForm } from 'react-hook-form';
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { toast } from '@/components/ui/use-toast';
 import { pagesPath } from '@/gen/$path';
 import { auth } from '@/lib/firebase/sdk';
-import { FirebaseError } from 'firebase/app';
-import { sendPasswordResetEmail } from 'firebase/auth';
-import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
 
 interface ResetPassword {
   email: string;

@@ -1,7 +1,8 @@
 'use client';
+import { redirect } from 'next/navigation';
+
 import { useAuthContext } from '@/AuthContext';
 import { AdminOrder } from '@/features/admin/pages/AdminOrder';
-import { redirect } from 'next/navigation';
 
 export default function AdminOrderPage() {
   const { user } = useAuthContext()!;

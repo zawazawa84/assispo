@@ -1,7 +1,11 @@
 'use client';
 
+import { useState } from 'react';
+
 import { doc, setDoc } from 'firebase/firestore';
-import { db } from '@/lib/firebase/sdk';
+import { Controller, useForm } from 'react-hook-form';
+
+import { UserData, useAuthContext } from '@/AuthContext';
 import { Header } from '@/components/Layout/Header';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -22,9 +26,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
-import { UserData, useAuthContext } from '@/AuthContext';
+import { db } from '@/lib/firebase/sdk';
 import { numberToSize } from '@/utils/enum';
 
 export const MyPage = () => {
@@ -32,7 +34,6 @@ export const MyPage = () => {
   const [editable, setEditable] = useState(false);
 
   const {
-    formState: { errors, isSubmitting },
     control,
     handleSubmit,
     register,

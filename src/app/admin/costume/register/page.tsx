@@ -1,7 +1,8 @@
 'use client';
+import { redirect } from 'next/navigation';
+
 import { useAuthContext } from '@/AuthContext';
 import { RegisterCostume } from '@/features/admin/pages/RegisterCostume';
-import { redirect } from 'next/navigation';
 
 export default function RegisterCostumePage() {
   const { user } = useAuthContext()!;

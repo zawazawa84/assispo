@@ -1,8 +1,5 @@
-import { db } from '@/lib/firebase/sdk';
 import { createQueryKeys } from '@lukemorales/query-key-factory';
 import {
-  DocumentData,
-  Query,
   collection,
   doc,
   getDoc,
@@ -12,6 +9,8 @@ import {
   startAfter,
   where,
 } from 'firebase/firestore';
+
+import { db } from '@/lib/firebase/sdk';
 
 const LIMIT = 20;
 

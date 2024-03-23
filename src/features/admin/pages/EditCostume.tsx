@@ -1,5 +1,15 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
+import Image from 'next/image';
+import { useParams, useRouter } from 'next/navigation';
+
+import { useQuery } from '@tanstack/react-query';
+import { doc, updateDoc } from 'firebase/firestore';
+import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
+import { Controller, useForm } from 'react-hook-form';
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -11,18 +21,11 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { db } from '@/lib/firebase/sdk';
-import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
-import { costumeProps } from '@/utils/enum';
-import { doc, updateDoc } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
 import { toast } from '@/components/ui/use-toast';
-import { useParams, useRouter } from 'next/navigation';
-import { pagesPath } from '@/gen/$path';
-import Image from 'next/image';
-import { useQuery } from '@tanstack/react-query';
 import { costumesQueries } from '@/features/costume/queries/costumes';
+import { pagesPath } from '@/gen/$path';
+import { db } from '@/lib/firebase/sdk';
+import { costumeProps } from '@/utils/enum';
 
 export const EditCostume = () => {
   const [imagePreview, setImagePreview] = useState<string>();
@@ -43,7 +46,7 @@ export const EditCostume = () => {
     register,
     reset,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { isSubmitting },
     control,
   } = useForm<costumeProps>({
     defaultValues: {

@@ -1,19 +1,23 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { OrderTable } from '../components/OrderTable';
+import { useState } from 'react';
+
 import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
-import { pagesPath } from '@/gen/$path';
-import { useForm } from 'react-hook-form';
-import { addDoc, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
-import { db } from '@/lib/firebase/sdk';
-import { useAuthContext } from '@/AuthContext';
-import { costumeProps, orderProps, termToPrice } from '@/utils/enum';
-import { format } from 'date-fns';
-import { toast } from '@/components/ui/use-toast';
+
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
+import { format } from 'date-fns';
+import { addDoc, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+
+import { OrderTable } from '../components/OrderTable';
 import { costumesQueries } from '../queries/costumes';
+
+import { useAuthContext } from '@/AuthContext';
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   Dialog,
   DialogClose,
@@ -25,10 +29,10 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Checkbox } from '@/components/ui/checkbox';
-import { useState } from 'react';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from '@/components/ui/use-toast';
+import { pagesPath } from '@/gen/$path';
+import { db } from '@/lib/firebase/sdk';
+import { costumeProps, termToPrice } from '@/utils/enum';
 
 const formSchema = z.object({
   term: z.string(),

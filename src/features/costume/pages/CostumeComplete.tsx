@@ -1,6 +1,11 @@
 'use client';
 
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+
+import { BankInfo } from '../components/BankInfo';
+
+import { Header } from '@/components/Layout/Header';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -10,9 +15,6 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { pagesPath } from '@/gen/$path';
-import Link from 'next/link';
-import { Header } from '@/components/Layout/Header';
-import { BankInfo } from '../components/BankInfo';
 
 export const CostumeComplete = () => {
   const router = useRouter();

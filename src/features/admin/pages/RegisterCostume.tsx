@@ -1,5 +1,14 @@
 'use client';
 
+import { useState } from 'react';
+
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+
+import { addDoc, collection } from 'firebase/firestore';
+import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
+import { Controller, useForm } from 'react-hook-form';
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -11,16 +20,10 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { db } from '@/lib/firebase/sdk';
-import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
-import { costumeProps } from '@/utils/enum';
-import { addDoc, collection } from 'firebase/firestore';
-import { useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
 import { toast } from '@/components/ui/use-toast';
-import { useRouter } from 'next/navigation';
 import { pagesPath } from '@/gen/$path';
-import Image from 'next/image';
+import { db } from '@/lib/firebase/sdk';
+import { costumeProps } from '@/utils/enum';
 
 export const RegisterCostume = () => {
   const router = useRouter();
@@ -29,7 +32,7 @@ export const RegisterCostume = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { isSubmitting },
     control,
   } = useForm<costumeProps>();
 

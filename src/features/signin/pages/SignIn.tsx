@@ -1,19 +1,21 @@
 'use client';
 
-import { z } from 'zod';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { FirebaseError } from 'firebase/app';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useForm } from 'react-hook-form';
+import { FcGoogle } from 'react-icons/fc';
+import { z } from 'zod';
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { pagesPath } from '@/gen/$path';
-import { FcGoogle } from 'react-icons/fc';
-import { auth } from '@/lib/firebase/sdk';
-import { FirebaseError } from 'firebase/app';
 import { toast } from '@/components/ui/use-toast';
+import { pagesPath } from '@/gen/$path';
+import { auth } from '@/lib/firebase/sdk';
 
 interface SignIn {
   email: string;

@@ -1,22 +1,24 @@
 'use client';
 
-import { useForm } from 'react-hook-form';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { auth } from '@/lib/firebase/sdk';
+import { useRouter } from 'next/navigation';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { FirebaseError } from 'firebase/app';
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
 } from 'firebase/auth';
+import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
-import { useRouter } from 'next/navigation';
-import { pagesPath } from '@/gen/$path';
 import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { FirebaseError } from 'firebase/app';
+
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { toast } from '@/components/ui/use-toast';
+import { pagesPath } from '@/gen/$path';
+import { auth } from '@/lib/firebase/sdk';
 
 interface SignUp {
   email: string;

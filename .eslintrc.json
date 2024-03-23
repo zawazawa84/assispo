@@ -3,5 +3,33 @@
     "plugin:@typescript-eslint/recommended",
     "next/core-web-vitals",
     "prettier"
-  ]
+  ],
+  "plugins": ["unused-imports"],
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "warn",
+    "no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "warn",
+    "import/order": [
+      "warn",
+      {
+        "alphabetize": { "caseInsensitive": true, "order": "asc" },
+        "groups": ["builtin", "external", "parent", "sibling", "index"],
+        "newlines-between": "always",
+        "pathGroups": [
+          {
+            "group": "builtin",
+            "pattern": "react",
+            "position": "before"
+          },
+          {
+            "group": "builtin",
+            "pattern": "next/**",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react", "next"]
+      }
+    ]
+  }
 }

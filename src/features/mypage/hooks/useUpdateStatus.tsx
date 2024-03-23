@@ -1,5 +1,6 @@
-import { db } from '@/lib/firebase/sdk';
 import { doc, updateDoc } from 'firebase/firestore';
+
+import { db } from '@/lib/firebase/sdk';
 
 interface changeStatusProps {
   orderId: string;

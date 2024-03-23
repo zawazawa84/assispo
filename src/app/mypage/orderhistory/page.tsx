@@ -1,10 +1,12 @@
 'use client';
 
+import { useEffect } from 'react';
+
+import { useRouter } from 'next/navigation';
+
 import { useAuthContext } from '@/AuthContext';
 import { toast } from '@/components/ui/use-toast';
 import { OrderHistory } from '@/features/mypage/pages/OrderHistory';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 
 export default function UserOrderHistoryPage() {
   const { user, isLoading } = useAuthContext()!;

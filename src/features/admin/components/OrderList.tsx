@@ -1,3 +1,9 @@
+import { useState } from 'react';
+
+import { format } from 'date-fns';
+import { doc, updateDoc } from 'firebase/firestore';
+import { useForm } from 'react-hook-form';
+
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -21,10 +27,6 @@ import { toast } from '@/components/ui/use-toast';
 import { db } from '@/lib/firebase/sdk';
 import queryClient from '@/lib/react-query';
 import { orderHistoryProps, returnStatusProps } from '@/utils/enum';
-import { format } from 'date-fns';
-import { doc, updateDoc } from 'firebase/firestore';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
 
 export const OrderList = ({
   orderData,
@@ -36,7 +38,6 @@ export const OrderList = ({
   const [editable, setEditable] = useState(false);
 
   const {
-    formState: { errors, isSubmitting },
     handleSubmit,
     register,
   } = useForm<{ comment: string }>();

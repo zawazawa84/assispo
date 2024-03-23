@@ -1,9 +1,11 @@
 'use client';
 
 import { createContext, useState, useContext, useEffect } from 'react';
-import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
+
+import { onAuthStateChanged, User } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
+
 import { auth, db } from './lib/firebase/sdk';
-import { doc, getDoc, DocumentData } from 'firebase/firestore';
 
 export interface UserData {
   address: string;

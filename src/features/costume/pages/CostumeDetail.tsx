@@ -1,18 +1,21 @@
 'use client';
 
+import Image from 'next/image';
+import { useParams, useRouter } from 'next/navigation';
+
+import { useQuery } from '@tanstack/react-query';
+import { FaHeart, FaRegHeart } from 'react-icons/fa6';
+
+import { InfoTable } from '../components/InfoTable';
+import { useFavorite } from '../hooks/useFavorite';
+import { costumesQueries } from '../queries/costumes';
+
+import { useAuthContext } from '@/AuthContext';
 import { Header } from '@/components/Layout/Header';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { pagesPath } from '@/gen/$path';
-import Image from 'next/image';
-import { useParams, useRouter } from 'next/navigation';
-import { InfoTable } from '../components/InfoTable';
 import { costumeProps } from '@/utils/enum';
-import { costumesQueries } from '../queries/costumes';
-import { useQuery } from '@tanstack/react-query';
-import { FaHeart, FaRegHeart } from 'react-icons/fa6';
-import { useFavorite } from '../hooks/useFavorite';
-import { useAuthContext } from '@/AuthContext';
 
 export const CostumeDetail = () => {
   const { user } = useAuthContext()!;
